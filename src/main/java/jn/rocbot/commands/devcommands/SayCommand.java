@@ -20,7 +20,7 @@ public class SayCommand implements Command{
         int i = 1;
         for(String arg : args){
             arg.replace("<EL>", Emojis.EL);
-            i++; if(!(i == args.length))
+            i++; if(!(i == args.length + 1))
                 message += arg + " ";
             else
                 message += arg;
