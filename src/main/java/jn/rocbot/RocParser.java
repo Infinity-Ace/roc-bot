@@ -20,19 +20,18 @@ public class RocParser {
                 beheaded = raw.replaceFirst("~!", "");
                 break;
             case DEV:
-                beheaded = raw.replaceFirst("!!", "");
+                beheaded = raw.replaceFirst("!#", "");
                 break;
         }
+
         String[] sb = beheaded.split(" ");
         for(String s : sb) split.add(s);
 
-        String invoke = "";
 
-        if(type == CommandType.NORMAL) {
-            invoke = split.get(0);
-        }else{
-            invoke = split.get(1);
-        }
+
+
+        String invoke = split.get(0);
+
         String args[] = new String[split.size() - 1];
         split.subList(1, split.size()).toArray(args);
 
