@@ -26,7 +26,13 @@ public class RocParser {
         String[] sb = beheaded.split(" ");
         for(String s : sb) split.add(s);
 
-        String invoke = split.get(0);
+        String invoke = ""
+
+        if(type == CommandType.NORMAL) {
+            invoke = split.get(0);
+        }else{
+            invoke = split.get(1);
+        }
         String args[] = new String[split.size() - 1];
         split.subList(1, split.size()).toArray(args);
 
