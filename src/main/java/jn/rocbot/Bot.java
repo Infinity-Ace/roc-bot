@@ -6,6 +6,7 @@ import jn.rocbot.commands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.HelloCommand;
 import jn.rocbot.commands.common.CommandType;
+import jn.rocbot.commands.devcommands.SayCommand;
 import jn.rocbot.commands.devcommands.TestCommand;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -37,6 +38,7 @@ public class Bot extends ListenerAdapter {
 
         //Master commands
         COMMANDS.put("test", new TestCommand());
+        COMMANDS.put("say", new SayCommand());
     }
     @Override
     public void onReady(ReadyEvent event){
