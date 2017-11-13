@@ -29,7 +29,6 @@ public class Master {
         JsonParser parser = new JsonParser();
 
         try {
-
             JsonObject mastersjson = parser.parse(new JsonReader(
                     new FileReader("res/roles.json")
             )).getAsJsonObject();

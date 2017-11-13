@@ -1,9 +1,6 @@
 package jn.rocbot;
 
-import jn.rocbot.commands.Command;
-import jn.rocbot.commands.HelpCommand;
-import jn.rocbot.commands.ShipsCommand;
-import jn.rocbot.commands.SourceCommand;
+import jn.rocbot.commands.*;
 import jn.rocbot.commands.testcommands.HelloCommand;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -78,16 +75,23 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event){
+
         //Just some info to the log
         Main.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
-        Main.log(INFO, "Log variables; DEBUG: " + Main.DEBUG + ", VERBOSE: " + Main.VERBOSE);
-        Main.log(INFO, "Roaming in the servers: ");        
 
-        for (Guild g : event.getJDA().getGuilds()) {
-            dlog("\t" + g.getName());
-        }
-        
-        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage("I have rebooted").complete();
+        Main.log(INFO, "Roaming in the servers: ");
+        for (Guild g : event.getJDA().getGuilds()) dlog("\t" + g.getName());
+
+        //Showing masters
+        StringBuilder masters = new StringBuilder("\t\n");
+        for(Master master : Master.MASTERS)  masters.append(master.name);
+        Main.log(INFO, "My masters are: " + masters.toString());
+
+        say(event, "I have rebooted");
+    }
+
+    private void say(ReadyEvent event, String message){
+        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage(message).complete();
     }
 
     /**
