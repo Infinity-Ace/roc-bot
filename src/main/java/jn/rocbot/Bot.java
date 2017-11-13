@@ -89,11 +89,11 @@ public class Bot extends ListenerAdapter {
                         && Masters.isMaster(event.getAuthor())
                     ){ // If it is a mastercommand
 
-                handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.DEV, event));
+                handleCommand(PARSER.parse(event.getMessage().getContent(), CommandType.DEV, event));
 
             } else {
                 if (!event.getAuthor().isBot()) {
-                    String raw = event.getMessage().getContent().toLowerCase();
+                    String raw = event.getMessage().getContent();
 
                     //Some special cases -----------------------------------------------------
 
