@@ -73,7 +73,9 @@ public class Bot extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event){
         if(event.getTextChannel().getIdLong() == 378546862627749908L
                 || //Checks if the bot is supposed to react
-                event.getTextChannel().getIdLong() == 377889873694031872L) {
+                event.getTextChannel().getIdLong() == 377889873694031872L
+                    ||
+                    event.getTextChannel().getIdLong() == 378949749883273217L) {
             if (Main.SHOW_MESSAGES) {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             }
