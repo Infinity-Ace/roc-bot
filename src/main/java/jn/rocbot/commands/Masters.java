@@ -40,7 +40,7 @@ public class Masters {
                         jsonmaster.get("name").getAsString(),
                         jsonmaster.get("greeting").getAsString()
                                 .replace("@", jsonmaster.get("name").getAsString()),
-                        jsonmaster.get("longId").getAsLong()
+                        jsonmaster.get("longID").getAsLong()
                 ));
             }
         } catch (FileNotFoundException e) { e.printStackTrace(); }
