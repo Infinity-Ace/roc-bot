@@ -1,8 +1,11 @@
 package jn.rocbot.commands.devcommands;
 
+import jn.rocbot.Main;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import static jn.rocbot.Main.LOGTYPE.INFO;
 
 public class SayCommand implements Command{
 
@@ -13,7 +16,8 @@ public class SayCommand implements Command{
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        sendMessage(args[0].replace("_", " "), event);
+        Main.log(INFO, "Executed say-command");
+        sendMessage(args[0].replace("|", " "), event);
     }
 
     @Override
