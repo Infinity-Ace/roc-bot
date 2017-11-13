@@ -16,7 +16,7 @@ public class HelloCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         boolean isMaster = false;
-        for (Masters master : Masters.MASTERS) {
+        for (Masters.Master master : Masters.MASTERS) {
             isMaster = master.longID == event.getAuthor().getIdLong();
 
             if(isMaster) break;

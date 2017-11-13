@@ -86,7 +86,7 @@ public class Bot extends ListenerAdapter {
 
         //Showing masters
         StringBuilder masters = new StringBuilder("\t\n");
-        for(Masters master : Masters.MASTERS)  masters.append(master.name);
+        for(Masters.Master master : Masters.MASTERS)  masters.append(master.name);
         Main.log(INFO, "My masters are: " + masters.toString());
 
         say(event, "I have rebooted");
