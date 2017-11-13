@@ -1,4 +1,4 @@
-package jn.rocbot.commands;
+package jn.rocbot.Permissions;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -11,24 +11,26 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 public class Masters {
-    public String name;
-    public String greeting;
-    public long longID;
+    public static class Master{
+        public String name;
+        public String greeting;
+        public long longID;
 
-    private Masters(String name, String greeting, long longID){
-        this.name = name;
-        this.greeting = greeting;
-        this.longID = longID;
+        public Master(String name, String greeting, long longID) {
+            this.name = name;
+            this.greeting = greeting;
+            this.longID = longID;
+        }
     }
 
-    public static ArrayList<Masters> MASTERS;
+    public static ArrayList<Master> MASTERS;
 
     public static void init(){
         MASTERS = new ArrayList<>();
 
         JsonParser parser = new JsonParser(); try {
             JsonObject mastersjson = parser.parse(new JsonReader(
-                    new FileReader("res/roles.json")
+                    new FileReader("meta/permissions.json")
             )).getAsJsonObject();
 
             JsonArray masters = (JsonArray) mastersjson.get("bot-masters");
@@ -36,7 +38,7 @@ public class Masters {
             for (JsonElement jsonelementmaster : masters){
                 JsonObject jsonmaster = jsonelementmaster.getAsJsonObject();
 
-                MASTERS.add(new Masters(
+                MASTERS.add(new Master(
                         jsonmaster.get("name").getAsString(),
                         jsonmaster.get("greeting").getAsString()
                                 .replace("@", jsonmaster.get("name").getAsString()),
@@ -46,8 +48,8 @@ public class Masters {
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
 
-    public static Masters fromLongID(long id){
-        for(Masters master : MASTERS){
+    public static Master fromLongID(long id){
+        for(Master master : MASTERS){
             if(master.longID == id) return master;
         }
 

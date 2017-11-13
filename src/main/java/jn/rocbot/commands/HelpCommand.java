@@ -1,6 +1,8 @@
 package jn.rocbot.commands;
 
 import jn.rocbot.Bot;
+import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelpCommand implements Command {
@@ -37,5 +39,10 @@ public class HelpCommand implements Command {
     @Override
     public boolean executed(boolean success, MessageReceivedEvent event) {
         return true;
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

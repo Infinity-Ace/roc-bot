@@ -1,6 +1,6 @@
 package jn.rocbot;
 
-import jn.rocbot.commands.Masters;
+import jn.rocbot.Permissions.Masters;
 import jn.rocbot.info.AuraStore;
 import jn.rocbot.info.ShipStore;
 import net.dv8tion.jda.core.AccountType;

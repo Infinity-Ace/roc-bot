@@ -1,6 +1,6 @@
 package jn.rocbot.ships;
 
-import jn.rocbot.commands.Formatter;
+import jn.rocbot.utils.Formatter;
 import jn.rocbot.info.ShipStore;
 
 public class Ship implements Formatter{

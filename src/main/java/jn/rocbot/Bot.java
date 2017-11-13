@@ -1,7 +1,9 @@
 package jn.rocbot;
 
+import jn.rocbot.Permissions.Masters;
 import jn.rocbot.commands.*;
-import jn.rocbot.commands.testcommands.HelloCommand;
+import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.HelloCommand;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -45,8 +47,9 @@ public class Bot extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event){
         if(event.getTextChannel().getIdLong() == 378546862627749908L) {
             if (Main.SHOW_MESSAGES) {
-                Main.log(Main.LOGTYPE.INFO, "MessageRecieved!: " + event.getMessage().getContent() + "\nFrom user: " + event.getMessage().getAuthor().getName() + ", isbot: " + event.getMessage().getAuthor().isBot());
+                Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             }
+
             //Checks if the message starts with ! and if the sender is not a bot
             if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
                 dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());

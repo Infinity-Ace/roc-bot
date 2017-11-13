@@ -1,13 +1,9 @@
 package jn.rocbot.commands;
 
-import net.dv8tion.jda.core.entities.EmbedType;
-import net.dv8tion.jda.core.entities.MessageEmbed;
+import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.entities.impl.MessageEmbedImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-
-import java.awt.*;
-import java.time.OffsetDateTime;
-import java.util.List;
 
 public class SourceCommand implements Command {
     @Override
@@ -35,5 +31,10 @@ public class SourceCommand implements Command {
     @Override
     public boolean executed(boolean success, MessageReceivedEvent event) {
         return false;
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

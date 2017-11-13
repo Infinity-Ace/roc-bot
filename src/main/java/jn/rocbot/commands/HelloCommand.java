@@ -1,7 +1,8 @@
-package jn.rocbot.commands.testcommands;
+package jn.rocbot.commands;
 
-import jn.rocbot.commands.Command;
-import jn.rocbot.commands.Masters;
+import jn.rocbot.Permissions.Masters;
+import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelloCommand implements Command {
@@ -36,5 +37,10 @@ public class HelloCommand implements Command {
     @Override
     public boolean executed(boolean success, MessageReceivedEvent event) {
         return true;
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 }

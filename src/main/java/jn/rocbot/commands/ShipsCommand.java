@@ -1,13 +1,15 @@
 package jn.rocbot.commands;
 
 import jn.rocbot.Main;
+import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.info.ShipStore;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
 
-public class ShipsCommand implements Command{
+public class ShipsCommand implements Command {
     private final static String HELP = "Usage:\n\t!ships returns a list of all the ships\n\t!ships random gives a random ship\n\tAnd !ships random 10 gives a list of 10 random ships"; //TODO
 
     private final Random r = new Random();
@@ -60,7 +62,7 @@ public class ShipsCommand implements Command{
                     }
                 }
             }
-        }else{
+        } else {
             String shiplist = "";
 
             for(Ship ship : ShipStore.SHIPS){
@@ -98,6 +100,11 @@ public class ShipsCommand implements Command{
     @Override
     public boolean executed(boolean success, MessageReceivedEvent event) {
         return true;
+    }
+
+    @Override
+    public CommandType getType() {
+        return CommandType.NORMAL;
     }
 
     private void dlog(String msg){

@@ -7,11 +7,11 @@ import java.util.Arrays;
 
 public class RocParser {
     public CommandContainer parse(String rw, MessageReceivedEvent event){
+
         ArrayList<String> split = new ArrayList<>();
         String raw = rw;
         String beheaded = raw.replaceFirst("!", "");
         String[] sb = beheaded.split(" ");
-
         for(String s : sb) split.add(s);
 
         String invoke = split.get(0);

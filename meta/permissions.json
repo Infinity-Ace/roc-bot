@@ -10,5 +10,15 @@
       "longID":345264629632729088,
       "greeting":"Welcome, Master @"
     }
+  ],
+  "moderators":[
+    {
+      "name":"DestroyTheSelf",
+      "longID":243082239443730432
+    },
+    {
+      "name":"EL",
+      "longID":270642234875969536
+    }
   ]
 }
