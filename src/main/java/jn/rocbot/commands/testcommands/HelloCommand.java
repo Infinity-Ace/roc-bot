@@ -1,6 +1,8 @@
 package jn.rocbot.commands.testcommands;
 
+import jn.rocbot.Main;
 import jn.rocbot.commands.Command;
+import jn.rocbot.commands.Master;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelloCommand implements Command {
@@ -13,7 +15,18 @@ public class HelloCommand implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage("Hello " + event.getAuthor().getName() + "!").complete();
+        boolean isMaster = false;
+        for (Master master : Master.MASTERS) {
+            isMaster = master.longID == event.getAuthor().getIdLong();
+
+            if(isMaster) break;
+        }
+
+        if (isMaster) {
+            event.getTextChannel().sendMessage(Master.fromLongID(event.getAuthor().getIdLong()).greeting).complete();
+        } else {
+            event.getTextChannel().sendMessage("Hello " + event.getAuthor().getName() + "!").complete();
+        }
     }
 
     @Override

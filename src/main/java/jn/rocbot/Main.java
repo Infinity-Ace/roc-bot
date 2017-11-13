@@ -1,10 +1,20 @@
 package jn.rocbot;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+import jn.rocbot.commands.Master;
 import jn.rocbot.info.AuraStore;
 import jn.rocbot.info.ShipStore;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Main {
@@ -32,7 +42,7 @@ public class Main {
     public static String[] ARGUMENTS;
 
     //requires the arguments String Token, boolean Debug, boolean Verbose
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //Just sets some variables from the main method arguments
         //See the Procfile for the execution
         TOKEN = args[0];
@@ -46,11 +56,11 @@ public class Main {
             //Establishes a connection to the the chats that have added the bot as a user
             JDA = new JDABuilder(AccountType.BOT).addEventListener(new Bot()).setToken(args[0]).buildBlocking();
             JDA.setAutoReconnect(true);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        AuraStore.init();        
+        AuraStore.init();
         ShipStore.init(); //Must be kept at bottom!
     }
 

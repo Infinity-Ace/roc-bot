@@ -1,0 +1,14 @@
+{
+  "bot-masters":[
+    {
+      "name":"Jens",
+      "longID":319178540388057089,
+      "greeting":"Greetings master @"
+    },
+    {
+      "name":"Margakis",
+      "longID":345264629632729088,
+      "greeting":"Hello @"
+    }
+  ]
+}
