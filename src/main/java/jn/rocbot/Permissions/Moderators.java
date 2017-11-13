@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
+import net.dv8tion.jda.core.entities.User;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -52,5 +52,13 @@ public class Moderators {
             if(moderator.longID == id) return moderator;
         }
         return null;
+    }
+
+    public static boolean isModerator(User user){
+        for(Moderator mod : MODERATORS){
+            if(mod.longID == user.getIdLong()) return true;
+        }
+
+        return false;
     }
 }

@@ -1,9 +1,11 @@
 package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
+import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.HelloCommand;
+import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -53,7 +55,14 @@ public class Bot extends ListenerAdapter {
             //Checks if the message starts with ! and if the sender is not a bot
             if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
                 dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
-                handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), event));
+                handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.NORMAL, event));
+            } else if(event.getMessage().getContent().startsWith("$!")
+                    && !event.getMessage().getAuthor().isBot()
+                        && Moderators.isModerator(event.getAuthor())
+                    ){ // If it is a mastercommand
+
+                handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.DEV, event));
+
             } else {
                 if (!event.getAuthor().isBot()) {
                     String raw = event.getMessage().getContent().toLowerCase();

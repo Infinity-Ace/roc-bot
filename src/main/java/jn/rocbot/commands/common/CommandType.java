@@ -12,7 +12,7 @@ public enum CommandType {
     DEV("master", "DEV");
 
     private final String requiredPermission;
-    private final String stringName;
+    public final String stringName;
 
     CommandType(String requiredPermission, String stringName){
 
