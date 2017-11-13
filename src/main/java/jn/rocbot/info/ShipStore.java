@@ -29,7 +29,7 @@ public class ShipStore {
                 JsonObject jsonship = jsonelementship.getAsJsonObject();
 
                 try {
-                    Ship ship = new Ship(jsonship.get("name").getAsString(), jsonship.get("weapon").getAsString(),
+                    Ship ship = new Ship(jsonship.get("name").getAsString(), jsonship.getAsJsonObject("weapon").get("name").getAsString(),
                             AuraStore.fromName(jsonship.get("aura").getAsString()),
                             jsonship.get("zen").getAsString(),
                             RARITY.valueOf(RARITY.fromInt(jsonship.get("r").getAsInt())));
