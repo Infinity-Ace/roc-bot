@@ -75,7 +75,7 @@ public class Bot extends ListenerAdapter {
                 || //Checks if the bot is supposed to react
                 event.getTextChannel().getIdLong() == 377889873694031872L
                     ||
-                    event.getTextChannel().getIdLong() == 378949749883273217L) {
+                    event.getGuild().getIdLong() == 378949749883273217L) {
             if (Main.SHOW_MESSAGES) {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             }
