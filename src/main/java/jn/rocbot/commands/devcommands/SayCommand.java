@@ -16,8 +16,15 @@ public class SayCommand implements Command{
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        Main.log(INFO, "Executed say-command");
-        sendMessage(args[0].replace("|", " "), event);
+        String message = "";
+
+        int i = 1;
+        for(String arg : args){
+            i++; if(!(i == args.length))
+                message += arg + " ";
+            else
+                message += arg;
+        } sendMessage(message, event);
     }
 
     @Override
