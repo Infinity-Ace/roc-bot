@@ -80,7 +80,7 @@ public class Bot extends ListenerAdapter {
             if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
                 dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
                 handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.NORMAL, event));
-            } else if(event.getMessage().getContent().startsWith("!#")
+            } else if(event.getMessage().getContent().startsWith("§")
                     && !event.getMessage().getAuthor().isBot()
                         && Masters.isMaster(event.getAuthor())
                     ){ // If it is a mastercommand

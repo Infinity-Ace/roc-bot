@@ -21,8 +21,7 @@ public class RocParser {
                 beheaded = beheaded.replaceFirst("!", "");
                 break;
             case DEV:
-                beheaded = raw.replaceFirst("!", "");
-                beheaded = beheaded.replaceFirst("#", "");
+                beheaded = raw.replaceFirst("§", "");
                 break;
         }
 
