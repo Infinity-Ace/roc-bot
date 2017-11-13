@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import net.dv8tion.jda.core.entities.User;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -54,5 +55,13 @@ public class Masters {
         }
 
         return null;
+    }
+
+    public static boolean isMaster(User user){
+        for(Master master : MASTERS){
+            if(master.longID == user.getIdLong()) return true;
+        }
+
+        return false;
     }
 }
