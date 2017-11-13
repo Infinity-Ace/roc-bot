@@ -1,11 +1,10 @@
 package jn.rocbot.commands.devcommands;
 
+import jn.rocbot.Emojis;
 import jn.rocbot.Main;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-
-import static jn.rocbot.Main.LOGTYPE.INFO;
 
 public class SayCommand implements Command{
 
@@ -20,6 +19,7 @@ public class SayCommand implements Command{
 
         int i = 1;
         for(String arg : args){
+            arg.replace("<EL>", Emojis.EL);
             i++; if(!(i == args.length))
                 message += arg + " ";
             else

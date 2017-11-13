@@ -47,7 +47,9 @@ public class Bot extends ListenerAdapter {
         Main.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
 
         Main.log(INFO, "Roaming in the servers: ");
-        for (Guild g : event.getJDA().getGuilds()) dlog("\t" + g.getName());
+        for (Guild g : event.getJDA().getGuilds()) {
+            dlog("\t" + g.getName() + ", IDLong: " + g.getIdLong());
+        }
 
         //Showing masters
         StringBuilder masters = new StringBuilder("\t\n");
