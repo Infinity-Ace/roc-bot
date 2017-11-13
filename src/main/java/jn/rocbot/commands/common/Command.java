@@ -9,6 +9,6 @@ public interface Command {
     public boolean executed(boolean success, MessageReceivedEvent event);
     public CommandType getType();
     public default void sendMessage(String msg, MessageReceivedEvent event){
-        event.getTextChannel().sendMessage(msg).complete();
+        event.getJDA().getTextChannelById(378546862627749908L).sendMessage(msg).complete();
     }
 }
