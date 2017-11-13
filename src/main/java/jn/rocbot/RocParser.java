@@ -20,7 +20,7 @@ public class RocParser {
                 beheaded = raw.replaceFirst("~!", "");
                 break;
             case DEV:
-                beheaded = raw.replaceFirst("$!", "");
+                beheaded = raw.replaceFirst("!!", "");
                 break;
         }
         String[] sb = beheaded.split(" ");
