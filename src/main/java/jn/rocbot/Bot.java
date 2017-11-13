@@ -49,13 +49,12 @@ public class Bot extends ListenerAdapter {
     public void onMessageReceived(MessageReceivedEvent event){
         if(event.getTextChannel().getIdLong() == 378546862627749908L) {
             if (Main.SHOW_MESSAGES) {
-                vlog("MessageRecieved!: " + event.getMessage().getContent() + "\nFrom user: " + event.getMessage().getAuthor().getName() + ", isbot: " + event.getMessage().getAuthor().isBot());
+                Main.log(Main.LOGTYPE.INFO, "MessageRecieved!: " + event.getMessage().getContent() + "\nFrom user: " + event.getMessage().getAuthor().getName() + ", isbot: " + event.getMessage().getAuthor().isBot());
             }
             //Checks if the message starts with ! and if the sender is not a bot
             if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
                 dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
                 handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), event));
-
             } else {
                 if (!event.getAuthor().isBot()) {
                     String raw = event.getMessage().getContent().toLowerCase();
@@ -82,17 +81,13 @@ public class Bot extends ListenerAdapter {
         //Just some info to the log
         Main.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
         Main.log(INFO, "Log variables; DEBUG: " + Main.DEBUG + ", VERBOSE: " + Main.VERBOSE);
-        Main.log(INFO, "Roaming in the servers: ");
-
-        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage("I have rebooted").complete();
+        Main.log(INFO, "Roaming in the servers: ");        
 
         for (Guild g : event.getJDA().getGuilds()) {
-            dlog(g.getName());
+            dlog("\t" + g.getName());
         }
-
-        String args = ""; for(String arg : Main.ARGUMENTS) {
-            args += "\n\t" + arg;
-        } Main.log(INFO, "Args:" + args);
+        
+        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage("I have rebooted").complete();
     }
 
     /**
