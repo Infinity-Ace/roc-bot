@@ -19,13 +19,13 @@
       "properties": {
         "laser moons":5,
         "max duration":4.5,
+        "max duration-format":"s",
         "max damage":112,
         "max radius":500
       },
       "ult": {
         "name":"Laser Moon Mk.II",
         "desc":"Laser moons shoot two lasers,dealing extra damage"
-
       }
     },
 
@@ -49,6 +49,7 @@
       "desc":"",
       "properties":{
         "stun time":4,
+        "stun time-format":"s",
         "max count":6
       },
       "ult":{
@@ -87,12 +88,13 @@
       "desc":"",
       "properties":{
         "max radius":450,
-        "max stun Time":5,
-        "max damage":5
+        "max stun time":5,
+        "max stun time-format":"s"        
       },
       "ult":{
         "name":"Stun bomb",
-        "desc":"deals moderat damage to invaders in the radius."
+        "desc":"deals moderate damage to invaders in the radius.",
+        "max damage":5
      }
     },
     {
@@ -100,13 +102,14 @@
       "desc":"",
       "properties":{
         "max duration":5,
-        "max radius":170,
-        "phase out":0.5
+        "max duration-format":"s",
+        "max radius":170        
       },
       "ult":{
         "name":"Phase out",
-        "desc":"Phases the ship out for half a second when they exit the field"
-
+        "desc":"Phases the ship out for half a second when they exit the field",
+        "phase out":0.5,
+        "phase out-format":"s"
       }
     },
     {
@@ -115,7 +118,8 @@
       "properties":{
         "radies":410,
         "laser beams":10,
-        "efficiency":300
+        "efficiency":300,
+        "efficiency-format":"%"
       },
       "ult":{
         "name":"MIRV defense",
@@ -135,28 +139,17 @@
       }
     },
     {
-      "name": "Chrono Field",
-      "desc": "",
-      "properties": {
-        "max duration": 5,
-        "max radius": 170,
-        "phase out": 0.5
-      },
-      "ult": {
-        "name": "Phase out",
-        "desc": "Phases the ship out for half a second hen they exit the field"
-      }
-    },
-    {
       "name":"Barrier",
-      "desc": "",
+      "desc":"erects a circular barrier that absorbs enemy fire",
       "properties":{
         "max radius":450,
-        "barrier strength":200
+        "Barrier Strength":200,
+        "Barrier Strength-format":"%"
       },
       "ult":{
         "name":"Inner lining",
-        "desc":"Creates a secondary barrier inside the primary barrier with it's own health pool"
+        "desc":"Created a secondary barrier inside the primary one to absorb enemy fire inside the barrier"
+
       }
     }
   ]
