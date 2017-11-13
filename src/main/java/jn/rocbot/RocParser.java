@@ -17,18 +17,17 @@ public class RocParser {
                 beheaded = raw.replaceFirst("!", "");
                 break;
             case MOD:
-                beheaded = raw.replaceFirst("~!", "");
+                beheaded = raw.replaceFirst("~", "");
+                beheaded = beheaded.replaceFirst("!", "");
                 break;
             case DEV:
-                beheaded = raw.replaceFirst("!#", "");
+                beheaded = raw.replaceFirst("!", "");
+                beheaded = beheaded.replaceFirst("#", "");
                 break;
         }
 
         String[] sb = beheaded.split(" ");
         for(String s : sb) split.add(s);
-
-
-
 
         String invoke = split.get(0);
 
