@@ -24,6 +24,8 @@ public class Master {
     public static ArrayList<Master> MASTERS;
 
     static {
+        MASTERS = new ArrayList<>();
+
         JsonParser parser = new JsonParser();
 
         try {
