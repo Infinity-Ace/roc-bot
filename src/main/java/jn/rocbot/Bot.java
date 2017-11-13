@@ -82,7 +82,7 @@ public class Bot extends ListenerAdapter {
                 handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.NORMAL, event));
             } else if(event.getMessage().getContent().startsWith("$!")
                     && !event.getMessage().getAuthor().isBot()
-                        && Moderators.isModerator(event.getAuthor())
+                        && Masters.isMaster(event.getAuthor())
                     ){ // If it is a mastercommand
 
                 handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.DEV, event));

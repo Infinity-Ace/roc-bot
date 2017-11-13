@@ -1,6 +1,7 @@
 package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
+import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.info.AuraStore;
 import jn.rocbot.info.ShipStore;
 import net.dv8tion.jda.core.AccountType;
@@ -56,6 +57,7 @@ public class Main {
 
     private static void init() {
         Masters.init();
+        Moderators.init();
 
         AuraStore.init();
         ShipStore.init(); //Must be kept at bottom!
