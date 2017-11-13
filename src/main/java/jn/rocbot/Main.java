@@ -50,8 +50,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        AuraStore.init();
-        Main.log(LOGTYPE.INFO, AuraStore.auraStoreState());
+        AuraStore.init();        
         ShipStore.init(); //Must be kept at bottom!
     }
 
