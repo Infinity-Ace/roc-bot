@@ -10,25 +10,23 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-public class Master {
+public class Masters {
     public String name;
     public String greeting;
     public long longID;
 
-    private Master(String name, String greeting, long longID){
+    private Masters(String name, String greeting, long longID){
         this.name = name;
         this.greeting = greeting;
         this.longID = longID;
     }
 
-    public static ArrayList<Master> MASTERS;
+    public static ArrayList<Masters> MASTERS;
 
-    static {
+    public static void init(){
         MASTERS = new ArrayList<>();
 
-        JsonParser parser = new JsonParser();
-
-        try {
+        JsonParser parser = new JsonParser(); try {
             JsonObject mastersjson = parser.parse(new JsonReader(
                     new FileReader("res/roles.json")
             )).getAsJsonObject();
@@ -38,21 +36,18 @@ public class Master {
             for (JsonElement jsonelementmaster : masters){
                 JsonObject jsonmaster = jsonelementmaster.getAsJsonObject();
 
-                MASTERS.add(new Master(
+                MASTERS.add(new Masters(
                         jsonmaster.get("name").getAsString(),
                         jsonmaster.get("greeting").getAsString()
                                 .replace("@", jsonmaster.get("name").getAsString()),
                         jsonmaster.get("longId").getAsLong()
                 ));
             }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
 
-    public static Master fromLongID(long id){
-        for(Master master : MASTERS){
+    public static Masters fromLongID(long id){
+        for(Masters master : MASTERS){
             if(master.longID == id) return master;
         }
 

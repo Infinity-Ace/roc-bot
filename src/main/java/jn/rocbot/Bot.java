@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 import static jn.rocbot.Main.LOGTYPE.INFO;
-import static jn.rocbot.Main.LOGTYPE.VERBOSE;
 
 import jn.rocbot.RocParser.CommandContainer;
 
@@ -84,7 +83,7 @@ public class Bot extends ListenerAdapter {
 
         //Showing masters
         StringBuilder masters = new StringBuilder("\t\n");
-        for(Master master : Master.MASTERS)  masters.append(master.name);
+        for(Masters master : Masters.MASTERS)  masters.append(master.name);
         Main.log(INFO, "My masters are: " + masters.toString());
 
         say(event, "I have rebooted");
