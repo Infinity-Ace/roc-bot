@@ -17,10 +17,10 @@ public class SayCommand implements Command{
     public void action(String[] args, MessageReceivedEvent event) {
         String message = "";
 
-        int i = 1;
+        int i = 0;
         for(String arg : args){
             arg.replace("<EL>", Emojis.EL);
-            i++; if(!(i == args.length + 1))
+            i++; if(!(i == args.length))
                 message += arg + " ";
             else
                 message += arg;

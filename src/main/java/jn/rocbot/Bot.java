@@ -56,7 +56,7 @@ public class Bot extends ListenerAdapter {
         for(Masters.Master master : Masters.MASTERS)  masters.append(master.name);
         Main.log(INFO, "My masters are: " + masters);
 
-        //say(event, "I have rebooted");
+        say(event, "I have rebooted");
     }
     private void dlog(String msg){
         Main.log(Main.LOGTYPE.DEBUG, msg);
