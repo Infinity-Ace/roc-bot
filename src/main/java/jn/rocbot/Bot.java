@@ -75,7 +75,7 @@ public class Bot extends ListenerAdapter {
                 || //Checks if the bot is supposed to react
                 event.getTextChannel().getIdLong() == 377889873694031872L
                     ||
-                    event.getTextChannel().getIdLong() == 378949749883273217L) {
+                    event.getGuild().getIdLong() == 378949749883273217L) {
             if (Main.SHOW_MESSAGES) {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             }
@@ -89,11 +89,11 @@ public class Bot extends ListenerAdapter {
                         && Masters.isMaster(event.getAuthor())
                     ){ // If it is a mastercommand
 
-                handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.DEV, event));
+                handleCommand(PARSER.parse(event.getMessage().getContent(), CommandType.DEV, event));
 
             } else {
                 if (!event.getAuthor().isBot()) {
-                    String raw = event.getMessage().getContent().toLowerCase();
+                    String raw = event.getMessage().getContent();
 
                     //Some special cases -----------------------------------------------------
 
