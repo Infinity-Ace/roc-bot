@@ -21,12 +21,13 @@ public class HelpCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
-            String allCommands = "Avaible commands are: ";
+            String allCommands = "Use *!help somecommand* to get help on specific command";
+            allCommands += "\nAvaible commands are: ";
             if(!Masters.isMaster(event.getAuthor())) {
                 for (String key : Bot.COMMANDS.keySet()) {
                     if(Bot.COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands += "\n\t!" + key;
-                } allCommands += "\n\tUse *!help somecommand* to get help on specific command";
+                }
 
                 event.getTextChannel().sendMessage(allCommands).complete();
             }else{
