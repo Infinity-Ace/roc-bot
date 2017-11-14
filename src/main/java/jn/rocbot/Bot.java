@@ -54,9 +54,10 @@ public class Bot extends ListenerAdapter {
         }
 
         //Showing masters
-        StringJoiner masters = new StringJoiner("\n\t");
-        for(Masters.Master master : Masters.MASTERS)  masters.add(master.name);
-        Main.log(INFO, ("My masters are: " + masters);
+        Main.log(INFO, ("My masters are:"));
+        Masters.MASTERS.forEach((Masters.Master m) -> {
+            Main.log(INFO, m.name + ", ID: " + m.longID);
+        });
 
         //say(event, "I have rebooted");
     }
