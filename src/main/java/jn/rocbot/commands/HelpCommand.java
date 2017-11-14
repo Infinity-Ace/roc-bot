@@ -9,7 +9,7 @@ import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelpCommand implements Command {
-    private final static String HELP = "Usage: !help <whatever_comand_you_want_help_on>";
+    private final static String HELP = "Usage: !help *command*";
 
     private CommandConfig config = new CommandConfig(CommandType.NORMAL, true);
 
@@ -21,7 +21,7 @@ public class HelpCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
-            String allCommands = "Use *!help somecommand* to get help on specific command";
+            String allCommands = "Use *!help command* to get help on specific command";
             allCommands += "\nAvaible commands are: ";
             if(!Masters.isMaster(event.getAuthor())) {
                 for (String key : Bot.COMMANDS.keySet()) {
