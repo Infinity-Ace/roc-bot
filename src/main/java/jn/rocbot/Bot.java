@@ -15,6 +15,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 import java.util.StringJoiner;
 
@@ -56,9 +57,7 @@ public class Bot extends ListenerAdapter {
 
         //Showing masters
         Main.log(INFO, ("My masters are:"));
-        Masters.MASTERS.forEach((Masters.Master m) -> {
-            Main.log(INFO, "\t" + m.name + ", ID: " + m.longID);
-        });
+        Masters.MASTERS.forEach((Masters.Master m) -> Main.log(INFO, "\t" + m.name + ", ID: " + m.longID));
 
         //say(event, "I have rebooted");
     }
@@ -100,11 +99,11 @@ public class Bot extends ListenerAdapter {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             } if(isValidKey(event.getMessage().getContent().replace(prefix, "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
-                if (prefix == "!" && !event.getMessage().getAuthor().isBot()) {
+                if (Objects.equals(prefix, "!") && !event.getMessage().getAuthor().isBot()) {
                     handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(),
                             getConfig(event.getMessage().getContent().replace("!", "").split(" ")[0]),
                             event));
-                } else if (prefix == "§"
+                } else if (Objects.equals(prefix, "§")
                         && !event.getMessage().getAuthor().isBot()
                         && Masters.isMaster(event.getAuthor())
                         ) { // If it is a mastercommand

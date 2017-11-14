@@ -3,6 +3,8 @@ package jn.rocbot.ships;
 import jn.rocbot.utils.Formatter;
 import jn.rocbot.info.ShipStore;
 
+import java.util.Objects;
+
 public class Ship implements Formatter{
     public final String name;
     public final String weapon;
@@ -25,8 +27,8 @@ public class Ship implements Formatter{
     public static boolean isShip(String name) throws ShipStore.ShipNotFoundException {
         Boolean found = false;
         for (Ship s : ShipStore.SHIPS) {
-            if (s.name.toLowerCase() == name) {
-                found = true; continue;
+            if (Objects.equals(s.name.toLowerCase(), name)) {
+                found = true; break;
             }
         } return found;
     }

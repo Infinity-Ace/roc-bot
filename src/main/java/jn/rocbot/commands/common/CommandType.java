@@ -11,11 +11,10 @@ public enum CommandType {
     MOD("mod", "MOD"),
     DEV("master", "DEV");
 
-    private final String requiredPermission;
+    String requiredPermission;
     public final String stringName;
 
     CommandType(String requiredPermission, String stringName){
-
         this.requiredPermission = requiredPermission;
         this.stringName = stringName;
     }

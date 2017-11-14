@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class RocParser {
     public CommandContainer parse(String rw, CommandConfig config, MessageReceivedEvent event){
         ArrayList<String> split = new ArrayList<>();
-        String raw = "";
+        String raw;
 
         if(config.ignoreCase)
             raw = rw.toLowerCase();

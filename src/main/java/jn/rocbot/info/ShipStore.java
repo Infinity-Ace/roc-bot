@@ -12,6 +12,7 @@ import jn.rocbot.ships.Ship;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ShipStore {
     public static ArrayList<Ship> SHIPS;
@@ -47,7 +48,7 @@ public class ShipStore {
 
     public static Ship getShip(String shipname) throws ShipNotFoundException{
         for(Ship ship : SHIPS){
-            if(ship.name.toLowerCase() == shipname.toLowerCase()) return ship;
+            if(Objects.equals(ship.name.toLowerCase(), shipname.toLowerCase())) return ship;
         }
 
         throw new ShipNotFoundException("Found no ship with name: " + shipname);

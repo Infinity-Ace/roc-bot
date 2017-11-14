@@ -8,6 +8,7 @@ import jn.rocbot.ships.Ship;
 import jn.rocbot.info.ShipStore;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class ShipsCommand implements Command {
@@ -40,8 +41,7 @@ public class ShipsCommand implements Command {
                             if(list.length() > 1500){
                                 event.getTextChannel().sendMessage(list).complete();
                                 list = "";
-                            }
-                            int ship = getShipNotTaken(list);
+                            } int ship = getShipNotTaken(list);
 
                             list += "**"+ (i + 1) + ".** " + ShipStore.SHIPS.get(ship).rarity.toEmoji() + ShipStore.SHIPS.get(ship).name + "\n";
                         }
@@ -58,7 +58,7 @@ public class ShipsCommand implements Command {
                 }
             } else try {
                 if(Ship.isShip(args[0])){
-                    if(args[1].toLowerCase() == "info") {
+                    if(Objects.equals(args[1].toLowerCase(), "info")) {
                         try {
                             event.getTextChannel().sendMessage(ShipStore.getShip(args[0]).simpleToString()).complete();
                         } catch (ShipStore.ShipNotFoundException e) {
@@ -73,7 +73,7 @@ public class ShipsCommand implements Command {
             String shiplist = "";
 
             for(Ship ship : ShipStore.SHIPS){
-                if(ship.name != "Shogun") shiplist += ship.name + ", ";
+                if(!Objects.equals(ship.name, "Shogun")) shiplist += ship.name + ", ";
                 else shiplist += "Shogun";
             }
 
