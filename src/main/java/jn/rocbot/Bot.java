@@ -49,8 +49,9 @@ public class Bot extends ListenerAdapter {
         Main.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
 
         Main.log(INFO, "Roaming in the servers: ");
+
         for (Guild g : event.getJDA().getGuilds()) {
-            dlog("\t" + g.getName() + ", IDLong: " + g.getIdLong());
+            Main.log(INFO,"\t" + g.getName() + ", IDLong: " + g.getIdLong());
         }
 
         //Showing masters
@@ -61,6 +62,7 @@ public class Bot extends ListenerAdapter {
 
         //say(event, "I have rebooted");
     }
+
     private void dlog(String msg){
         Main.log(Main.LOGTYPE.DEBUG, msg);
     }
@@ -93,8 +95,13 @@ public class Bot extends ListenerAdapter {
                         && !event.getMessage().getAuthor().isBot()
                         && Masters.isMaster(event.getAuthor())
                         ) { // If it is a mastercommand
+                    dlog("Recieved message starting with \"§\": " + event.getMessage().getContent());
 
-                    handleCommand(PARSER.parse(event.getMessage().getContent(), getConfig(event.getMessage().getContent().replace("§", "").split(" ")[0]), event));
+                    handleCommand(PARSER.parse(
+                            event.getMessage().getContent(),
+                            getConfig(event.getMessage().getContent().replace("§", "").split(" ")[0]),
+                            event)
+                    );
 
                 } else {
                     if (!event.getAuthor().isBot()) {
