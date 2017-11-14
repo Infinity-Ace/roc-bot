@@ -16,6 +16,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.StringJoiner;
 
 import static jn.rocbot.Main.LOGTYPE.INFO;
 
@@ -53,8 +54,8 @@ public class Bot extends ListenerAdapter {
         }
 
         //Showing masters
-        StringBuilder masters = new StringBuilder("\t\n");
-        for(Masters.Master master : Masters.MASTERS)  masters.append(master.name);
+        StringJoiner masters = new StringJoiner("\t\n");
+        for(Masters.Master master : Masters.MASTERS)  masters.add(master.name);
         Main.log(INFO, "My masters are: " + masters);
 
         //say(event, "I have rebooted");
