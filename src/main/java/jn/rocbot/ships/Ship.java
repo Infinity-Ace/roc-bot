@@ -22,11 +22,13 @@ public class Ship implements Formatter{
         return rarity.toEmoji() + " " + bold(name + ":") + " Weapon: " + italic(weapon) + ", Aura: " + italic(aura.name) + ", Zen: " + italic(zen);
     }
 
-    public static boolean isShip(String name){
-        try {
-            return ShipStore.getShip(name.toLowerCase()) != null;
-        } catch (ShipStore.ShipNotFoundException e) {
-            return false;
+    public static boolean isShip(String name) throws ShipStore.ShipNotFoundException {
+        for (Ship s : ShipStore.SHIPS) {
+            if (s.name.toLowerCase() == name) {
+                return true;
+            }
         }
+
+        throw new ShipStore.ShipNotFoundException("Found no ship called: " + name);
     }
 }
