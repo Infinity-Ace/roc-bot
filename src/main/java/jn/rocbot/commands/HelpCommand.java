@@ -2,6 +2,7 @@ package jn.rocbot.commands;
 
 import jn.rocbot.Bot;
 import jn.rocbot.Permissions.Masters;
+import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
@@ -25,9 +26,18 @@ public class HelpCommand implements Command {
                 for (String key : Bot.COMMANDS.keySet()) {
                     if(Bot.COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands += "\n\t!" + key;
-                }
+                } allCommands += "\n\tUse *!help somecommand* to get help on specific command";
 
                 event.getTextChannel().sendMessage(allCommands).complete();
+            }else{
+                for (String key : Bot.COMMANDS.keySet()) {
+                    allCommands += "\n\t!" + key;
+                } allCommands += "\n\tUse *!help somecommand* to get help on specific command";
+
+                event.getTextChannel().sendMessage(allCommands).complete();
+            }
+            if(Moderators.isModerator(event.getAuthor())){
+
             }
         } else if (args.length > 0){
             if(Bot.COMMANDS.containsKey(args[0].toLowerCase())){

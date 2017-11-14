@@ -100,7 +100,6 @@ public class Bot extends ListenerAdapter {
                         String raw = event.getMessage().getContent();
 
                         //Some special cases -----------------------------------------------------
-
                         if (raw.contains("name the bot")) {
                             event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
                         } else if (raw.contains("thanks bot")) {
