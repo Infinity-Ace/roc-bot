@@ -83,24 +83,28 @@ public class Bot extends ListenerAdapter {
                     ||
                     event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */{
 
+            String prefix = "";
+
             if(event.getMessage().getContent().charAt(0) == '!'){
                 dlog("From user: " + event.getAuthor().getName() + ", received message starting with !");
+                prefix = "!";
             }else if(event.getMessage().getContent().charAt(0) == '§'){
                 dlog("From user: " + event.getAuthor().getName() + ", received message starting with §");
+                prefix = "§";
             }else if(event.getMessage().getContent().charAt(0) == '~'
                     &&
                     event.getMessage().getContent().charAt(1) == '!'){
                 dlog("From user: " + event.getAuthor().getName() + ", received message starting with ~!");
-            }
-
-            if (Main.SHOW_MESSAGES) { Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
-            } if(isValidKey(event.getMessage().getContent().replace("!", "").split(" ")[0])) {
+                prefix = "~!";
+            }if (Main.SHOW_MESSAGES) {
+                Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
+            } if(isValidKey(event.getMessage().getContent().replace(prefix, "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
-                if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
+                if (prefix == "!" && !event.getMessage().getAuthor().isBot()) {
                     handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(),
                             getConfig(event.getMessage().getContent().replace("!", "").split(" ")[0]),
                             event));
-                } else if (event.getMessage().getContent().startsWith("§")
+                } else if (prefix == "§"
                         && !event.getMessage().getAuthor().isBot()
                         && Masters.isMaster(event.getAuthor())
                         ) { // If it is a mastercommand
