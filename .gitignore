@@ -1,11 +1,5 @@
 <<<<<<< HEAD
 .DS_Store
 .idea/
-=======
->>>>>>> 399979a4152fc788634afb9009c7e0dab1e6a1a6
 roc-bot.iml
-<<<<<<< HEAD
-/target/**
-=======
->>>>>>> e229fa73f32691470037cfd8edad76421b9654d6
-/target/
+target/**

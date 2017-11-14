@@ -7,7 +7,7 @@ import jn.rocbot.ships.Ship;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class TestCommand implements Command{
-    private CommandConfig config = new CommandConfig(CommandType.DEV, false);
+    private CommandConfig config = new CommandConfig(CommandType.DEV, true);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {

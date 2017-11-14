@@ -25,7 +25,7 @@ public class ShipsCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length > 0) {
-            if (args[0].toLowerCase().equals("random")) {
+            if (args[0].toLowerCase().equals("random") || (args[0].toLowerCase().equals("warp"))){
                 if(args.length > 1) {
                     if(isInteger(args[1])){
                         String list = "";

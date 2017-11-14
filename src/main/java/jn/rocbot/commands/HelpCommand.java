@@ -2,6 +2,7 @@ package jn.rocbot.commands;
 
 import jn.rocbot.Bot;
 import jn.rocbot.Permissions.Masters;
+import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
@@ -20,14 +21,32 @@ public class HelpCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
-            String allCommands = "Avaible commands are: ";
+            String allCommands = "Use *!help somecommand* to get help on specific command";
+            allCommands += "\nAvaible commands are: ";
             if(!Masters.isMaster(event.getAuthor())) {
                 for (String key : Bot.COMMANDS.keySet()) {
                     if(Bot.COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands += "\n\t!" + key;
-                }
+                } event.getTextChannel().sendMessage(allCommands).complete();
+            }else{
+                for (String key : Bot.COMMANDS.keySet()) {
+                    switch (Bot.COMMANDS.get(key).getType()) {
+                        case NORMAL:
+                            allCommands += "\n\t!" + key;
+                            break;
+                        case MOD:
+                            allCommands += "\n\t~!" + key;
+                            break;
+                        case DEV:
+                            allCommands += "\n\t§" + key;
+                            break;
+                    }
+                } allCommands += "\n\tUse *!help somecommand* to get help on specific command";
 
                 event.getTextChannel().sendMessage(allCommands).complete();
+            }
+            if(Moderators.isModerator(event.getAuthor())){
+
             }
         } else if (args.length > 0){
             if(Bot.COMMANDS.containsKey(args[0].toLowerCase())){
