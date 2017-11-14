@@ -27,7 +27,7 @@ public class Ship implements Formatter{
     public static boolean isShip(String name) throws ShipStore.ShipNotFoundException {
         Boolean found = false;
         for (Ship s : ShipStore.SHIPS) {
-            if (Objects.equals(s.name.toLowerCase(), name)) {
+            if (s.name.toLowerCase().equals(name)) {
                 found = true; break;
             }
         } return found;
