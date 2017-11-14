@@ -27,12 +27,20 @@ public class HelpCommand implements Command {
                 for (String key : Bot.COMMANDS.keySet()) {
                     if(Bot.COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands += "\n\t!" + key;
-                }
-
-                event.getTextChannel().sendMessage(allCommands).complete();
+                } event.getTextChannel().sendMessage(allCommands).complete();
             }else{
                 for (String key : Bot.COMMANDS.keySet()) {
-                    allCommands += "\n\t!" + key;
+                    switch (Bot.COMMANDS.get(key).getType()) {
+                        case NORMAL:
+                            allCommands += "\n\t!" + key;
+                            break;
+                        case MOD:
+                            allCommands += "\n\t~!" + key;
+                            break;
+                        case DEV:
+                            allCommands += "\n\t§" + key;
+                            break;
+                    }
                 } allCommands += "\n\tUse *!help somecommand* to get help on specific command";
 
                 event.getTextChannel().sendMessage(allCommands).complete();
