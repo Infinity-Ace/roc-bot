@@ -80,12 +80,11 @@ public class Bot extends ListenerAdapter {
                     ||
                     event.getGuild().getIdLong() == 378949749883273217L) {
 
-            if (Main.SHOW_MESSAGES) {
-                Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
+            dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
+            if (Main.SHOW_MESSAGES) { Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             } if(isValidKey(event.getMessage().getContent().replace("!", "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
                 if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
-                    dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
                     handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(),
                             getConfig(event.getMessage().getContent().replace("!", "").split(" ")[0]),
                             event));
