@@ -56,7 +56,7 @@ public class Bot extends ListenerAdapter {
         //Showing masters
         Main.log(INFO, ("My masters are:"));
         Masters.MASTERS.forEach((Masters.Master m) -> {
-            Main.log(INFO, m.name + ", ID: " + m.longID);
+            Main.log(INFO, "\t" + m.name + ", ID: " + m.longID);
         });
 
         //say(event, "I have rebooted");
