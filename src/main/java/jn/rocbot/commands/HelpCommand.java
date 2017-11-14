@@ -3,11 +3,15 @@ package jn.rocbot.commands;
 import jn.rocbot.Bot;
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelpCommand implements Command {
     private final static String HELP = "Usage: !help <whatever_comand_you_want_help_on>";
+
+    private CommandConfig config = new CommandConfig(CommandType.NORMAL, true);
+
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;
@@ -45,7 +49,12 @@ public class HelpCommand implements Command {
     }
 
     @Override
+    public CommandConfig getConfig() {
+        return config;
+    }
+
+    @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return config.type;
     }
 }

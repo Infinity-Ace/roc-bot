@@ -2,11 +2,13 @@ package jn.rocbot.commands;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class HelloCommand implements Command {
     private final static String HELP = "Usage: !Hello";
+    private CommandConfig config = new CommandConfig(CommandType.NORMAL, true);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -40,7 +42,12 @@ public class HelloCommand implements Command {
     }
 
     @Override
+    public CommandConfig getConfig() {
+        return config;
+    }
+
+    @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return config.type;
     }
 }

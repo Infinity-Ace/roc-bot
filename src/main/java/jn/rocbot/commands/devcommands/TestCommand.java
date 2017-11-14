@@ -1,11 +1,14 @@
 package jn.rocbot.commands.devcommands;
 
 import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.ships.Ship;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class TestCommand implements Command{
+    private CommandConfig config = new CommandConfig(CommandType.DEV, false);
+
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;
@@ -29,7 +32,12 @@ public class TestCommand implements Command{
     }
 
     @Override
+    public CommandConfig getConfig() {
+        return config;
+    }
+
+    @Override
     public CommandType getType() {
-        return CommandType.DEV;
+        return config.type;
     }
 }

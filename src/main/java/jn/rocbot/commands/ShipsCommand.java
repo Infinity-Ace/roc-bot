@@ -2,6 +2,7 @@ package jn.rocbot.commands;
 
 import jn.rocbot.Main;
 import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.info.ShipStore;
@@ -13,6 +14,8 @@ public class ShipsCommand implements Command {
     private final static String HELP = "Usage:\n\t!ships returns a list of all the ships\n\t!ships random gives a random ship\n\tAnd !ships random 10 gives a list of 10 random ships"; //TODO
 
     private final Random r = new Random();
+
+    private CommandConfig config = new CommandConfig(CommandType.NORMAL, true);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -103,8 +106,13 @@ public class ShipsCommand implements Command {
     }
 
     @Override
+    public CommandConfig getConfig() {
+        return config;
+    }
+
+    @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return config.type;
     }
 
     private void dlog(String msg){

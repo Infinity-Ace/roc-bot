@@ -5,6 +5,7 @@ import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.HelloCommand;
+import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.commands.devcommands.SayCommand;
 import jn.rocbot.commands.devcommands.TestCommand;
@@ -71,41 +72,44 @@ public class Bot extends ListenerAdapter {
      */
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
-        if(event.getTextChannel().getIdLong() == 378546862627749908L
+        if(event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
                 || //Checks if the bot is supposed to react
                 event.getTextChannel().getIdLong() == 377889873694031872L
                     ||
                     event.getGuild().getIdLong() == 378949749883273217L) {
+
             if (Main.SHOW_MESSAGES) {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
-            }
-
-            //Checks if the message starts with ! and if the sender is not a bot
-            if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
-                dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
-                handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(), CommandType.NORMAL, event));
-            } else if(event.getMessage().getContent().startsWith("§")
-                    && !event.getMessage().getAuthor().isBot()
+            } if(isValidKey(event.getMessage().getContent().replace("!", "").split(" ")[0])) {
+                //Checks if the message starts with ! and if the sender is not a bot
+                if (event.getMessage().getContent().startsWith("!") && !event.getMessage().getAuthor().isBot()) {
+                    dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
+                    handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(),
+                            getConfig(event.getMessage().getContent().replace("!", "").split(" ")[0]),
+                            event));
+                } else if (event.getMessage().getContent().startsWith("§")
+                        && !event.getMessage().getAuthor().isBot()
                         && Masters.isMaster(event.getAuthor())
-                    ){ // If it is a mastercommand
+                        ) { // If it is a mastercommand
 
-                handleCommand(PARSER.parse(event.getMessage().getContent(), CommandType.DEV, event));
+                    handleCommand(PARSER.parse(event.getMessage().getContent(), getConfig(event.getMessage().getContent().replace("§", "").split(" ")[0]), event));
 
-            } else {
-                if (!event.getAuthor().isBot()) {
-                    String raw = event.getMessage().getContent();
+                } else {
+                    if (!event.getAuthor().isBot()) {
+                        String raw = event.getMessage().getContent();
 
-                    //Some special cases -----------------------------------------------------
+                        //Some special cases -----------------------------------------------------
 
-                    if (raw.contains("name the bot")) {
-                        event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
-                    } else if (raw.contains("thanks bot")) {
-                        String str = "";
+                        if (raw.contains("name the bot")) {
+                            event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
+                        } else if (raw.contains("thanks bot")) {
+                            String str = "";
 
-                        if (r.nextInt(10) == 1) str = " Glad to be of use";
-                        event.getTextChannel().sendMessage("No problem! ^^" + str).complete();
-                    } else if (raw.contains("best") && raw.contains("game")) {
-                        event.getTextChannel().sendMessage("The best game is **Phoenix 2**! " + Emojis.EL).complete();
+                            if (r.nextInt(10) == 1) str = " Glad to be of use";
+                            event.getTextChannel().sendMessage("No problem! ^^" + str).complete();
+                        } else if (raw.contains("best") && raw.contains("game")) {
+                            event.getTextChannel().sendMessage("The best game is **Phoenix 2**! " + Emojis.EL).complete();
+                        }
                     }
                 }
             }
@@ -134,5 +138,19 @@ public class Bot extends ListenerAdapter {
                 COMMANDS.get(cmd.invoke).executed(false, cmd.event);
             }
         }
+    }
+
+    private boolean isValidKey(String commandKey){
+        return COMMANDS.containsKey(commandKey);
+    }
+
+    private CommandConfig getConfig(String commandKey){
+        for(String key : COMMANDS.keySet()){
+            if(commandKey.equals(key)) {
+                return COMMANDS.get(key).getConfig();
+            }
+        }
+
+        return null;
     }
 }

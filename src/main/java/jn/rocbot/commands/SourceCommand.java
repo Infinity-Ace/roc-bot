@@ -1,11 +1,14 @@
 package jn.rocbot.commands;
 
 import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.entities.impl.MessageEmbedImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class SourceCommand implements Command {
+    private CommandConfig config = new CommandConfig(CommandType.NORMAL, false);
+
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;
@@ -34,7 +37,12 @@ public class SourceCommand implements Command {
     }
 
     @Override
+    public CommandConfig getConfig() {
+        return config;
+    }
+
+    @Override
     public CommandType getType() {
-        return CommandType.NORMAL;
+        return config.type;
     }
 }
