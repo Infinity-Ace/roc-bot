@@ -133,6 +133,8 @@ public class Bot extends ListenerAdapter {
         if(COMMANDS.containsKey(cmd.invoke)){
             boolean safe = COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event);
 
+            dlog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
+
             if(safe){
                 COMMANDS.get(cmd.invoke).action(cmd.args, cmd.event);
                 COMMANDS.get(cmd.invoke).executed(true, cmd.event);
