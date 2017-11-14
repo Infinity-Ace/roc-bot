@@ -80,7 +80,16 @@ public class Bot extends ListenerAdapter {
                     ||
                     event.getGuild().getIdLong() == 378949749883273217L) {
 
-            dlog("Recieved message starting with \"!\": " + event.getMessage().getContent());
+            if(event.getMessage().getContent().charAt(0) == '!'){
+                dlog("From user: " + event.getAuthor().getName() + ", received message starting with !");
+            }else if(event.getMessage().getContent().charAt(0) == '§'){
+                dlog("From user: " + event.getAuthor().getName() + ", received message starting with §");
+            }else if(event.getMessage().getContent().charAt(0) == '~'
+                    &&
+                    event.getMessage().getContent().charAt(1) == '!'){
+                dlog("From user: " + event.getAuthor().getName() + ", received message starting with ~!");
+            }
+
             if (Main.SHOW_MESSAGES) { Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             } if(isValidKey(event.getMessage().getContent().replace("!", "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
@@ -102,7 +111,7 @@ public class Bot extends ListenerAdapter {
                         //Some special cases -----------------------------------------------------
                         if (raw.contains("name the bot")) {
                             event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
-                        } else if (raw.contains("thanks bot")) {
+                        } else if (raw.toLowerCase().contains("thanks bot") || raw.toLowerCase().contains("thank you bot")) {
                             String str = "";
 
                             if (r.nextInt(10) == 1) str = " Glad to be of use";
@@ -117,7 +126,11 @@ public class Bot extends ListenerAdapter {
     }
 
 
-
+    /**
+     * Makes the bot say something in the bot-channel in the phoenix II server
+     * @param event
+     * @param message
+     */
     public void say(ReadyEvent event, String message){
         event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage(message).complete();
     }
