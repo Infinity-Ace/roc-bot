@@ -76,11 +76,12 @@ public class Bot extends ListenerAdapter {
      */
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
+        //Checks if the bot is supposed to react
         if(event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
-                || //Checks if the bot is supposed to react
-                event.getTextChannel().getIdLong() == 377889873694031872L
+                ||
+                event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
                     ||
-                    event.getGuild().getIdLong() == 378949749883273217L) {
+                    event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */{
 
             if(event.getMessage().getContent().charAt(0) == '!'){
                 dlog("From user: " + event.getAuthor().getName() + ", received message starting with !");
@@ -171,8 +172,11 @@ public class Bot extends ListenerAdapter {
             if(commandKey.equals(key)) {
                 return COMMANDS.get(key).getConfig();
             }
+        } try {
+            throw new Exception("Found no command-configuration for: " + commandKey);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
         return null;
     }
 }

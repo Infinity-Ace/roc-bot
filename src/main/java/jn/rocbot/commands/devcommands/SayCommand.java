@@ -31,7 +31,7 @@ public class SayCommand implements Command{
 
     @Override
     public String help() {
-        return "";
+        return "no";
     }
 
     @Override
