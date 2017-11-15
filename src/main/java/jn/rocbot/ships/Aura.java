@@ -26,14 +26,14 @@ public class Aura implements Formatter{
         SimpleDescBuilder desc = new SimpleDescBuilder(bold(name));
         desc.addLine(this.desc);
         for(String key : properties.keySet()){
-            if(formatting.containsKey(key + "-formatting")){
+            if(formatting.containsKey(key + "-format")){
                 desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key) + formatting.get(key + "-formatting")));
             } else {
                 desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key)));
             }
         }
 
-        desc.addLine("Ultimate: " + italic(ultimateName));
+        desc.addLine("\nUltimate: " + italic(ultimateName));
         desc.addLine("\tDescription: " + ultimateProperties.get("desc"));
 
         return desc.get();

@@ -24,7 +24,7 @@ public class Ship implements Formatter{
     }
 
     public String info(){
-        SimpleDescBuilder info = new SimpleDescBuilder(name);
+        SimpleDescBuilder info = new SimpleDescBuilder(bold(name));
         info.addLine("Weapon: " + italic(weapon));
         info.addLine("\nZen: " + zen.simpleDesc());
         info.addLine("\nAura: " + aura.simpleDesc());
