@@ -60,7 +60,7 @@ public class ZenStore {
     public static boolean isZen(String zenName){
         boolean found = false;
         for(Zen zen : ZENS){
-            if(zen.name.equals(zenName)) { found = true; break; }
+            if(zen.name.toLowerCase().equals(zenName.toLowerCase())) { found = true; break; }
         }
         return found;
     }
