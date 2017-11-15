@@ -51,8 +51,6 @@ public class Zen implements Formatter{
             if (!Character.isDigit(str.charAt(i))) {
                 return false;
             }
-        }
-
-        return size > 0;
+        } return size > 0;
     }
 }
