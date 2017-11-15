@@ -34,11 +34,13 @@ public class TestCommand implements Command{
                 zen.add(args[i]);
             } if(ZenStore.isZen(zen.toString())) {
                 try {
-                    sendMessage(ZenStore.fromName(zen.toString()).desc, event);
+                    sendMessage(ZenStore.fromName(zen.toString()).simpleDesc(), event);
                 } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();
                 }
             }
+        }if(args[0].toLowerCase().equals("zen") && args[0].toLowerCase().equals("random")){
+            sendMessage(ZenStore.ZENS.get(ZenStore.ZENS.size()).simpleDesc(), event);
         }
     }
 
