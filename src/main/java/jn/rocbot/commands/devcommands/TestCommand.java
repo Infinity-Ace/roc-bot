@@ -8,6 +8,7 @@ import jn.rocbot.info.ZenStore;
 import jn.rocbot.ships.Ship;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.Random;
 import java.util.StringJoiner;
 
 public class TestCommand implements Command{
@@ -40,7 +41,8 @@ public class TestCommand implements Command{
                 }
             }
         }if(args.length > 1 && args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
-            sendMessage(ZenStore.ZENS.get(ZenStore.ZENS.size() - 1).simpleDesc(), event);
+            Random r = new Random();
+            sendMessage(ZenStore.ZENS.get(r.nextInt(ZenStore.ZENS.size() - 1)).simpleDesc(), event);
         }
     }
 
