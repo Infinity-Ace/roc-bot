@@ -1,5 +1,6 @@
 package jn.rocbot;
 
+import jdk.nashorn.internal.scripts.JD;
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.info.AuraStore;
@@ -7,6 +8,7 @@ import jn.rocbot.info.ShipStore;
 import jn.rocbot.info.ZenStore;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Guild;
 
 import java.util.StringJoiner;
 
@@ -66,6 +68,10 @@ public class Main {
         }
     }
 
+    public static Guild getPhoenix() {
+        return JDA.getGuildById(325430508379176961L);
+    }
+
     private static void init() {
         Masters.init();
         Moderators.init();
@@ -85,7 +91,7 @@ public class Main {
     public static void log(LOGTYPE type, String message){
         switch (type){
             case INFO:
-                System.out.println(ANSI_GREEN + message + ANSI_RESET);
+                System.out.println(ANSI_BLUE + message + ANSI_RESET);
                 break;
             case ERROR:
                 System.out.println(ANSI_RED + message + ANSI_RESET);

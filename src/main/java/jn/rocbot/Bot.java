@@ -62,6 +62,10 @@ public class Bot extends ListenerAdapter {
         Main.log(INFO, ("My masters are:"));
         Masters.MASTERS.forEach((Masters.Master m) -> Main.log(INFO, "\t" + m.name + ", ID: " + m.longID));
 
+        if(IS_EVIL_TEST_TWIN){
+
+        }
+
         //say(event, "I have rebooted");
     }
 
