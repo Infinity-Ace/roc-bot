@@ -4,8 +4,11 @@ import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.info.AuraStore;
 import jn.rocbot.info.ShipStore;
+import jn.rocbot.info.ZenStore;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
+
+import java.util.StringJoiner;
 
 public class Main {
 
@@ -23,7 +26,7 @@ public class Main {
     //</editor-fold>
     public static boolean DEBUG;
     public static boolean VERBOSE;
-    public static boolean SHOW_MESSAGES;
+    public static boolean LOG_MESSAGES;
 
     public static String TOKEN;
 
@@ -33,23 +36,32 @@ public class Main {
 
     //requires the arguments String Token, boolean Debug, boolean Verbose
     public static void main(String[] args) {
-        //Just sets some variables from the main method arguments
-        //See the Procfile for the execution
-        TOKEN = args[0];
-        DEBUG = Boolean.parseBoolean(args[1].toLowerCase());
-        VERBOSE = Boolean.parseBoolean(args[2].toLowerCase());
-        SHOW_MESSAGES = Boolean.parseBoolean(args[3].toLowerCase());
+        StringJoiner env_args_received = new StringJoiner(", ");
+        for(String arg : args) env_args_received.add(arg);
+        Main.log(LOGTYPE.INFO, "Ran with args: " + env_args_received);
 
-        ARGUMENTS = args; //For testing
+        if(Boolean.parseBoolean(args[0].toLowerCase())) {
 
-        init();
+            //Just sets some variables from the main method arguments
+            //See the Procfile for the execution
+            TOKEN = args[1];
+            DEBUG = Boolean.parseBoolean(args[2].toLowerCase());
+            VERBOSE = Boolean.parseBoolean(args[3].toLowerCase());
+            LOG_MESSAGES = Boolean.parseBoolean(args[4].toLowerCase());
 
-        try {
-            //Establishes a connection to the the chats that have added the bot as a user
-            JDA = new JDABuilder(AccountType.BOT).addEventListener(new Bot()).setToken(args[0]).buildBlocking();
-            JDA.setAutoReconnect(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+            ARGUMENTS = args; //For verbose debugging
+
+            init();
+
+            try { //Establishes a connection to the the chats that have added the bot as a user
+
+                JDA = new JDABuilder(AccountType.BOT).addEventListener(
+                        new Bot(Boolean.parseBoolean(args[5]))).setToken(args[1]).buildBlocking();
+
+                JDA.setAutoReconnect(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -58,6 +70,7 @@ public class Main {
         Moderators.init();
 
         AuraStore.init();
+        ZenStore.init();
         ShipStore.init(); //Must be kept at bottom!
     }
 

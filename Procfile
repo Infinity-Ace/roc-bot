@@ -1,1 +1,1 @@
-worker: java $JAVA_OPTS -cp target/classes:target/dependency/* jn.rocbot.Main $TOKEN $DEBUG $VERBOSE $SHOW_MESSAGES
+worker: java $JAVA_OPTS -cp target/classes:target/dependency/* jn.rocbot.Main $RUN $TOKEN $DEBUG $VERBOSE $LOG_MESSAGES $IS_EVIL_TEST_TWIN

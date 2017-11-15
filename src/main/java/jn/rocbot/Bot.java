@@ -1,12 +1,10 @@
 package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
-import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.HelloCommand;
 import jn.rocbot.commands.common.CommandConfig;
-import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.commands.devcommands.SayCommand;
 import jn.rocbot.commands.devcommands.TestCommand;
 import net.dv8tion.jda.core.entities.Guild;
@@ -17,7 +15,6 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
-import java.util.StringJoiner;
 
 import static jn.rocbot.Main.LOGTYPE.INFO;
 
@@ -26,6 +23,12 @@ import jn.rocbot.RocParser.CommandContainer;
 public class Bot extends ListenerAdapter {
     private final Random r = new Random();
     public static HashMap<String, Command> COMMANDS;
+
+    private static boolean IS_EVIL_TEST_TWIN;
+
+    public Bot(boolean is_evil_twin){
+        Bot.IS_EVIL_TEST_TWIN = is_evil_twin;
+    }
 
     public static RocParser PARSER;
 
@@ -95,7 +98,7 @@ public class Bot extends ListenerAdapter {
                     event.getMessage().getContent().charAt(1) == '!'){
                 dlog("From user: " + event.getAuthor().getName() + ", received message starting with ~!");
                 prefix = "~!";
-            }if (Main.SHOW_MESSAGES) {
+            }if (Main.LOG_MESSAGES) {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             } if(isValidKey(event.getMessage().getContent().replace(prefix, "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot

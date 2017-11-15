@@ -2,156 +2,143 @@
   "zens":[
     {
       "name":"Kappa drive",
-      "description":"Attracts and generates energy particles.",
+      "desc":"Attracts and generates energy particles.",
       "properties":{
         "attraction power":214,
-        "generator efficiency":157
-        
+        "generator efficiency":157,
+        "generator efficiency-format":"%"
       },
-      "ultimate":{
+      "ult":{
         "name":"Kappa Overdrive",
-        "description":"Slows down time while active."
+        "desc":"Slows down time while active."
       }
     },
     
     {
       "name":"Personal Shield",
-      "description":"Become Invulnerable for a short time.",
-      "properties":{
+      "desc":"Become Invulnerable for a short time.",
+      "properties": {
         "max duration":3.5,
         "charge duration":0.4,
+        "charge duration-format":"s",
         "charge time increase":2,
+        "charge time increase-format":"s",
         "charge time recovery":"very slow"
 
       },
-      "ultimate":{
+      "ult": {
         "name":"Laser reflection",
-        "description":"reflects enemy laser back at them, dealing considerable damage"
+        "desc":"reflects enemy laser back at them, dealing considerable damage"
       }
     },
     
      {
       "name":"Mega bomb",
-      "description":"Damages enemies on screen in a large radius",
-      "properties":{
+      "desc":"Damages enemies on screen in a large radius",
+      "properties": {
         "damage":30,
         "radius":400,
         "charge duration":2,
+        "charge duration-format":"s",
         "charge time increase":0.4,
+        "charge time increase-format":"s",
         "charge time recovery":"average",
         "fusion core damage":30
 
       },
-      "ultimate":{
+      "ult":{
         "name":"Fusion core",
-        "description":"Enemies in the charging reticle will receive double damage"
+        "desc":"Enemies in the charging reticle will receive double damage"
       }
     },
     
     {
       "name":"Mega Laser",
-      "description":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
-      "properties":{
+      "desc":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
+      "properties": {
         "damage":170,
         "charge duration":1.9,
+        "charge duration-format":"s",
         "charge time increase":0.25,
+        "charge time increase-format":"s",
         "charge time recovery":"very fast",
         "beam width":150
 
       },
-      "ultimate":{
+      "ult": {
         "name":"Beam width",
-        "description":"Makes the beam 50% wider"
+        "desc":"Makes the beam 50% wider"
       }
     },
     
      {
       "name":"Teleport",
-      "description":"Teleports the ship anywhere on screen",
-      "properties":{
+      "desc":"Teleports the ship anywhere on screen",
+      "properties": {
         "charge duration":0.4,
+        "charge duration-format":"s",
         "charge time increase":0.2,
+        "charge time increase-format":"s",
         "charge time recovery":"fast"
 
       },
-      "ultimate":{
+      "ult": {
         "name":"Arrival EMP",
-        "description":"destroys bullets in a small radius around your ship upon arrival"
+        "desc":"destroys bullets in a small radius around your ship upon arrival"
       }
     },
     
      {
       "name":"Reflex EMP",
-      "description":"Destroys bullets in a moderate radius around your ship",
-      "properties":{
+      "desc":"Destroys bullets in a moderate radius around your ship",
+      "properties": {
         "radius":225,
         "charge duration":0.6,
+        "charge duration-format":"s",
         "charge time increase":2,
+        "charge time-format": "s",
         "charge time recovery":"slow",
         "damage":20
-
       },
-      "ultimate":{
+      "ult": {
         "name":"Reflex EMP bomb",
-        "description":"deals moderate damage to ships in the radius of the blast"
+        "desc":"deals moderate damage to ships in the radius of the blast"
       }
     },
-    
-     {
-      "name":"Tracking Minigun",
-      "description":"activates a tracking minigun when charged",
-      "properties":{
-        "target tracking":"fast",
-        "damage":210,
-        "duration":6,
-        "charging duration":1,
-        "charge time increase":17,
-        "charge time recovery":"average"
-    
-
+    {
+      "name": "Tracking Minigun",
+      "desc": "activates a tracking minigun when charged",
+      "properties": {
+        "target tracking": "fast",
+        "damage": 210,
+        "duration": 6,
+        "duration-format": "s",
+        "charging duration": 1,
+        "chraging duration-format": "s",
+        "charge time increase": 17,
+        "chrage time increase-format":"s",
+        "charge time recovery": "average"
       },
-      "ultimate":{
-        "name":"Barrage missiles",
-        "description":"shoots homing missiles along with the minigun"
+      "ult": {
+        "name": "Barrage missiles",
+        "desc": "shoots homing missiles along with the minigun"
       }
     },
-    
-     {
+    {
       "name":"Trinity teleport",
-      "description":"shoots a moderate damage projectile upon arrival",
-      "properties":{
+      "desc":"shoots a moderate damage projectile upon arrival",
+      "properties": {
         "damage":8,
         "charge duration":0.4,
+        "charge duration-format":"s",
         "charge time increase":0.2,
+        "charge time-format": "s",
         "charge time recovery":"fast"
-
       },
-      "ultimate":{
+      "ult": {
         "name":"Arrival EMP",
-        "description":"destroys bullets in a small radius around your ship upon arrival"
+        "desc":"destroys bullets in a small radius around your ship upon arrival"
       }
-    },
-    
-     {
-      "name":"",
-      "description":"",
-      "properties":{
-
-      },
-      "ultimate":{
-        "name":"",
-        "description":""
-      }
-    }, {
-      "name":"",
-      "description":"",
-      "properties":{
-
-      },
-      "ultimate":{
-        "name":"",
-        "description":""
-      }
-    } 
+    }
   ]
 }
