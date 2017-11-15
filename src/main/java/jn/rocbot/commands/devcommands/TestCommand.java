@@ -8,6 +8,8 @@ import jn.rocbot.info.ZenStore;
 import jn.rocbot.ships.Ship;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.StringJoiner;
+
 public class TestCommand implements Command{
     private CommandConfig config = new CommandConfig(CommandType.DEV, false);
 
@@ -18,16 +20,20 @@ public class TestCommand implements Command{
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if(args[0].equals("isShip") && args.length == 2){
+        if(args[0].equals("isShip") && args.length > 1){
+            StringJoiner ship = new StringJoiner(" ");
+            for(String arg : args) ship.add(arg);
             try {
-                sendMessage(args[1] + " isShip: " + Ship.isShip(args[1]), event);
+                sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
             } catch (ShipStore.ShipNotFoundException e) {
                 e.printStackTrace();
             }
-        } else if(args[0].equals("zen") && args.length == 2){
+        } else if(args[0].equals("zen") && args.length > 1){
+            StringJoiner zen = new StringJoiner(" ");
+            for(String arg : args) zen.add(arg);
             if(ZenStore.isZen(args[1])) {
                 try {
-                    sendMessage(ZenStore.fromName(args[1]).desc, event);
+                    sendMessage(ZenStore.fromName(zen.toString()).desc, event);
                 } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();
                 }
