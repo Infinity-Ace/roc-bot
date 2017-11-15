@@ -5,7 +5,15 @@ public interface Formatter {
         return "*" + s + "*";
     }
 
+    default String spaced_italic(String s){
+        return "*" + s + "* ";
+    }
+
     default String bold(String s){
+        return "**" + s + "**";
+    }
+
+    default String spaced_bold(String s){
         return "**" + s + "**";
     }
 
