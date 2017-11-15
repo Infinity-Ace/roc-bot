@@ -39,7 +39,7 @@ public class TestCommand implements Command{
                     e.printStackTrace();
                 }
             }
-        }if(args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
+        }if(args.length > 1 && args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
             sendMessage(ZenStore.ZENS.get(ZenStore.ZENS.size() - 1).simpleDesc(), event);
         }
     }
