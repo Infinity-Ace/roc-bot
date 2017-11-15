@@ -30,8 +30,9 @@ public class TestCommand implements Command{
             }
         } else if(args[0].equals("zen") && args.length > 1){
             StringJoiner zen = new StringJoiner(" ");
-            for(String arg : args) zen.add(arg);
-            if(ZenStore.isZen(args[1])) {
+            for (int i = 1; i < args.length; i++) {
+                zen.add(args[i]);
+            } if(ZenStore.isZen(args[1])) {
                 try {
                     sendMessage(ZenStore.fromName(zen.toString()).desc, event);
                 } catch (ZenStore.ZenNotFoundException e) {
