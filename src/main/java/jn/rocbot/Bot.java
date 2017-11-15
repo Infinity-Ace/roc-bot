@@ -150,7 +150,7 @@ public class Bot extends ListenerAdapter {
         if(shouldReact(event)){
             String prefix = getPrefix(event);
             if (Main.LOG_MESSAGES) {
-                Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
+                Main.log(Main.LOGTYPE.INFO, event.getAuthor().getName() + ": " + event.getMessage().getContent());
             } if(isValidKey(event.getMessage().getContent().replace(prefix, "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
                 if (Objects.equals(prefix, "!") && !event.getMessage().getAuthor().isBot()) {
@@ -171,7 +171,6 @@ public class Bot extends ListenerAdapter {
             }
         }
     }
-
 
     /**
      * Makes the bot say something in the bot-channel in the phoenix II server

@@ -8,4 +8,6 @@ public interface Formatter {
     default String bold(String s){
         return "**" + s + "**";
     }
+
+    String newline = "\n";
 }

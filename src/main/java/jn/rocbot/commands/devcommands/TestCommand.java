@@ -4,6 +4,7 @@ import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.info.ShipStore;
+import jn.rocbot.info.ZenStore;
 import jn.rocbot.ships.Ship;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
@@ -22,6 +23,14 @@ public class TestCommand implements Command{
                 sendMessage(args[1] + " isShip: " + Ship.isShip(args[1]), event);
             } catch (ShipStore.ShipNotFoundException e) {
                 e.printStackTrace();
+            }
+        } else if(args[0].equals("zen") && args.length == 2){
+            if(ZenStore.isZen(args[1])) {
+                try {
+                    sendMessage(ZenStore.fromName(args[1]).desc, event);
+                } catch (ZenStore.ZenNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

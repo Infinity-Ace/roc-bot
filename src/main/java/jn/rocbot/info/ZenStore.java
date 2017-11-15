@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import jn.rocbot.Main;
 import jn.rocbot.ships.Zen;
 import org.json.JSONObject;
 
@@ -55,4 +56,20 @@ public class ZenStore {
             e.printStackTrace();
         }
     }
+
+    public static boolean isZen(String zenName){
+        boolean found = false;
+        for(Zen zen : ZENS){
+            if(zen.name.equals(zenName)) { found = true; break; }
+        }
+        return found;
+    }
+
+    public static Zen fromName(String name) throws ZenNotFoundException {
+        for(Zen zen : ZENS){
+            if(name.toLowerCase().equals(zen.name.toLowerCase())) return zen;
+        } throw new ZenNotFoundException();
+    }
+
+    public static class ZenNotFoundException extends Exception {}
 }
