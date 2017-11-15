@@ -60,7 +60,7 @@ public class ShipsCommand implements Command {
                 if(Ship.isShip(args[0])){
                     if(args[1].toLowerCase().equals("info")){
                         try {
-                            event.getTextChannel().sendMessage(ShipStore.getShip(args[0]).simpleToString()).complete();
+                            event.getTextChannel().sendMessage(ShipStore.getShip(args[0]).info()).complete();
                         } catch (ShipStore.ShipNotFoundException e) {
                             event.getTextChannel().sendMessage("No ship named: " + args[0]).complete();
                         }
