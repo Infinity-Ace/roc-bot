@@ -17,4 +17,16 @@ public interface Command {
     default void sendMessage(String msg, MessageReceivedEvent event){
         event.getJDA().getTextChannelById(378546862627749908L).sendMessage(msg).complete();
     }
+
+    enum PREFIX {
+        NORMAL("!"),
+        MODERATOR("~!"),
+        MASTER("§");
+
+        private final String prefix;
+
+        PREFIX(String prefix){
+            this.prefix = prefix;
+        }
+    }
 }

@@ -24,6 +24,7 @@ public class Main {
     private static final String ANSI_CYAN = "\u001B[36m";
     private static final String ANSI_WHITE = "\u001B[37m";
     //</editor-fold>
+
     public static boolean DEBUG;
     public static boolean VERBOSE;
     public static boolean LOG_MESSAGES;

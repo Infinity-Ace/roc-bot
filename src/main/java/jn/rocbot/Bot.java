@@ -65,6 +65,62 @@ public class Bot extends ListenerAdapter {
         //say(event, "I have rebooted");
     }
 
+    private void specialCases(MessageReceivedEvent event){
+        if (!event.getAuthor().isBot()) {
+            String raw = event.getMessage().getContent();
+
+            //Some special cases -----------------------------------------------------
+            if (raw.contains("name the bot")) {
+                event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
+            } else if (raw.toLowerCase().contains("thanks bot") || raw.toLowerCase().contains("thank you bot")) {
+                String str = "";
+
+                if (r.nextInt(10) == 1) str = " Glad to be of use";
+                event.getTextChannel().sendMessage("No problem! ^^" + str).complete();
+            } else if (raw.contains("best") && raw.contains("game")) {
+                event.getTextChannel().sendMessage("The best game is **Phoenix 2**! " + Emojis.EL).complete();
+            }
+        }
+    }
+
+    private boolean shouldReact(MessageReceivedEvent event){
+        if(!IS_EVIL_TEST_TWIN) {
+            return ((event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
+                        ||
+                        event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
+                            ||
+                            event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */
+                                &&
+                                !event.getMessage().getAuthor().isBot()); //To prevent recursion
+        }else{
+            return ((event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
+                    ||
+                    event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
+                        ||
+                        event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */
+                            &&
+                            !event.getMessage().getAuthor().isBot()
+                                &&
+                                Masters.isMaster(event.getAuthor()));
+        }
+    }
+
+    private String getPrefix(MessageReceivedEvent event){
+        String message = event.getMessage().getContent();
+        if(message.charAt(0) == '!'){
+            vlog("Recieved message starting with ! from " + event.getAuthor().getName());
+            return "!";
+        }else if(message.charAt(0) == '§'){
+            vlog("Recieved message starting with § from " + event.getAuthor().getName());
+            return "§";
+        }else if(message.charAt(0) == '~'
+                &&
+                message.charAt(1) == '!'){
+            vlog("Recieved message starting with ~! from " + event.getAuthor().getName());
+            return "~!";
+        } else return "?";
+    }
+
     private void dlog(String msg){
         Main.log(Main.LOGTYPE.DEBUG, msg);
     }
@@ -79,26 +135,9 @@ public class Bot extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
         //Checks if the bot is supposed to react
-        if(event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
-                ||
-                event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
-                    ||
-                    event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */{
-
-            String prefix = "";
-
-            if(event.getMessage().getContent().charAt(0) == '!'){
-                dlog("From user: " + event.getAuthor().getName() + ", received message starting with !");
-                prefix = "!";
-            }else if(event.getMessage().getContent().charAt(0) == '§'){
-                dlog("From user: " + event.getAuthor().getName() + ", received message starting with §");
-                prefix = "§";
-            }else if(event.getMessage().getContent().charAt(0) == '~'
-                    &&
-                    event.getMessage().getContent().charAt(1) == '!'){
-                dlog("From user: " + event.getAuthor().getName() + ", received message starting with ~!");
-                prefix = "~!";
-            }if (Main.LOG_MESSAGES) {
+        if(shouldReact(event)){
+            String prefix = getPrefix(event);
+            if (Main.LOG_MESSAGES) {
                 Main.log(Main.LOGTYPE.INFO, event.getAuthor() + ": " + event.getMessage().getContent());
             } if(isValidKey(event.getMessage().getContent().replace(prefix, "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
@@ -106,8 +145,7 @@ public class Bot extends ListenerAdapter {
                     handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(),
                             getConfig(event.getMessage().getContent().replace("!", "").split(" ")[0]),
                             event));
-                } else if (Objects.equals(prefix, "§")
-                        && !event.getMessage().getAuthor().isBot()
+                } else if (prefix.equals("§")
                         && Masters.isMaster(event.getAuthor())
                         ) { // If it is a mastercommand
                     dlog("Recieved message starting with \"§\": " + event.getMessage().getContent());
@@ -117,23 +155,6 @@ public class Bot extends ListenerAdapter {
                             getConfig(event.getMessage().getContent().replace("§", "").split(" ")[0]),
                             event)
                     );
-
-                } else {
-                    if (!event.getAuthor().isBot()) {
-                        String raw = event.getMessage().getContent();
-
-                        //Some special cases -----------------------------------------------------
-                        if (raw.contains("name the bot")) {
-                            event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
-                        } else if (raw.toLowerCase().contains("thanks bot") || raw.toLowerCase().contains("thank you bot")) {
-                            String str = "";
-
-                            if (r.nextInt(10) == 1) str = " Glad to be of use";
-                            event.getTextChannel().sendMessage("No problem! ^^" + str).complete();
-                        } else if (raw.contains("best") && raw.contains("game")) {
-                            event.getTextChannel().sendMessage("The best game is **Phoenix 2**! " + Emojis.EL).complete();
-                        }
-                    }
                 }
             }
         }
@@ -145,7 +166,7 @@ public class Bot extends ListenerAdapter {
      * @param event
      * @param message
      */
-    public void say(ReadyEvent event, String message){
+    public void say(MessageReceivedEvent event, String message){
         event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage(message).complete();
     }
 
@@ -157,10 +178,10 @@ public class Bot extends ListenerAdapter {
         dlog(cmd.hrInfo());
         if(COMMANDS.containsKey(cmd.invoke)){
             boolean safe = COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event);
-
             dlog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
 
             if(safe){
+                if(IS_EVIL_TEST_TWIN)say(cmd.event, "I am evil " + Emojis.EL);
                 COMMANDS.get(cmd.invoke).action(cmd.args, cmd.event);
                 COMMANDS.get(cmd.invoke).executed(true, cmd.event);
             }else{
