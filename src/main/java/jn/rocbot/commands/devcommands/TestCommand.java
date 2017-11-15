@@ -32,7 +32,7 @@ public class TestCommand implements Command{
             StringJoiner zen = new StringJoiner(" ");
             for (int i = 1; i < args.length; i++) {
                 zen.add(args[i]);
-            } if(ZenStore.isZen(args[1])) {
+            } if(ZenStore.isZen(zen.toString())) {
                 try {
                     sendMessage(ZenStore.fromName(zen.toString()).desc, event);
                 } catch (ZenStore.ZenNotFoundException e) {
