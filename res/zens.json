@@ -19,6 +19,7 @@
       "desc":"Become Invulnerable for a short time.",
       "properties": {
         "max duration":3.5,
+        "max duration-format":"s",
         "charge duration":0.4,
         "charge duration-format":"s",
         "charge time increase":2,

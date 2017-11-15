@@ -40,7 +40,7 @@ public class TestCommand implements Command{
                 }
             }
         }if(args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
-            sendMessage(ZenStore.ZENS.get(ZenStore.ZENS.size()).simpleDesc(), event);
+            sendMessage(ZenStore.ZENS.get(ZenStore.ZENS.size() - 1).simpleDesc(), event);
         }
     }
 
