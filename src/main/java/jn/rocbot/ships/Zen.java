@@ -38,7 +38,7 @@ public class Zen implements Formatter{
             }
         }
 
-        desc.addLine("Ultimate: " + ultimateName);
+        desc.addLine("Ultimate: " + italic(ultimateName));
         desc.addLine("\tDescription: " + this.ultimateDesc);
 
         return desc.get();
