@@ -20,7 +20,6 @@ import static jn.rocbot.Main.LOGTYPE.ERROR;
 import static jn.rocbot.Main.LOGTYPE.INFO;
 
 import jn.rocbot.RocParser.CommandContainer;
-import net.dv8tion.jda.core.managers.GuildController;
 
 public class Bot extends ListenerAdapter {
     private final Random r = new Random();
@@ -69,7 +68,7 @@ public class Bot extends ListenerAdapter {
         if(IS_EVIL_TEST_TWIN){
             Main.log(ERROR, ("\n\t+------------------ I AM EVIL! ------------------+\n"));
             phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Evil twin-Roc-bot");
-        } else {
+        } else { //Does not work!
             phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Roc-bot");
         }
 
@@ -111,9 +110,9 @@ public class Bot extends ListenerAdapter {
                         ||
                         event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */
                             &&
-                            !event.getMessage().getAuthor().isBot()
+                            !event.getMessage().getAuthor().isBot() //Same as other !isbot
                                 &&
-                                Masters.isMaster(event.getAuthor()));
+                                Masters.isMaster(event.getAuthor())); //Wouldn't want anyone crashing my pc
         }
     }
 

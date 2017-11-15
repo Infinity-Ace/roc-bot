@@ -1,11 +1,10 @@
-package jn.rocbot.info;
+package jn.rocbot.info.Stores;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import jn.rocbot.Main;
 import jn.rocbot.ships.RARITY;
 import jn.rocbot.ships.Ship;
 
@@ -32,11 +31,13 @@ public class ShipStore {
                 try {
                     Ship ship = new Ship(jsonship.get("name").getAsString(), jsonship.getAsJsonObject("weapon").get("name").getAsString(),
                             AuraStore.fromName(jsonship.get("aura").getAsString()),
-                            jsonship.get("zen").getAsString(),
+                            ZenStore.fromName(jsonship.get("zen").getAsString()),
                             RARITY.valueOf(RARITY.fromInt(jsonship.get("r").getAsInt())));
 
                     SHIPS.add(ship);
                 } catch (AuraStore.AuraNotFounException e) {
+                    e.printStackTrace();
+                } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();
                 }
             }

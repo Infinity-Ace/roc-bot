@@ -15,6 +15,10 @@ public class SimpleDescBuilder {
         desc.add(line);
     }
 
+    public void add(String string) {
+        desc.setEmptyValue(string);
+    }
+
     public String get() {
         return desc.toString();
     }

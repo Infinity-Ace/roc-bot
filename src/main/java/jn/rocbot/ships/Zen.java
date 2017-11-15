@@ -31,8 +31,8 @@ public class Zen implements Formatter{
         SimpleDescBuilder desc = new SimpleDescBuilder(bold(name));
         desc.addLine(this.desc);
         for(String key : properties.keySet()){
-            if(formatting.containsKey(key + "-format")){
-                desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key) + formatting.get(key + "-format")));
+            if(formatting.containsKey(key + "-formatting")){
+                desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key) + formatting.get(key + "-formatting")));
             } else {
                 desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key)));
             }

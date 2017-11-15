@@ -3,8 +3,8 @@ package jn.rocbot.commands.devcommands;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
-import jn.rocbot.info.ShipStore;
-import jn.rocbot.info.ZenStore;
+import jn.rocbot.info.Stores.ShipStore;
+import jn.rocbot.info.Stores.ZenStore;
 import jn.rocbot.ships.Ship;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

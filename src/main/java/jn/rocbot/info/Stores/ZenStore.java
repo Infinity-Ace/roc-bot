@@ -1,4 +1,4 @@
-package jn.rocbot.info;
+package jn.rocbot.info.Stores;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -36,7 +36,7 @@ public class ZenStore {
                 HashMap<String, String> propertiesList = new HashMap<>();
                 HashMap<String, String> propertiesFormatList = new HashMap<>();
                 properties.keySet().forEach((String key) ->{
-                    if(!key.contains("-format")){
+                    if(!key.contains("-formatting")){
                         propertiesList.put(key, properties.get(key).getAsString());
                     } else {
                         propertiesFormatList.put(key, properties.get(key).getAsString());

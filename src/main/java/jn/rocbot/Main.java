@@ -2,12 +2,11 @@ package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
-import jn.rocbot.info.AuraStore;
-import jn.rocbot.info.ShipStore;
-import jn.rocbot.info.ZenStore;
+import jn.rocbot.info.Stores.AuraStore;
+import jn.rocbot.info.Stores.ShipStore;
+import jn.rocbot.info.Stores.ZenStore;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Guild;
 
 import java.util.StringJoiner;
 
