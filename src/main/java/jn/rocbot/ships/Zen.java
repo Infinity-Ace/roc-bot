@@ -37,7 +37,9 @@ public class Zen implements Formatter{
                 desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key)));
             }
         }
-        desc.addLine("Ultimate");
+
+        desc.addLine("Ultimate: " + ultimateName);
+        desc.addLine("\tDescription: " + this.ultimateDesc);
 
         return desc.get();
     }
