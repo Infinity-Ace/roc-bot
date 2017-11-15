@@ -58,7 +58,7 @@ public class ShipsCommand implements Command {
                 }
             } else try {
                 if(Ship.isShip(args[0])){
-                    if(Objects.equals(args[1].toLowerCase(), "info")) {
+                    if(args[1].toLowerCase().equals("info")){
                         try {
                             event.getTextChannel().sendMessage(ShipStore.getShip(args[0]).simpleToString()).complete();
                         } catch (ShipStore.ShipNotFoundException e) {

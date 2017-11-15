@@ -1,6 +1,5 @@
 package jn.rocbot;
 
-import jdk.nashorn.internal.scripts.JD;
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.info.AuraStore;
@@ -42,6 +41,7 @@ public class Main {
         StringJoiner env_args_received = new StringJoiner(", ");
         for(String arg : args) env_args_received.add(arg);
         Main.log(LOGTYPE.INFO, "Ran with args: " + env_args_received);
+        Main.log(LOGTYPE.INFO, "Provided token: " + args[1]);
 
         if(Boolean.parseBoolean(args[0].toLowerCase())) {
 
@@ -59,17 +59,14 @@ public class Main {
             try { //Establishes a connection to the the chats that have added the bot as a user
 
                 JDA = new JDABuilder(AccountType.BOT).addEventListener(
-                        new Bot(Boolean.parseBoolean(args[5]))).setToken(args[1]).buildBlocking();
+                        new Bot(/*Evil twin or not*/ Boolean.parseBoolean(args[5]))
+                ).setToken(TOKEN).buildBlocking();
 
                 JDA.setAutoReconnect(true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public static Guild getPhoenix() {
-        return JDA.getGuildById(325430508379176961L);
     }
 
     private static void init() {

@@ -16,9 +16,11 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
 
+import static jn.rocbot.Main.LOGTYPE.ERROR;
 import static jn.rocbot.Main.LOGTYPE.INFO;
 
 import jn.rocbot.RocParser.CommandContainer;
+import net.dv8tion.jda.core.managers.GuildController;
 
 public class Bot extends ListenerAdapter {
     private final Random r = new Random();
@@ -62,8 +64,13 @@ public class Bot extends ListenerAdapter {
         Main.log(INFO, ("My masters are:"));
         Masters.MASTERS.forEach((Masters.Master m) -> Main.log(INFO, "\t" + m.name + ", ID: " + m.longID));
 
-        if(IS_EVIL_TEST_TWIN){
+        Guild phoenix2 = event.getJDA().getGuildById(325430508379176961L);
 
+        if(IS_EVIL_TEST_TWIN){
+            Main.log(ERROR, ("\n\t+------------------ I AM EVIL! ------------------+\n"));
+            phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Evil twin-Roc-bot");
+        } else {
+            phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Roc-bot");
         }
 
         //say(event, "I have rebooted");
@@ -88,6 +95,7 @@ public class Bot extends ListenerAdapter {
     }
 
     private boolean shouldReact(MessageReceivedEvent event){
+        //if(event.getMessage().getType())
         if(!IS_EVIL_TEST_TWIN) {
             return ((event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
                         ||
