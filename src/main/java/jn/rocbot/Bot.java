@@ -168,6 +168,8 @@ public class Bot extends ListenerAdapter {
                             event)
                     );
                 }
+            } else {
+                specialCases(event);
             }
         }
     }
