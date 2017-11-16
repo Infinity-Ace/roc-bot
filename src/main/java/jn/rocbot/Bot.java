@@ -55,6 +55,8 @@ public class Bot extends ListenerAdapter {
 
         Main.log(INFO, "Roaming in the servers: ");
 
+        //event.getJDA().getGuildById(325430508379176961L).getTextChannelById(325430667087446016L).sendMessage("*all-knowing!").complete();
+
         for (Guild g : event.getJDA().getGuilds()) {
             Main.log(INFO,"\t" + g.getName() + ", IDLong: " + g.getIdLong());
         }
@@ -160,7 +162,6 @@ public class Bot extends ListenerAdapter {
                         && Masters.isMaster(event.getAuthor())
                         ) { // If it is a mastercommand
                     dlog("Recieved message starting with \"§\": " + event.getMessage().getContent());
-
                     handleCommand(PARSER.parse(
                             event.getMessage().getContent(),
                             getConfig(event.getMessage().getContent().replace("§", "").split(" ")[0]),
@@ -178,8 +179,9 @@ public class Bot extends ListenerAdapter {
      * @param event
      * @param message
      */
-    public void say(MessageReceivedEvent event, String message){
-        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage(message).complete();
+    public void say(MessageReceivedEvent event, String message, long channelid){
+        if(channelid == 0L) channelid = 378546862627749908L;
+        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(channelid).sendMessage(message).complete();
     }
 
     /**
@@ -193,7 +195,7 @@ public class Bot extends ListenerAdapter {
             dlog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
 
             if(safe){
-                if(IS_EVIL_TEST_TWIN)say(cmd.event, "I am evil " + Emojis.EL);
+                if(IS_EVIL_TEST_TWIN)say(cmd.event, "I am evil " + Emojis.EL, 0);
                 COMMANDS.get(cmd.invoke).action(cmd.args, cmd.event);
                 COMMANDS.get(cmd.invoke).executed(true, cmd.event);
             }else{
