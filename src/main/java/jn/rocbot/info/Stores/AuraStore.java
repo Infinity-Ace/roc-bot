@@ -49,7 +49,6 @@ public class AuraStore {
                         ultimatePropertiesList.put(key, ultimateProperties.get(key).getAsString());
                     } else {
                         formatting.put(key, ultimateProperties.get(key).getAsString());
-                        Main.log(Main.LOGTYPE.DEBUG, "Put ulformat in: " + jsonaura.get("name").getAsString());
                     }
                 });
 
