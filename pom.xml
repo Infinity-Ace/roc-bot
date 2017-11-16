@@ -50,4 +50,7 @@
             <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 </project>
