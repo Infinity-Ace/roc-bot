@@ -40,16 +40,16 @@ public class Main {
         StringJoiner env_args_received = new StringJoiner(", ");
         for(String arg : args) env_args_received.add(arg);
         Main.log(LOGTYPE.INFO, "Ran with args: " + env_args_received);
-        Main.log(LOGTYPE.INFO, "Provided token: " + args[1]);
+        Main.log(LOGTYPE.INFO, "Provided token: " + args[0]);
 
         if(Boolean.parseBoolean(args[0].toLowerCase())) {
 
             //Just sets some variables from the main method arguments
             //See the Procfile for the execution
-            TOKEN = args[1];
-            DEBUG = Boolean.parseBoolean(args[2].toLowerCase());
-            VERBOSE = Boolean.parseBoolean(args[3].toLowerCase());
-            LOG_MESSAGES = Boolean.parseBoolean(args[4].toLowerCase());
+            TOKEN = args[0];
+            DEBUG = Boolean.parseBoolean(args[1].toLowerCase());
+            VERBOSE = Boolean.parseBoolean(args[2].toLowerCase());
+            LOG_MESSAGES = Boolean.parseBoolean(args[3].toLowerCase());
 
             ARGUMENTS = args; //For verbose debugging
 
@@ -58,7 +58,7 @@ public class Main {
             try { //Establishes a connection to the the chats that have added the bot as a user
 
                 JDA = new JDABuilder(AccountType.BOT).addEventListener(
-                        new Bot(/*Evil twin or not*/ Boolean.parseBoolean(args[5]))
+                        new Bot(/*Evil twin or not*/ Boolean.parseBoolean(args[4]))
                 ).setToken(TOKEN).buildBlocking();
 
                 JDA.setAutoReconnect(true);
