@@ -44,10 +44,7 @@ public class ShipsCommand implements Command {
                             } int ship = getShipNotTaken(list);
 
                             list += "**"+ (i + 1) + ".** " + ShipStore.SHIPS.get(ship).rarity.toEmoji() + ShipStore.SHIPS.get(ship).name + "\n";
-                        }
-
-                        event.getTextChannel().sendMessage(list).complete();
-
+                        } event.getTextChannel().sendMessage(list).complete();
                     } else {
                         if (args[1].toLowerCase().equals("info"))
                             event.getTextChannel().sendMessage(ShipStore.SHIPS.get(r.nextInt(ShipStore.SHIPS.size())).info()).complete();
@@ -56,7 +53,7 @@ public class ShipsCommand implements Command {
                     int ship = r.nextInt(ShipStore.SHIPS.size());
                     event.getTextChannel().sendMessage("**" + ShipStore.SHIPS.get(ship).name + "** " + ShipStore.SHIPS.get(ship).rarity.toEmoji()).complete();
                 }
-            } else try {
+            } {
                 if(Ship.isShip(args[0])){
                     if(args[1].toLowerCase().equals("info")){
                         try {
@@ -66,8 +63,6 @@ public class ShipsCommand implements Command {
                         }
                     }
                 }
-            } catch (ShipStore.ShipNotFoundException e) {
-                e.printStackTrace();
             }
         } else {
             String shiplist = "";
