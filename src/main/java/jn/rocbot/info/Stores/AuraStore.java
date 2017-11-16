@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import jn.rocbot.Main;
 import jn.rocbot.ships.Aura;
 
 import java.io.FileNotFoundException;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AuraStore {
-    public static ArrayList<Aura> AURAS = new ArrayList<Aura>();
+    public static ArrayList<Aura> AURAS = new ArrayList<>();
 
     public static void init(){
         JsonParser parser = new JsonParser();
@@ -29,17 +30,17 @@ public class AuraStore {
 
                 JsonObject properties = jsonaura.getAsJsonObject("properties");
 
+                HashMap<String, String> formatting = new HashMap<>();
+
                 properties.keySet().forEach((String key) ->{
                     if(!key.contains("-format")) {
                         propertiesList.put(key, properties.get(key).getAsString());
                     } else {
-                        propertiesList.put(key, properties.get(key).getAsString());
+                        formatting.put(key, properties.get(key).getAsString());
                     }
                 });
 
                 HashMap<String, String> ultimatePropertiesList = new HashMap<>();
-
-                HashMap<String, String> formatting = new HashMap<>();
 
                 JsonObject ultimateProperties = jsonaura.getAsJsonObject("ult");
 
@@ -48,6 +49,7 @@ public class AuraStore {
                         ultimatePropertiesList.put(key, ultimateProperties.get(key).getAsString());
                     } else {
                         formatting.put(key, ultimateProperties.get(key).getAsString());
+                        Main.log(Main.LOGTYPE.DEBUG, "Put ulformat in: " + jsonaura.get("name").getAsString());
                     }
                 });
 

@@ -4,6 +4,7 @@ import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
 
 import java.util.HashMap;
+import java.util.StringJoiner;
 
 public class Aura implements Formatter{
     public final String name;
@@ -35,7 +36,6 @@ public class Aura implements Formatter{
 
         desc.addLine("\nUltimate: " + italic(ultimateName));
         desc.addLine("\tDescription: " + ultimateProperties.get("desc"));
-
         return desc.get();
     }
 
