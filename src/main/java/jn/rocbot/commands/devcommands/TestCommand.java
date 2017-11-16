@@ -24,11 +24,7 @@ public class TestCommand implements Command{
         if(args[0].equals("isShip") && args.length > 1){
             StringJoiner ship = new StringJoiner(" ");
             for(String arg : args) ship.add(arg);
-            try {
-                sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
-            } catch (ShipStore.ShipNotFoundException e) {
-                e.printStackTrace();
-            }
+            sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
         } else if(args[0].equals("zen") && args.length > 1){
             StringJoiner zen = new StringJoiner(" ");
             for (int i = 1; i < args.length; i++) {
