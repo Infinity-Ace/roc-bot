@@ -35,13 +35,6 @@ public class TestCommand implements Command{
                 try {
                     Zen zen = ZenStore.fromName(zenname.toString());
                     sendMessage(zen.simpleDesc(), event);
-                    if(args.length > 2  && args[args.length - 1].equals("extra")){
-                        StringJoiner allprops = new StringJoiner("\n\t");
-                        zen.properties.keySet().forEach(key -> {
-                            allprops.add(key + zen.properties.get(key));
-                        });
-                        sendMessage("Allproperties:\n" + allprops, event);
-                    }
                 } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();
                 }
