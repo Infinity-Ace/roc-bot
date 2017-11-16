@@ -7,7 +7,6 @@
     <artifactId>roc-bot</artifactId>
     <version>1.0.2</version>
     <build>
-        <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
