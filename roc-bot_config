@@ -1,0 +1,5 @@
+export TOKEN='Mzc3ODEyNjk1NTg1MzkwNjAy.DO3VkA.gT0tSZFQc_OmgYMLFAJvb5INZiM'
+export DEBUG='true'
+export VERBOSE='true'
+export LOG_MESSAGES='true'
+export IS_EVIL_TWIN='false'
