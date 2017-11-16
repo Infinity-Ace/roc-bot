@@ -4,7 +4,7 @@
       "name":"Vorpal lance",
       "desc":"",
       "properties": {
-        "damage": 31.25,
+        "damage": 39.6,
         "count": 4
       },
       "ult": {
