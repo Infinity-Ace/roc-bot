@@ -6,6 +6,7 @@ import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.info.Stores.ShipStore;
 import jn.rocbot.info.Stores.ZenStore;
 import jn.rocbot.ships.Ship;
+import jn.rocbot.ships.Zen;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
@@ -23,15 +24,24 @@ public class TestCommand implements Command{
     public void action(String[] args, MessageReceivedEvent event) {
         if(args[0].equals("isShip") && args.length > 1){
             StringJoiner ship = new StringJoiner(" ");
-            for(String arg : args) ship.add(arg);
+            for(String arg : args) if(!args.equals("extra")) ship.add(arg);
             sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
-        } else if(args[0].equals("zen") && args.length > 1){
-            StringJoiner zen = new StringJoiner(" ");
+
+        } else if(args[0].equals("zen") && args.length > 1) {
+            StringJoiner zenname = new StringJoiner(" ");
             for (int i = 1; i < args.length; i++) {
-                zen.add(args[i]);
-            } if(ZenStore.isZen(zen.toString())) {
+                zenname.add(args[i]);
+            } if(ZenStore.isZen(zenname.toString())) {
                 try {
-                    sendMessage(ZenStore.fromName(zen.toString()).simpleDesc(), event);
+                    Zen zen = ZenStore.fromName(zenname.toString());
+                    sendMessage(zen.simpleDesc(), event);
+                    if(args.length > 2  && args[args.length - 1].equals("extra")){
+                        StringJoiner allprops = new StringJoiner("\n\t");
+                        zen.properties.keySet().forEach(key -> {
+                            allprops.add(key + zen.properties.get(key));
+                        });
+                        sendMessage("Allproperties:\n" + allprops, event);
+                    }
                 } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();
                 }

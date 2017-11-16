@@ -25,7 +25,6 @@
         "charge time increase":2,
         "charge time increase-format":"s",
         "charge time recovery":"very slow"
-
       },
       "ult": {
         "name":"Laser reflection",
