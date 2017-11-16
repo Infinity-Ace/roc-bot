@@ -42,30 +42,28 @@ public class Main {
         Main.log(LOGTYPE.INFO, "Ran with args: " + env_args_received);
         Main.log(LOGTYPE.INFO, "Provided token: " + args[0]);
 
-        if(Boolean.parseBoolean(args[0].toLowerCase())) {
+        //Just sets some variables from the main method arguments
+        //See the Procfile for the execution
+        TOKEN = args[0];
+        DEBUG = Boolean.parseBoolean(args[1].toLowerCase());
+        VERBOSE = Boolean.parseBoolean(args[2].toLowerCase());
+        LOG_MESSAGES = Boolean.parseBoolean(args[3].toLowerCase());
 
-            //Just sets some variables from the main method arguments
-            //See the Procfile for the execution
-            TOKEN = args[0];
-            DEBUG = Boolean.parseBoolean(args[1].toLowerCase());
-            VERBOSE = Boolean.parseBoolean(args[2].toLowerCase());
-            LOG_MESSAGES = Boolean.parseBoolean(args[3].toLowerCase());
+        ARGUMENTS = args; //For verbose debugging
 
-            ARGUMENTS = args; //For verbose debugging
+        init();
 
-            init();
+        try { //Establishes a connection to the the chats that have added the bot as a user
 
-            try { //Establishes a connection to the the chats that have added the bot as a user
+            JDA = new JDABuilder(AccountType.BOT).addEventListener(
+                    new Bot(/*Evil twin or not*/ Boolean.parseBoolean(args[4]))
+            ).setToken(TOKEN).buildBlocking();
 
-                JDA = new JDABuilder(AccountType.BOT).addEventListener(
-                        new Bot(/*Evil twin or not*/ Boolean.parseBoolean(args[4]))
-                ).setToken(TOKEN).buildBlocking();
-
-                JDA.setAutoReconnect(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            JDA.setAutoReconnect(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     private static void init() {
