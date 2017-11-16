@@ -3,3 +3,4 @@
 .idea/
 roc-bot.iml
 target/
+/target/
