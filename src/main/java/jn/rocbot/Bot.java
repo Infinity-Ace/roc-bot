@@ -125,8 +125,8 @@ public class Bot extends ListenerAdapter {
             vlog("Recieved message starting with § from " + event.getAuthor().getName());
             return "§";
         }else if(message.charAt(0) == '~'
-                &&
-                message.charAt(1) == '!'){
+                    &&
+                    message.charAt(1) == '!'){
             vlog("Recieved message starting with ~! from " + event.getAuthor().getName());
             return "~!";
         } else return "?";

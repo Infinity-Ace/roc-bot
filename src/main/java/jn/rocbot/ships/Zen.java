@@ -32,7 +32,7 @@ public class Zen implements Formatter{
         desc.addLine(this.desc);
         for(String key : properties.keySet()){
             if(formatting.containsKey(key + "-format")){
-                desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key) + formatting.get(key + "-formatting")));
+                desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key) + formatting.get(key + "-format")));
             } else {
                 desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key)));
             }
