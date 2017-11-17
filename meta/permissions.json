@@ -7,7 +7,7 @@
     },
     {
       "name":"Margakis",
-      "longID":345264629632729088,
+      "longID":345264629632729088000000000000000,
       "greeting":"Welcome, Master @"
     }
   ],
@@ -21,6 +21,11 @@
       "name":"Loki",
       "longID":135066057244278787,
       "greeting":"Well met, honourable scholar"
+    },
+    {
+      "name":"Margakis",
+      "longID":345264629632729088,
+      "greeting":"**BEGONE NERD**"
     },
     {
       "name":"EL",
