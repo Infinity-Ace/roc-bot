@@ -55,7 +55,7 @@ public class Bot extends ListenerAdapter {
 
         Main.log(INFO, "Roaming in the servers: ");
 
-        //event.getJDA().getGuildById(325430508379176961L).getTextChannelById(325430667087446016L).sendMessage("*all-knowing!").complete();
+        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(325435264094830593L).sendMessage("Play Phoenix II not Robocraft " + Emojis.EL).complete();
 
         for (Guild g : event.getJDA().getGuilds()) {
             Main.log(INFO,"\t" + g.getName() + ", IDLong: " + g.getIdLong());
@@ -195,7 +195,6 @@ public class Bot extends ListenerAdapter {
             dlog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
 
             if(safe){
-                if(IS_EVIL_TEST_TWIN)say(cmd.event, "I am evil " + Emojis.EL, 0);
                 COMMANDS.get(cmd.invoke).action(cmd.args, cmd.event);
                 COMMANDS.get(cmd.invoke).executed(true, cmd.event);
             }else{

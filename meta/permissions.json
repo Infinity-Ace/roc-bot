@@ -14,8 +14,13 @@
   "moderators":[
     {
       "name":"DestroyTheSelf",
-      "longID":243082239443730432
+      "longID":243082239443730432,
       "greeting":"**BEGONE NERD**"
+    },
+    {
+      "name":"Loki",
+      "longID":135066057244278787,
+      "greeting":"Well met, honourable scholar"
     },
     {
       "name":"EL",

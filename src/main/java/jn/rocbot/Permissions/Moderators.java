@@ -22,6 +22,12 @@ public class Moderators {
             this.greeting = "Hello Moderator " + name;
             this.longID = longID;
         }
+
+        public Moderator(String name, String greeting, long longID) {
+            this.name = name;
+            this.greeting = greeting;
+            this.longID = longID;
+        }
     }
 
     public static ArrayList<Moderator> MODERATORS;
@@ -39,10 +45,18 @@ public class Moderators {
             for (JsonElement jsonelementmoderator : moderators){
                 JsonObject jsonmoderator = jsonelementmoderator.getAsJsonObject();
 
-                MODERATORS.add(new Moderator(
-                        jsonmoderator.get("name").getAsString(),
-                        jsonmoderator.get("longID").getAsLong()
-                ));
+                if(!jsonmoderator.keySet().contains("greeting")) {
+                    MODERATORS.add(new Moderator(
+                            jsonmoderator.get("name").getAsString(),
+                            jsonmoderator.get("longID").getAsLong()
+                    ));
+                } else {
+                    MODERATORS.add(new Moderator(
+                            jsonmoderator.get("name").getAsString(),
+                            jsonmoderator.get("greeting").getAsString(),
+                            jsonmoderator.get("longID").getAsLong()
+                    ));
+                }
             }
         } catch (FileNotFoundException e) { e.printStackTrace(); }
     }
