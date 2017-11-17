@@ -100,8 +100,13 @@
     {
       "name":"Chrono Field",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "desc":"phases your ship out for a limited time in a small radius",
       "properties":{
+=======
+      "desc":"",
+      "properties": {
+>>>>>>> Stashed changes
 =======
       "desc":"",
       "properties": {
@@ -134,8 +139,13 @@
     {
       "name":"Blade storm",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       "desc":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
       "properties":{
+=======
+      "desc":"",
+      "properties": {
+>>>>>>> Stashed changes
 =======
       "desc":"",
       "properties": {
