@@ -26,7 +26,7 @@ public class Aura implements Formatter{
     public String simpleDesc(){
         SimpleDescBuilder desc = new SimpleDescBuilder(bold(name));
         desc.addLine(this.desc);
-        for(String key : properties.keySet()){
+        for(String key : properties.keySet()) {
             if(formatting.containsKey(key + "-format")){
                 desc.addLine("\t" + key + ": " + spaced_italic(properties.get(key) + formatting.get(key + "-format")));
             } else {

@@ -112,7 +112,7 @@ public class Bot extends ListenerAdapter {
                         ||
                         event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */
                             &&
-                            !event.getMessage().getAuthor().isBot() //Same as other !isbot
+                            !event.getMessage().getAuthor().isBot() //Same as the other (^) !isbot
                                 &&
                                 Masters.isMaster(event.getAuthor())); //Wouldn't want anyone crashing my pc
         }

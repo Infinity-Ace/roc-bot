@@ -99,13 +99,18 @@
     },
     {
       "name":"Chrono Field",
+<<<<<<< Updated upstream
       "desc":"phases your ship out for a limited time in a small radius",
       "properties":{
+=======
+      "desc":"",
+      "properties": {
+>>>>>>> Stashed changes
         "max duration":5,
         "max duration-format":"s",
         "max radius":170        
       },
-      "ult":{
+      "ult": {
         "name":"Phase out",
         "desc":"Phases the ship out for half a second when they exit the field",
         "phase out":0.5,
@@ -116,7 +121,7 @@
       "name":"Point Defense",
       "desc":"destroys a small amount of bullets around the ship",
       "properties":{
-        "radies":410,
+        "radius":410,
         "laser beams":10,
         "efficiency":300,
         "efficiency-format":"%"
@@ -128,25 +133,30 @@
     },
     {
       "name":"Blade storm",
+<<<<<<< Updated upstream
       "desc":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
       "properties":{
+=======
+      "desc":"",
+      "properties": {
+>>>>>>> Stashed changes
         "max radius":500,
         "max damage":100
       },
-      "ult":{
+      "ult": {
         "name":"Omnislash",
         "desc":"Small buff to stats. Any special effect has yet go be determined."
       }
     },
     {
       "name":"Barrier",
-      "desc":"erects a circular barrier that absorbs enemy fire",
-      "properties":{
+      "desc":"Erects a circular barrier that absorbs enemy fire",
+      "properties": {
         "max radius":450,
         "Barrier Strength":200,
         "Barrier Strength-format":"%"
       },
-      "ult":{
+      "ult": {
         "name":"Inner lining",
         "desc":"Created a secondary barrier inside the primary one to absorb enemy fire inside the barrier"
       }
