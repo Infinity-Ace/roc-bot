@@ -1,6 +1,7 @@
 package jn.rocbot.commands;
 
 import jn.rocbot.Permissions.Masters;
+import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
@@ -17,14 +18,23 @@ public class HelloCommand implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        boolean isMaster = false;
-        for (Masters.Master master : Masters.MASTERS) {
-            isMaster = master.longID == event.getAuthor().getIdLong();
+        boolean hasSpecialGreeting = false;
 
-            if(isMaster) break;
+        for (Masters.Master master : Masters.MASTERS) {
+            if(master.longID == event.getAuthor().getIdLong()){
+                hasSpecialGreeting = true; break;
+            }
         }
 
-        if (isMaster) {
+        if(!hasSpecialGreeting){
+            for (Moderators.Moderator mod : Moderators.MODERATORS){
+                if(mod.longID == event.getAuthor().getIdLong()){
+                    hasSpecialGreeting = true; break;
+                }
+            }
+        }
+
+        if (hasSpecialGreeting) {
             event.getTextChannel().sendMessage(Masters.fromLongID(event.getAuthor().getIdLong()).greeting).complete();
         } else {
             event.getTextChannel().sendMessage("Hello " + event.getAuthor().getName() + "!").complete();

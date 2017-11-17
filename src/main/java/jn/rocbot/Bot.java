@@ -55,7 +55,7 @@ public class Bot extends ListenerAdapter {
 
         Main.log(INFO, "Roaming in the servers: ");
 
-        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(325435264094830593L).sendMessage("Play Phoenix II not Robocraft " + Emojis.EL).complete();
+        //event.getJDA().getGuildById(325430508379176961L).getTextChannelById(325435264094830593L).sendMessage("Play Phoenix II not Robocraft " + Emojis.EL).complete();
 
         for (Guild g : event.getJDA().getGuilds()) {
             Main.log(INFO,"\t" + g.getName() + ", IDLong: " + g.getIdLong());

@@ -24,7 +24,8 @@
     },
     {
       "name":"EL",
-      "longID":270642234875969536
+      "longID":270642234875969536,
+      "greeting":"I kneel in the dust before you"
     }
   ]
 }
