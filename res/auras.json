@@ -2,7 +2,7 @@
   "auras":[
     {
       "name":"Vorpal lance",
-      "desc":"",
+      "desc":"Launches a piercing lance that deals considerable damage",
       "properties": {
         "damage": 39.6,
         "count": 4
@@ -15,7 +15,7 @@
 
     {
       "name":"Laser Storm",
-      "desc":"",
+      "desc":"Releases Laser Moons for a short time that deal great damage",
       "properties": {
         "laser moons":5,
         "max duration":4.5,
@@ -31,7 +31,7 @@
 
     {
       "name":"Missile swarm",
-      "desc":"",
+      "desc":"releases a volley of high-burst damage missiles",
       "properties":{
         "missiles":46,
         "max damage":138,
@@ -46,7 +46,7 @@
     
     {
       "name": "Ion cannon",
-      "desc":"",
+      "desc":"launches a projectile that will stun whatever it hits",
       "properties":{
         "stun time":4,
         "stun time-format":"s",
@@ -60,7 +60,7 @@
     
     {
       "name":"Bullet EMP",
-      "desc":"",
+      "desc":"destroys all bullets in it's radius",
       "properties": {
         "max radius":450
       },
@@ -72,7 +72,7 @@
     
     {
       "name":"Phalanx",
-      "desc":"",
+      "desc":"created a temporary shield in front of your ship",
       "properties":{
         "phalanx strength":150,
         "counters":6
@@ -85,7 +85,7 @@
     
     {
       "name":"Stun EMP",
-      "desc":"",
+      "desc":"stuns all enemies in the radius",
       "properties":{
         "max radius":450,
         "max stun time":5,
@@ -99,7 +99,7 @@
     },
     {
       "name":"Chrono Field",
-      "desc":"",
+      "desc":"phases your ship out for a limited time in a small radius",
       "properties":{
         "max duration":5,
         "max duration-format":"s",
@@ -114,7 +114,7 @@
     },
     {
       "name":"Point Defense",
-      "desc":"",
+      "desc":"destroys a small amount of bullets around the ship",
       "properties":{
         "radies":410,
         "laser beams":10,
@@ -128,7 +128,7 @@
     },
     {
       "name":"Blade storm",
-      "desc":"",
+      "desc":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
       "properties":{
         "max radius":500,
         "max damage":100
