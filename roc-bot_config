@@ -1,5 +1,0 @@
-export TOKEN='TOKEN_GOES_HERE'
-export DEBUG='true'
-export VERBOSE='true'
-export LOG_MESSAGES='true'
-export IS_EVIL_TWIN='false'
