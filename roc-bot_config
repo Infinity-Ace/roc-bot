@@ -1,4 +1,4 @@
-export TOKEN='Mzc3ODEyNjk1NTg1MzkwNjAy.DO3VkA.gT0tSZFQc_OmgYMLFAJvb5INZiM'
+export TOKEN='TOKEN_GOES_HERE'
 export DEBUG='true'
 export VERBOSE='true'
 export LOG_MESSAGES='true'
