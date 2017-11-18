@@ -18,24 +18,25 @@ public class HelloCommand implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        boolean hasSpecialGreeting = false;
+        boolean isMaster = false;
+        boolean isMod = false;
 
         for (Masters.Master master : Masters.MASTERS) {
             if(master.longID == event.getAuthor().getIdLong()){
-                hasSpecialGreeting = true; break;
+                isMaster = true; break;
             }
         }
 
-        if(!hasSpecialGreeting){
-            for (Moderators.Moderator mod : Moderators.MODERATORS){
-                if(mod.longID == event.getAuthor().getIdLong()){
-                    hasSpecialGreeting = true; break;
-                }
+        for (Moderators.Moderator mod : Moderators.MODERATORS){
+            if(mod.longID == event.getAuthor().getIdLong()){
+                isMod = true; break;
             }
         }
 
-        if (hasSpecialGreeting) {
+        if (isMaster) {
             event.getTextChannel().sendMessage(Masters.fromLongID(event.getAuthor().getIdLong()).greeting).complete();
+        } else if (isMod){
+            event.getTextChannel().sendMessage(Moderators.fromLongID(event.getAuthor().getIdLong()).greeting).complete();
         } else {
             event.getTextChannel().sendMessage("Hello " + event.getAuthor().getName() + "!").complete();
         }
