@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
-usage() {
 
-    cat << EOF
-Usage: ${0##*/} [options] command
-    The bot command is used for the Roc-bot
-Commands:
-    TODO
-Options:
-    TODO
-EOF
-}
+source bot_functions
+source bot_aliases
 
 for x; do
     case "$x" in
@@ -28,6 +20,10 @@ for x; do
             reboot=1
             (( command++ ))
             ;;
+        --help)
+            bot_usage
+            exit 1
+            ;;
         *)
             usage
             exit 1
@@ -43,21 +39,22 @@ if (( commands != 1 )); then
         echo Only one command can be specified!
     fi
 
-    usage
+    bot_usage
     exit 1 #Exits
 fi
 
 #The different cases
 if (( run )); then
     #run
-
+    echo TODO
 fi
 
 if (( build )); then
     #build
-
+    echo TODO
 fi
 
 if (( reboot )); then
-
+    #reboot
+    echo TODO
 fi
