@@ -25,7 +25,7 @@ for x; do
             exit 1
             ;;
         *)
-            usage
+            bot_usage
             exit 1
             ;;
     esac
