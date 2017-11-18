@@ -12,9 +12,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class ShipStore {
     public static ArrayList<Ship> SHIPS;
+
+    public static Ship RandomShip(){
+        Random random = new Random();
+        return SHIPS.get(random.nextInt(SHIPS.size() -1));
+    }
 
     public static void init(){
         SHIPS = new ArrayList<>();

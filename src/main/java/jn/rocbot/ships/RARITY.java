@@ -19,8 +19,7 @@ public enum RARITY{
                 return "RARE";
             case 3:
                 return "SUPER_RARE";
-        }
-        throw new ArrayIndexOutOfBoundsException("The rarity must be from 1 - 3 not: " + i);
+        } throw new ArrayIndexOutOfBoundsException("The rarity must be from 1 - 3 not: " + i);
     }
 
     RARITY(String s) {

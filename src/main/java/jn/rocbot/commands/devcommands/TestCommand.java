@@ -39,9 +39,12 @@ public class TestCommand implements Command{
                     e.printStackTrace();
                 }
             }
-        }if(args.length > 1 && args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
+        }else if(args.length > 1 && args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
             Random r = new Random();
             sendMessage(ZenStore.ZENS.get(r.nextInt(ZenStore.ZENS.size() - 1)).simpleDesc(), event);
+        }else if(args.length > 1 &&  args[0].toLowerCase().equals("emb") && args[1].toLowerCase().equals("random")){
+            Random r = new Random();
+            event.getTextChannel().sendMessage(ShipStore.RandomShip().desc());
         }
     }
 

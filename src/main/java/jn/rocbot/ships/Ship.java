@@ -1,8 +1,10 @@
 package jn.rocbot.ships;
 
+import jn.rocbot.info.Description;
 import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
 import jn.rocbot.info.Stores.ShipStore;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 
 public class Ship implements Formatter{
     public final String name;
@@ -29,6 +31,10 @@ public class Ship implements Formatter{
         info.addLine("\nZen: " + zen.simpleDesc());
         info.addLine("\nAura: " + aura.simpleDesc());
         return info.get();
+    }
+
+    public MessageEmbed desc(){
+        return new Description(this).get();
     }
 
     public static boolean isShip(String name) {
