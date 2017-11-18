@@ -7,8 +7,6 @@ import jn.rocbot.utils.Formatter;
 import jn.rocbot.info.Stores.ShipStore;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
-import java.util.Date;
-
 public class Ship implements Formatter{
     public final String name;
     public final String weapon;
@@ -24,7 +22,7 @@ public class Ship implements Formatter{
         this.rarity = rarity;
     }
 
-    public String simpleToString(){
+    public String simpleToString() {
         return rarity.toEmoji() + " " + bold(name + ":") + " Weapon: " + italic(weapon) + ", Aura: " + italic(aura.name) + ", Zen: " + italic(zen.name);
     }
 
