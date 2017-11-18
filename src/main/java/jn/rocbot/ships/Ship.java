@@ -1,10 +1,13 @@
 package jn.rocbot.ships;
 
+import jn.rocbot.Main;
 import jn.rocbot.info.Description;
 import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
 import jn.rocbot.info.Stores.ShipStore;
 import net.dv8tion.jda.core.entities.MessageEmbed;
+
+import java.util.Date;
 
 public class Ship implements Formatter{
     public final String name;

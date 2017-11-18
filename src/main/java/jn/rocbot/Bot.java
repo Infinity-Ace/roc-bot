@@ -12,6 +12,7 @@ import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
@@ -52,7 +53,7 @@ public class Bot extends ListenerAdapter {
 
         //Just some info to the log
         Main.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
-
+        Main.log(Main.LOGTYPE.INFO, "Startup at: " + new Date().toString());
         Main.log(INFO, "Roaming in the servers: ");
 
         //event.getJDA().getGuildById(325430508379176961L).getTextChannelById(325435264094830593L).sendMessage("Play Phoenix II not Robocraft " + Emojis.EL).complete();
