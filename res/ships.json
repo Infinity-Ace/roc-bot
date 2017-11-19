@@ -66,6 +66,8 @@
     {
       "name": "Yoth-Hola",
       "weapon": {
+        "damage output":25,
+        "homing capability":"Perfect",
         "name":"Vortex howler"
       },
       "aura": "Point defense", "zen": "Personal shield", "r":3
@@ -115,6 +117,8 @@
     {
       "name": "Trireme",
       "weapon": {
+        "damage output":21.25,
+        "target tracking":"Instant",
         "name":"Burst pulsar"
       },
       "aura": "Missile swarm", "zen": "Teleport", "r":3
@@ -143,6 +147,8 @@
     {
       "name": "Czar",
       "weapon": {
+        "damage output":21.25,
+        "target tracking":"Instant",
         "name":"Fission slammer"
       },
       "aura": "Stun EMP", "zen": "Teleport", "r":2
@@ -157,6 +163,8 @@
     {
       "name": "Geist",
       "weapon": {
+        "damage output":37.5,
+        "spread":"Wide",
         "name":"Quantum blast"
       },
       "aura": "Missile swarm", "zen": "Personal shield", "r":3
@@ -206,6 +214,8 @@
     {
       "name": "Xaniea",
       "weapon": {
+        "damage output":34.38,
+        "spread":"Wide",
         "name": "Photon pods"
       },
       "aura": "Laser storm", "zen": "Teleport", "r":3
@@ -241,6 +251,9 @@
     {
       "name": "Aurora",
       "weapon": {
+        "damage output":36.5,
+        "blast damage":"High",
+        "blast radius":200,
         "name": "Quantum nuke"
       },
       "aura": "Bullet EMP", "zen": "Teleport", "r":3
@@ -262,6 +275,8 @@
     {
       "name": "Heechi",
       "weapon": {
+        "damage output":25,
+        "homing capability":"Very Good",
         "name": "Quantum seekers"
       },
       "aura": "Barrier", "zen": "Kappa drive", "r":3
@@ -297,6 +312,8 @@
     {
       "name": "Baqlor",
       "weapon": {
+        "damage output":31.25,
+        "capacity":450,
         "name": "Serrator laser"
       },
       "aura": "Chrono field", "zen": "Mega bomb", "r":3
@@ -318,6 +335,8 @@
     {
       "name": "Hime",
       "weapon": {
+        "damage output":25,
+        "homing capability":"Perfect",
         "name": "Spirit lash"
       },
       "aura": "Chrono field", "zen": "Mega laser", "r":3
@@ -374,6 +393,8 @@
     {
       "name": "Yigothu",
       "weapon": {
+        "damage output":25,
+        "homing capability":"Very Good",
         "name": "Zatha probes"
       },
       "aura": "Chrono field", "zen": "Reflex EMP", "r":3
@@ -444,6 +465,7 @@
     {
       "name": "Trinity",
       "weapon": {
+        "damage output":31.25,
         "name": "Warp ripper"
       },
       "aura": "Chrono field", "zen": "Trinity teleport", "r":3
@@ -451,6 +473,8 @@
     {
       "name": "Wraith",
       "weapon": {
+        "damage output":31.25,
+        "capacity":400,
         "name": "Electron laser"
       },
       "aura": "Vorpal lance", "zen": "Mega bomb", "r":3
@@ -458,6 +482,8 @@
     {
       "name": "X-81",
       "weapon": {
+        "damage output":21.25,
+        "homing capability":"Perfect",
         "name": "Aim-540 mantis"
       },
       "aura": "Ion cannon", "zen": "Mega laser", "r":3
@@ -472,6 +498,8 @@
     {
       "name": "Shogun",
       "weapon": {
+        "damage output":31.25,
+        "target tracking":"Instant",
         "name": "Phantom katana"
       },
       "aura": "Blade storm", "zen": "Reflex EMP", "r":3
