@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-alias run-bot='source ~/local/config/roc-bot-conf_normal;cd ~/roc-bot; java -cp target/classes/:target/dependency/* jn.rocbot.Main $TOKEN $DEBUG $VERBOSE $LOG_MESSAGES $IS_EVIL_TWIN'
-alias build-bot='cd ~/roc-bot;mvn install'
-alias reboot-bot='build-bot;run-bot'
