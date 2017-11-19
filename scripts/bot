@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-source bot_functions
-source bot_aliases
+source bot-res/bot_functions
+source bot-res/bot_aliases
 
 for x; do
     case "$x" in
@@ -46,7 +46,7 @@ fi
 #The different cases
 if (( run )); then
     #run
-    echo TODO
+    run_bot
 fi
 
 if (( build )); then
