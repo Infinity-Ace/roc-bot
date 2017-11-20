@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class ShipsCommand implements Command {
-    private final static String HELP = "Usage:\n\t!ships returns a list of all the ships\n\t!ships random gives a random ship\n\tAnd !ships random 10 gives a list of 10 random ships"; //TODO
+    private final static String HELP = "Usage:\n\t!ships returns a list of all the ships\n\t!ships random gives a random ship\n\tAnd !ships random 10 gives a list of 10 random ships";
 
     private final Random r = new Random();
 
@@ -47,17 +47,17 @@ public class ShipsCommand implements Command {
                         } event.getTextChannel().sendMessage(list).complete();
                     } else {
                         if (args[1].toLowerCase().equals("info"))
-                            event.getTextChannel().sendMessage(ShipStore.SHIPS.get(r.nextInt(ShipStore.SHIPS.size())).info()).complete();
+                            event.getTextChannel().sendMessage(ShipStore.SHIPS.get(r.nextInt(ShipStore.SHIPS.size() - 1)).desc()).complete();
                     }
-                }else{
+                } else {
                     int ship = r.nextInt(ShipStore.SHIPS.size());
                     event.getTextChannel().sendMessage("**" + ShipStore.SHIPS.get(ship).name + "** " + ShipStore.SHIPS.get(ship).rarity.toEmoji()).complete();
                 }
-            } {
+            } else {
                 if(Ship.isShip(args[0])){
                     if(args[1].toLowerCase().equals("info")){
                         try {
-                            event.getTextChannel().sendMessage(ShipStore.getShip(args[0]).info()).complete();
+                            event.getTextChannel().sendMessage(ShipStore.getShip(args[0]).desc()).complete();
                         } catch (ShipStore.ShipNotFoundException e) {
                             event.getTextChannel().sendMessage("No ship named: " + args[0]).complete();
                         }
