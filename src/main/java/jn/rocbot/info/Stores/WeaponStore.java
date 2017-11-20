@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class WeaponStore {
     public static ArrayList<Weapon> WEAPONS;
@@ -33,7 +34,9 @@ public class WeaponStore {
                 HashMap<String, String> propertiesFormatList = new HashMap<>();
 
                 for (String key : weapon.keySet()) {
-                    if(key != "name" || key != "damage output") {
+                    if(Objects.equals(key, "name") || Objects.equals(key, "damage output")) {
+
+                    } else {
                         if (!key.contains("-format")) {
                             propertiesList.put(key, weapon.get(key).getAsString());
                         } else {
@@ -55,6 +58,8 @@ public class WeaponStore {
                             propertiesList, propertiesFormatList
                     ));
                 }
+                Main.log(Main.LOGTYPE.INFO, String.valueOf(weapon.keySet()));
+                Main.log(Main.LOGTYPE.INFO, String.valueOf(propertiesList) + "\n");
             }
 
         } catch (FileNotFoundException e) {

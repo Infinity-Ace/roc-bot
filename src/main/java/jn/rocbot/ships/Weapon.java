@@ -29,12 +29,10 @@ public class Weapon implements Formatter{
         desc.add("Damage output: " + italic(String.valueOf(dps)));
 
         for (String key : properties.keySet()) {
-            if(key != "name") {
-                if (propertiesFormat.containsKey(key + "-format"))
-                    desc.add(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
-                else
-                    desc.add(key + ": " + italic(properties.get(key)));
-            }
+            if (propertiesFormat.containsKey(key + "-format"))
+                desc.add(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
+            else
+                desc.add(key + ": " + italic(properties.get(key)));
         }
 
         return desc.get();
