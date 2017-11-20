@@ -24,7 +24,6 @@ public class Weapon implements Formatter{
             desc = new SimpleDescBuilder(bold(name));
         else {
             desc = new SimpleDescBuilder();
-            desc.add(bold(name));
         }
 
         desc.add("Damage output: " + italic(String.valueOf(dps)));
