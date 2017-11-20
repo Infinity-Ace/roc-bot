@@ -2,7 +2,8 @@
   "ships": [
     {
       "name": "Shinova",
-      "weapon":{
+      "weapon": {
+        "damage type":"",
         "name":"Tachyon cannon"
       },
       "aura": "Bullet EMP", "zen": "Kappa drive", "r":1
@@ -10,6 +11,7 @@
     {
       "name": "NC-150",
       "weapon": {
+        "damage type":"",
         "name":"Plasma cannon"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -17,6 +19,7 @@
     {
       "name": "Tar'cah",
       "weapon": {
+        "damage type":"",
         "name": "Storm Blaster"
       },
       "aura": "Point defense", "zen": "Kappa Drive", "r":1
@@ -24,6 +27,7 @@
     {
       "name": "Veil",
       "weapon": {
+        "damage type":"",
         "name":"Fusion Laser"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":1
@@ -31,6 +35,7 @@
     {
       "name": "Krillou",
       "weapon": {
+        "damage type":"",
         "name":"Photon bombs"
       },
       "aura": "Stun EMP", "zen": "Mega bomb", "r":2
@@ -38,6 +43,7 @@
     {
       "name": "Jericho",
       "weapon": {
+        "damage type":"",
         "name":"Inferno seekers"
       },
       "aura": "Bullet EMP", "zen": "Personal shield", "r":1
@@ -45,6 +51,7 @@
     {
       "name": "Fujin",
       "weapon": {
+        "damage type":"",
         "name":"Quantum beam"
       },
       "aura": "Laser storm", "zen": "Mega laser", "r":3
@@ -52,6 +59,7 @@
     {
       "name": "Jn'dur",
       "weapon": {
+        "damage type":"",
         "name":"Plasma diffuser"
       },
       "aura": "Barrier", "zen": "Mega bomb", "r":1
@@ -59,6 +67,7 @@
     {
       "name": "Tempest",
       "weapon": {
+        "damage type":"",
         "name":"Ion crystalizer"
       },
       "aura": "Bullet EMP", "zen": "Mega laser", "r":1
@@ -66,6 +75,7 @@
     {
       "name": "Yoth-Hola",
       "weapon": {
+        "damage type":"",
         "damage output":25,
         "homing capability":"Perfect",
         "name":"Vortex howler"
@@ -75,6 +85,7 @@
     {
       "name": "Razor VI",
       "weapon": {
+        "damage type":"",
         "name":"Phase disruptor"
       },
       "aura": "Barrier", "zen": "Mega laser", "r":1
@@ -82,6 +93,7 @@
     {
       "name": "Mist star",
       "weapon": {
+        "damage type":"",
         "name": "Flux seekers"
       },
       "aura": "Stun EMP", "zen": "Kappa drive", "r":1
@@ -89,6 +101,7 @@
     {
       "name": "Proxymar",
       "weapon": {
+        "damage type":"",
         "name":"Lightning conduit"
       },
       "aura": "Missile swarm", "zen": "Mega bomb", "r":1
@@ -96,6 +109,7 @@
     {
       "name": "Oran",
       "weapon": {
+        "damage type":"",
         "name":"Meson laser"
       },
       "aura": "Stun EMP", "zen": "Kappa drive", "r":3
@@ -103,6 +117,7 @@
     {
       "name": "Kada Veni",
       "weapon": {
+        "damage type":"",
         "name":"Pulse battery"
       },
       "aura": "Barrier", "zen": "Mega bomb", "r":1
@@ -110,6 +125,7 @@
     {
       "name": "Wrackr",
       "weapon": {
+        "damage type":"",
         "name": "Seismic blaster"
       },
       "aura": "Point defense", "zen": "Mega bomb", "r":1
@@ -117,6 +133,7 @@
     {
       "name": "Trireme",
       "weapon": {
+        "damage type":"",
         "damage output":21.25,
         "target tracking":"Instant",
         "name":"Burst pulsar"
@@ -126,6 +143,7 @@
     {
       "name": "Cinnri",
       "weapon": {
+        "damage type":"",
         "name": "Neutron launcher"
       },
       "aura": "Stun EMP", "zen": "Mega laser", "r":3
@@ -133,6 +151,7 @@
     {
       "name": "Phoenix",
       "weapon": {
+        "damage type":"",
         "name":"Helix cannon"
       },
       "aura": "Bullet EMP", "zen": "Personal shield", "r":2
@@ -140,6 +159,7 @@
     {
       "name": "Buhloo",
       "weapon": {
+        "damage type":"",
         "name":"Quantum prisms"
       },
       "aura": "Laser storm", "zen": "Mega bomb", "r":1
@@ -147,6 +167,7 @@
     {
       "name": "Czar",
       "weapon": {
+        "damage type":"",
         "damage output":21.25,
         "target tracking":"Instant",
         "name":"Fission slammer"
@@ -156,6 +177,7 @@
     {
       "name": "Havoc",
       "weapon": {
+        "damage type":"",
         "name": "Mass driver"
       },
       "aura": "Laser storm", "zen": "Mega laser", "r":2
@@ -163,6 +185,7 @@
     {
       "name": "Geist",
       "weapon": {
+        "damage type":"",
         "damage output":37.5,
         "spread":"Wide",
         "name":"Quantum blast"
@@ -172,6 +195,7 @@
     {
       "name": "Juggernaut",
       "weapon": {
+        "damage type":"",
         "name": "Devastator cannon"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":2
@@ -179,6 +203,7 @@
     {
       "name": "Tillat'or",
       "weapon": {
+        "damage type":"",
         "name": "Gatling cannon"
       },
       "aura": "Barrier", "zen": "Teleport", "r":2
@@ -186,6 +211,7 @@
     {
       "name": "Elyon",
       "weapon": {
+        "damage type":"",
         "name": "Blaze laser"
       },
       "aura": "Laser storm", "zen": "Kappa drive", "r":1
@@ -193,6 +219,7 @@
     {
       "name": "Ogon",
       "weapon": {
+        "damage type":"",
         "name": "Photon array"
       },
       "aura": "Laser storm", "zen": "Kappa drive", "r":1
@@ -200,6 +227,7 @@
     {
       "name": "Vuxine",
       "weapon": {
+        "damage type":"",
         "name": "Vortex launcher"
       },
       "aura": "Point defense", "zen": "Kappa drive", "r":2
@@ -207,6 +235,7 @@
     {
       "name": "Photurius",
       "weapon": {
+        "damage type":"",
         "name": "Photon charge"
       },
       "aura": "Stun EMP", "zen": "Mega laser", "r":2
@@ -214,6 +243,7 @@
     {
       "name": "Xaniea",
       "weapon": {
+        "damage type":"",
         "damage output":34.38,
         "spread":"Wide",
         "name": "Photon pods"
@@ -223,6 +253,7 @@
     {
       "name": "Arietis",
       "weapon": {
+        "damage type":"",
         "name": "Particle disruptor"
       },
       "aura": "Point defense", "zen": "Mega Laser", "r":2
@@ -230,6 +261,7 @@
     {
       "name": "Atlas",
       "weapon": {
+        "damage type":"",
         "name":"Autocannon"
       },
       "aura": "Missile swarm", "zen": "Personal shield", "r":2
@@ -237,6 +269,7 @@
     {
       "name": "Essin",
       "weapon": {
+        "damage type":"",
         "name": "Cyclone cannon"
       },
       "aura": "Laser storm", "zen": "Personal shield", "r":2
@@ -244,6 +277,7 @@
     {
       "name": "EX04239",
       "weapon": {
+        "damage type":"",
         "name": "Meson projectors"
       },
       "aura": "Missile swarm", "zen": "Mega laser", "r":2
@@ -251,6 +285,7 @@
     {
       "name": "Aurora",
       "weapon": {
+        "damage type":"",
         "damage output":36.5,
         "blast damage":"High",
         "blast radius":200,
@@ -261,6 +296,7 @@
     {
       "name": "Von Braun",
       "weapon": {
+        "damage type":"",
         "name": "Daisy cutter"
       },
       "aura": "Missile swarm", "zen": "Kappa drive", "r":2
@@ -268,6 +304,7 @@
     {
       "name": "Gorthaur",
       "weapon": {
+        "damage type":"",
         "name": "Barrage cannons"
       },
       "aura": "Barrier", "zen": "Personal shield", "r":2
@@ -275,6 +312,7 @@
     {
       "name": "Heechi",
       "weapon": {
+        "damage type":"",
         "damage output":25,
         "homing capability":"Very Good",
         "name": "Quantum seekers"
@@ -284,6 +322,7 @@
     {
       "name": "Prime X",
       "weapon": {
+        "damage type":"",
         "name": "Vulcan"
       },
       "aura": "Missile swarm", "zen": "Teleport", "r":2
@@ -291,6 +330,7 @@
     {
       "name": "Sakura",
       "weapon": {
+        "damage type":"",
         "name": "Edge projector"
       },
       "aura": "Barrier", "zen": "Teleport", "r":3
@@ -298,6 +338,7 @@
     {
       "name": "Vani-Vith",
       "weapon": {
+        "damage type":"",
         "name": "Spark fusor"
       },
       "aura": "Vorpal lance", "zen": "Teleport", "r":2
@@ -305,6 +346,7 @@
     {
       "name": "Zephyr",
       "weapon": {
+        "damage type":"",
         "name": "Photon rails"
       },
       "aura": "Point defense", "zen": "Kappa drive", "r":1
@@ -312,6 +354,7 @@
     {
       "name": "Baqlor",
       "weapon": {
+        "damage type":"",
         "damage output":31.25,
         "capacity":450,
         "name": "Serrator laser"
@@ -321,6 +364,7 @@
     {
       "name": "502-Q8",
       "weapon": {
+        "damage type":"",
         "name": "Plasma compresser"
       },
       "aura": "Phalanx", "zen": "Mega laser", "r":1
@@ -328,6 +372,7 @@
     {
       "name": "Dragonfly",
       "weapon": {
+        "damage type":"",
         "name":"Twin miniguns"
       },
       "aura": "Ion cannon", "zen": "Mega bomb", "r":1
@@ -335,6 +380,7 @@
     {
       "name": "Hime",
       "weapon": {
+        "damage type":"",
         "damage output":25,
         "homing capability":"Perfect",
         "name": "Spirit lash"
@@ -344,6 +390,7 @@
     {
       "name": "Hunter",
       "weapon": {
+        "damage type":"",
         "name": "Hyper blaster"
       },
       "aura": "Phalanx", "zen": "Teleport", "r":2
@@ -351,6 +398,7 @@
     {
       "name": "Gladius",
       "weapon": {
+        "damage type":"",
         "name": "Plasma missiles"
       },
       "aura": "Vorpal lance", "zen": "Kappa drive", "r":1
@@ -358,6 +406,7 @@
     {
       "name": "Lokie",
       "weapon": {
+        "damage type":"",
         "name": "Tremor field"
       },
       "aura": "Laser storm", "zen": "Personal shield", "r":1
@@ -365,6 +414,7 @@
     {
       "name": "Barret",
       "weapon": {
+        "damage type":"",
         "name": "Boson cannon"
       },
       "aura": "Ion cannon", "zen": "Teleport", "r":2
@@ -372,6 +422,7 @@
     {
       "name": "Saber",
       "weapon": {
+        "damage type":"",
         "name": "Nova blaster"
       },
       "aura": "Vorpal lance", "zen": "Reflex EMP", "r":2
@@ -379,6 +430,7 @@
     {
       "name": "Valkyrie",
       "weapon": {
+        "damage type":"",
         "name": "Tachyon projector"
       },
       "aura": "Phalanx", "zen": "Mega bomb", "r":1
@@ -386,6 +438,7 @@
     {
       "name": "Proteus",
       "weapon": {
+        "damage type":"",
         "name": "Photon detonator"
       },
       "aura": "Point defense", "zen": "Mega laser", "r":2
@@ -393,6 +446,7 @@
     {
       "name": "Yigothu",
       "weapon": {
+        "damage type":"",
         "damage output":25,
         "homing capability":"Very Good",
         "name": "Zatha probes"
@@ -402,6 +456,7 @@
     {
       "name": "Torrent",
       "weapon": {
+        "damage type":"",
         "name": "Quantum stream"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -409,6 +464,7 @@
     {
       "name": "Orion",
       "weapon": {
+        "damage type":"",
         "name": "Photon scatter"
       },
       "aura": "Point defense", "zen": "Teleport", "r":2
@@ -416,6 +472,7 @@
     {
       "name": "Exarch",
       "weapon": {
+        "damage type":"",
         "name":"Phase prisms"
       },
       "aura": "Vorpal lance", "zen": "Mega laser", "r":3
@@ -423,6 +480,7 @@
     {
       "name": "Njörun",
       "weapon": {
+        "damage type":"",
         "name": "Wave cannons"
       },
       "aura": "Chrono field", "zen": "Personal shield", "r":2
@@ -430,6 +488,7 @@
     {
       "name": "Boxer",
       "weapon": {
+        "damage type":"",
         "name": "Flash cutter"
       },
       "aura": "Phalanx", "zen": "Reflex EMP", "r":1
@@ -437,6 +496,7 @@
     {
       "name": "Sonah",
       "weapon": {
+        "damage type":"",
         "name": "Firestorm"
       },
       "aura": "Ion cannon", "zen": "Reflex EMP", "r":2
@@ -444,6 +504,7 @@
     {
       "name": "Corsair",
       "weapon": {
+        "damage type":"",
         "name": "Rocket pods"
       },
       "aura": "Missile swarm", "zen": "Tracking minigun", "r":3
@@ -451,6 +512,7 @@
     {
       "name": "Antioch",
       "weapon": {
+        "damage type":"",
         "name": "Proton crystallizer"
       },
       "aura": "Vorpal lance", "zen": "Personal shield", "r":1
@@ -458,6 +520,7 @@
     {
       "name": "UHB",
       "weapon": {
+        "damage type":"",
         "name": "Blast laser"
       },
       "aura": "Vorpal lance", "zen": "Reflex EMP", "r":2
@@ -465,6 +528,7 @@
     {
       "name": "Trinity",
       "weapon": {
+        "damage type":"",
         "damage output":31.25,
         "name": "Warp ripper"
       },
@@ -473,6 +537,7 @@
     {
       "name": "Wraith",
       "weapon": {
+        "damage type":"",
         "damage output":31.25,
         "capacity":400,
         "name": "Electron laser"
@@ -482,6 +547,7 @@
     {
       "name": "X-81",
       "weapon": {
+        "damage type":"",
         "damage output":21.25,
         "homing capability":"Perfect",
         "name": "Aim-540 mantis"
@@ -491,6 +557,7 @@
     {
       "name": "Scuuxun",
       "weapon": {
+        "damage type":"",
         "name": "T'kari spikes"
       },
       "aura": "Laser storm", "zen": "Reflex EMP", "r":2
@@ -498,6 +565,7 @@
     {
       "name": "Shogun",
       "weapon": {
+        "damage type":"",
         "damage output":31.25,
         "target tracking":"Instant",
         "name": "Phantom katana"

@@ -12,9 +12,9 @@ public class Description implements Formatter{
 
     public Description(Ship ship){
         emb = new EmbedBuilder().setTitle(bold(ship.name + " " + ship.rarity.toEmoji()));
-        emb.addField(ship.weapon, "", false);
-        emb.addField(ship.aura.name, ship.aura.simpleDesc(), false);
-        emb.addField(ship.zen.name, ship.zen.simpleDesc(), false);
+        emb.addField(ship.weapon.name, ship.weapon.simpleDesc(false), false);
+        emb.addField(ship.aura.name, ship.aura.simpleDesc(false), false);
+        emb.addField(ship.zen.name, ship.zen.simpleDesc(false), false);
     }
 
     public void addField(MessageEmbed.Field field){

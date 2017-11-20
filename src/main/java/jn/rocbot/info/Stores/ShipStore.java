@@ -35,7 +35,8 @@ public class ShipStore {
                 JsonObject jsonship = jsonelementship.getAsJsonObject();
 
                 try {
-                    Ship ship = new Ship(jsonship.get("name").getAsString(), jsonship.getAsJsonObject("weapon").get("name").getAsString(),
+                    Ship ship = new Ship(jsonship.get("name").getAsString(),
+                            WeaponStore.fromName(jsonship.getAsJsonObject("weapon").get("name").getAsString()),
                             AuraStore.fromName(jsonship.get("aura").getAsString()),
                             ZenStore.fromName(jsonship.get("zen").getAsString()),
                             RARITY.valueOf(RARITY.fromInt(jsonship.get("r").getAsInt())));
@@ -44,6 +45,8 @@ public class ShipStore {
                 } catch (AuraStore.AuraNotFounException e) {
                     e.printStackTrace();
                 } catch (ZenStore.ZenNotFoundException e) {
+                    e.printStackTrace();
+                } catch (WeaponStore.WeaponNotFoundException e) {
                     e.printStackTrace();
                 }
             }

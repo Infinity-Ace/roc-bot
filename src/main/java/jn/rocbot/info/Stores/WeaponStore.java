@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import jn.rocbot.Main;
 import jn.rocbot.ships.Weapon;
 
 import java.io.FileNotFoundException;
@@ -30,20 +31,30 @@ public class WeaponStore {
 
                 HashMap<String, String> propertiesList = new HashMap<>();
                 HashMap<String, String> propertiesFormatList = new HashMap<>();
+
                 for (String key : weapon.keySet()) {
-                    if(key != "name" || key != "damage output")
-                    if (!key.contains("-format")) {
-                        propertiesList.put(key, weapon.get(key).getAsString());
-                    } else {
-                        propertiesFormatList.put(key, weapon.get(key).getAsString());
+                    if(key != "name" || key != "damage output") {
+                        if (!key.contains("-format")) {
+                            propertiesList.put(key, weapon.get(key).getAsString());
+                        } else {
+                            propertiesFormatList.put(key, weapon.get(key).getAsString());
+                        }
                     }
                 }
 
-                WEAPONS.add(new Weapon(
-                        weapon.get("name").getAsString(),
-                        weapon.get("damage output").getAsFloat(),
-                        propertiesList, propertiesFormatList
-                ));
+                if(weapon.keySet().contains("damage output")) {
+                    WEAPONS.add(new Weapon(
+                            weapon.get("name").getAsString(),
+                            weapon.get("damage output").getAsFloat(),
+                            propertiesList, propertiesFormatList
+                    ));
+                } else {
+                    WEAPONS.add(new Weapon(
+                            weapon.get("name").getAsString(),
+                            0f,
+                            propertiesList, propertiesFormatList
+                    ));
+                }
             }
 
         } catch (FileNotFoundException e) {

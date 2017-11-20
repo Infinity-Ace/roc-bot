@@ -9,12 +9,12 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 
 public class Ship implements Formatter{
     public final String name;
-    public final String weapon;
+    public final Weapon weapon;
     public final Aura aura;
     public final Zen zen;
     public final RARITY rarity;
 
-    public Ship(String name, String weapon, Aura aura, Zen zen, RARITY rarity) {
+    public Ship(String name, Weapon weapon, Aura aura, Zen zen, RARITY rarity) {
         this.name = name;
         this.weapon = weapon;
         this.aura = aura;
@@ -23,14 +23,14 @@ public class Ship implements Formatter{
     }
 
     public String simpleToString() {
-        return rarity.toEmoji() + " " + bold(name + ":") + " Weapon: " + italic(weapon) + ", Aura: " + italic(aura.name) + ", Zen: " + italic(zen.name);
+        return rarity.toEmoji() + " " + bold(name + ":") + " Weapon: " + italic(weapon.name) + ", Aura: " + italic(aura.name) + ", Zen: " + italic(zen.name);
     }
 
     public String info(){
         SimpleDescBuilder info = new SimpleDescBuilder(bold(name));
-        info.addLine("Weapon: " + italic(weapon));
-        info.addLine("\nZen: " + zen.simpleDesc());
-        info.addLine("\nAura: " + aura.simpleDesc());
+        info.addLine("Weapon: " + weapon.simpleDesc(true));
+        info.addLine("\nZen: " + zen.simpleDesc(true));
+        info.addLine("\nAura: " + aura.simpleDesc(true));
         return info.get();
     }
 
