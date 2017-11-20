@@ -20,7 +20,8 @@ public class Weapon implements Formatter{
 
     public String simpleDesc(boolean withTitle) {
         SimpleDescBuilder desc;
-        if (withTitle) desc = new SimpleDescBuilder(bold(name));
+        if (withTitle)
+            desc = new SimpleDescBuilder(bold(name));
         else {
             desc = new SimpleDescBuilder();
             desc.add(bold(name));

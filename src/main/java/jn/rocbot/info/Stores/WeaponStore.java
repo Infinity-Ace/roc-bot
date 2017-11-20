@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import jn.rocbot.ships.Weapon;
-import jn.rocbot.ships.Zen;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
