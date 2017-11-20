@@ -28,13 +28,13 @@ public class Weapon implements Formatter{
             desc = new SimpleDescBuilder();
         }
 
-        desc.add("Damage output: " + italic(String.valueOf(dps)));
+        desc.addLine("Damage output: " + italic(String.valueOf(dps)));
 
         for (String key : properties.keySet()) {
             if (propertiesFormat.containsKey(key + "-format"))
-                desc.add(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
+                desc.addLine(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
             else
-                desc.add(key + ": " + italic(properties.get(key)));
+                desc.addLine(key + ": " + italic(properties.get(key)));
         }
 
         return desc.get();
