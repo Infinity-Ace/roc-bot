@@ -8,12 +8,14 @@ import java.util.HashMap;
 public class Weapon implements Formatter{
     public final String name;
     public final float dps;
+    public final String damageType;
     public final HashMap<String, String> properties;
     public final HashMap<String, String> propertiesFormat;
 
-    public Weapon(String name, float dps, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) {
+    public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) {
         this.name = name;
         this.dps = dps;
+        this.damageType = damageType;
         this.properties = properties;
         this.propertiesFormat = propertiesFormat;
     }

@@ -27,14 +27,15 @@ public class WeaponStore {
             JsonArray ships = (JsonArray) shispsjson.get("ships");
 
             for (JsonElement jsonelementship : ships){
-
                 JsonObject weapon = jsonelementship.getAsJsonObject().get("weapon").getAsJsonObject();
+
+                String damageType = weapon.get("damage type").getAsString();
 
                 HashMap<String, String> propertiesList = new HashMap<>();
                 HashMap<String, String> propertiesFormatList = new HashMap<>();
 
                 for (String key : weapon.keySet()) {
-                    if(Objects.equals(key, "name") || Objects.equals(key, "damage output")) {
+                    if(Objects.equals(key, "name") || Objects.equals(key, "damage output") || Objects.equals(key, "damage type")) {
 
                     } else {
                         if (!key.contains("-format")) {
@@ -49,17 +50,15 @@ public class WeaponStore {
                     WEAPONS.add(new Weapon(
                             weapon.get("name").getAsString(),
                             weapon.get("damage output").getAsFloat(),
-                            propertiesList, propertiesFormatList
+                            damageType, propertiesList, propertiesFormatList
                     ));
                 } else {
                     WEAPONS.add(new Weapon(
                             weapon.get("name").getAsString(),
                             0f,
-                            propertiesList, propertiesFormatList
+                            damageType, propertiesList, propertiesFormatList
                     ));
                 }
-                Main.log(Main.LOGTYPE.INFO, String.valueOf(weapon.keySet()));
-                Main.log(Main.LOGTYPE.INFO, String.valueOf(propertiesList) + "\n");
             }
 
         } catch (FileNotFoundException e) {
