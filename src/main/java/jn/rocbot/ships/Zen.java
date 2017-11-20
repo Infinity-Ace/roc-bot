@@ -27,8 +27,10 @@ public class Zen implements Formatter{
         this.formatting = formatting;
     }
 
-    public String simpleDesc(){
-        SimpleDescBuilder desc = new SimpleDescBuilder(bold(name));
+    public String simpleDesc(boolean withTitle){
+        SimpleDescBuilder desc;
+        if(withTitle) desc = new SimpleDescBuilder(bold(name));
+        else desc = new SimpleDescBuilder();
         desc.addLine(this.desc);
         for(String key : properties.keySet()){
             if(formatting.containsKey(key + "-format")){
