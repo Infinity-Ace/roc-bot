@@ -12,6 +12,7 @@ public class Description implements Formatter{
 
     public Description(Ship ship){
         emb = new EmbedBuilder().setTitle(bold(ship.name + " " + ship.rarity.toEmoji()));
+        emb.setImage("https://raw.githubusercontent.com/Jens0512/roc-bot/master/pics/ships/phoenix.png");
         emb.addField(ship.weapon.name, ship.weapon.simpleDesc(false), false);
         emb.addField(ship.aura.name, ship.aura.simpleDesc(false), false);
         emb.addField(ship.zen.name, ship.zen.simpleDesc(false), false);
