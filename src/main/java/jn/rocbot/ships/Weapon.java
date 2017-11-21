@@ -35,8 +35,6 @@ public class Weapon implements Formatter{
                 desc.addLine(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
             else
                 desc.addLine(key + ": " + italic(properties.get(key)));
-        }
-
-        return desc.get();
+        } return desc.get();
     }
 }
