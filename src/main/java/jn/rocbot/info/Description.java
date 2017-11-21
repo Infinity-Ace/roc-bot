@@ -1,6 +1,7 @@
 package jn.rocbot.info;
 
 import jn.rocbot.Emojis;
+import jn.rocbot.info.Stores.ShipPicStore;
 import jn.rocbot.ships.RARITY;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.utils.Formatter;
@@ -12,7 +13,7 @@ public class Description implements Formatter{
 
     public Description(Ship ship){
         emb = new EmbedBuilder().setTitle(bold(ship.name + " " + ship.rarity.toEmoji()));
-        emb.setThumbnail()
+        if(ShipPicStore.hasPic(ship)) emb.setThumbnail(ShipPicStore.getPicURL(ship));
         emb.addField(ship.weapon.name, ship.weapon.simpleDesc(false), false);
         emb.addField(ship.aura.name, ship.aura.simpleDesc(false), false);
         emb.addField(ship.zen.name, ship.zen.simpleDesc(false), false);

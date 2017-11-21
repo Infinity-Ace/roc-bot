@@ -2,10 +2,7 @@ package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
-import jn.rocbot.info.Stores.AuraStore;
-import jn.rocbot.info.Stores.ShipStore;
-import jn.rocbot.info.Stores.WeaponStore;
-import jn.rocbot.info.Stores.ZenStore;
+import jn.rocbot.info.Stores.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 
@@ -71,6 +68,7 @@ public class Main {
         Masters.init();
         Moderators.init();
 
+        ShipPicStore.init();
         WeaponStore.init();
         AuraStore.init();
         ZenStore.init();
