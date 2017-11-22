@@ -31,40 +31,4 @@ public class ShipPicStore {
         return "https://raw.githubusercontent.com/Jens0512/roc-bot/master/pics/ships/"
                 + ship.name.toLowerCase().replace(" ","") + ".png";
     }
-
-    private static Color bgc = new Color(54, 57, 62, 255);
-    public static Color getShipsAvgColor(Ship ship){
-        HashMap<Color, Integer> colorhits = new HashMap<>();
-        if(hasPic(ship)){
-            try {
-                BufferedImage img = ImageIO.read(new URL(getPicURL(ship)));
-                for (int x = 0; x < img.getWidth(); x++) {
-                    for (int y = 0; y < img.getHeight(); y++) {
-                        Color c = new Color(img.getRGB(x, y));
-                        if(!c.equals(bgc)) {
-                            if(!colorhits.containsKey(c)){
-                                colorhits.put(c, 1);
-                            } else {
-                                Integer hits = colorhits.get(c) + 1;
-                                colorhits.replace(c, hits);
-                            }
-                        }
-                    }
-                }
-
-                Color mostFrequent = (Color) colorhits.keySet().toArray()[0];
-                for (Color key : colorhits.keySet()){
-                    if(colorhits.get(key) > colorhits.get(mostFrequent)) mostFrequent = key;
-                }
-
-                return mostFrequent;
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return Color.GRAY;
-            }
-        } else {
-            return Color.GRAY;
-        }
-    }
 }

@@ -5,7 +5,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import jn.rocbot.Main;
 import jn.rocbot.ships.Aura;
 
 import java.io.FileNotFoundException;
@@ -80,14 +79,14 @@ public class AuraStore {
         return state;
     }
 
-    public static Aura fromName(String name) throws AuraNotFounException{
+    public static Aura fromName(String name) throws AuraNotFoundException {
         for(Aura aura : AURAS){
             if(name.toLowerCase().equals(aura.name.toLowerCase())) return aura;
-        } throw new AuraNotFounException("Found no aura named: " + name);
+        } throw new AuraNotFoundException("Found no aura named: " + name);
     }
 
-    public static class AuraNotFounException extends Exception{
-        public AuraNotFounException(String message){
+    public static class AuraNotFoundException extends Exception{
+        public AuraNotFoundException(String message){
             super(message);
         }
     }

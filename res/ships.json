@@ -51,7 +51,7 @@
     {
       "name": "Fujin",
       "weapon": {
-        "damage type":"",
+        "damage type":39,
         "name":"Quantum beam"
       },
       "aura": "Laser storm", "zen": "Mega laser", "r":3
@@ -227,6 +227,7 @@
     {
       "name": "Vuxine",
       "weapon": {
+        "damage output":26,
         "damage type":"",
         "name": "Vortex launcher"
       },
@@ -236,6 +237,7 @@
       "name": "Photurius",
       "weapon": {
         "damage type":"",
+        "damage output":35.76,
         "name": "Photon charge"
       },
       "aura": "Stun EMP", "zen": "Mega laser", "r":2
@@ -439,6 +441,7 @@
       "name": "Proteus",
       "weapon": {
         "damage type":"",
+        "damage type":35.76,
         "name": "Photon detonator"
       },
       "aura": "Point defense", "zen": "Mega laser", "r":2

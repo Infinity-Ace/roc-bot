@@ -42,7 +42,7 @@ public class ShipStore {
                             RARITY.valueOf(RARITY.fromInt(jsonship.get("r").getAsInt())));
 
                     SHIPS.add(ship);
-                } catch (AuraStore.AuraNotFounException e) {
+                } catch (AuraStore.AuraNotFoundException e) {
                     e.printStackTrace();
                 } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();

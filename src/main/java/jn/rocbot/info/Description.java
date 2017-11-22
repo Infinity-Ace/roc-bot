@@ -17,8 +17,6 @@ public class Description implements Formatter{
         desc.addField(ship.weapon.name, ship.weapon.simpleDesc(false), false);
         desc.addField(ship.aura.name, ship.aura.simpleDesc(false), false);
         desc.addField(ship.zen.name, ship.zen.simpleDesc(false), false);
-
-        desc.setColor(ShipPicStore.getShipsAvgColor(ship));
     }
 
     public void addField(MessageEmbed.Field field){
