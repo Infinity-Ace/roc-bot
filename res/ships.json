@@ -11,7 +11,7 @@
     {
       "name": "NC-150",
       "weapon": {
-        "damage type":"",
+        "damage type":"sb",
         "name":"Plasma cannon"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -27,7 +27,7 @@
     {
       "name": "Veil",
       "weapon": {
-        "damage type":"",
+        "damage type":"sb",
         "name":"Fusion Laser"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":1

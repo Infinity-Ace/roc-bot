@@ -1,17 +1,27 @@
 package jn.rocbot;
 
+import jn.rocbot.info.IDs;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+
+import java.util.StringJoiner;
 
 public class InteractiveBot extends ListenerAdapter{
     public static String TOKEN;
 
     public static JDA JDA;
 
+    public InteractiveBot(){
+        start();
+    }
+
     public static void main(String[] args){
+        log(LOGTYPE.ERROR, "The interactive bot is not yet ready!");
+        System.exit(0);
         TOKEN = args[0];
 
         try { //Establishes a connection to the the chats that have added the bot as a user
@@ -26,7 +36,16 @@ public class InteractiveBot extends ListenerAdapter{
 
     @Override
     public void onReady(ReadyEvent event) {
+        StringJoiner servers = new StringJoiner("\n");
+        event.getJDA().getGuilds().forEach((Guild g) ->
+                servers.add(g.getName())
+        ); log(LOGTYPE.INFO, "Connected to servers" + servers
+                + "\nAs " + event.getJDA().getSelfUser().getName()
+        );
+    }
 
+    public void start(){
+        log(LOGTYPE.INFO, "Waiting for connecting to the JDA");
     }
 
     //<editor-fold desc="Logging">

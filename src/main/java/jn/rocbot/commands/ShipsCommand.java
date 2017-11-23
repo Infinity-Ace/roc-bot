@@ -10,6 +10,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Objects;
 import java.util.Random;
+import java.util.StringJoiner;
 
 public class ShipsCommand implements Command {
     private final static String HELP = "Usage:\n\t!ships returns a list of all the ships\n\t!ships random gives a random ship\n\tAnd !ships random 10 gives a list of 10 random ships";
@@ -65,14 +66,13 @@ public class ShipsCommand implements Command {
                 }
             }
         } else {
-            String shiplist = "";
+            StringJoiner shiplist = new StringJoiner(",");
 
             for(Ship ship : ShipStore.SHIPS){
-                if(!Objects.equals(ship.name, "Shogun")) shiplist += ship.name + ", ";
-                else shiplist += "Shogun";
+                shiplist.add(ship.name);
             }
 
-            event.getTextChannel().sendMessage(shiplist).complete();
+            event.getTextChannel().sendMessage(shiplist.toString()).complete();
         }
     }
 
