@@ -3,6 +3,7 @@ package jn.rocbot;
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.info.Stores.*;
+import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 
@@ -67,6 +68,8 @@ public class Main {
     private static void init() {
         Masters.init();
         Moderators.init();
+
+        Log.init();
 
         ShipPicStore.init();
         WeaponStore.init();
