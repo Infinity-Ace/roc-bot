@@ -4,6 +4,7 @@
       "name": "Shinova",
       "weapon": {
         "damage type":"",
+        "damage output":34.38,
         "name":"Tachyon cannon"
       },
       "aura": "Bullet EMP", "zen": "Kappa drive", "r":1
@@ -417,6 +418,7 @@
       "name": "Barret",
       "weapon": {
         "damage type":"",
+        "damage output":34.38,
         "name": "Boson cannon"
       },
       "aura": "Ion cannon", "zen": "Teleport", "r":2

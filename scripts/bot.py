@@ -1,6 +1,6 @@
 """
 Usage:
-    bot (run | build | reboot)
+    bot [options] (run | build | reboot)
     bot (-i | --interactive)
     bot (-h | --help | --version)
 Options:
@@ -10,6 +10,8 @@ Options:
 
 import sys
 import cmd
+import os
+
 from docopt import docopt, DocoptExit
 
 
@@ -46,36 +48,53 @@ def docopt_cmd(func):
 
 
 class MyInteractive(cmd.Cmd):
-    intro = 'Welcome master' \
+    intro = 'Welcome ' + os.environ['USER'] \
             + '\nAsk me for Help at any moment'
     prompt = 'Roc-bot:$ '
 
+    nohelp = 'Sorry, ask jens to fix the help for %s'
+
     @docopt_cmd
     def do_run(self, arg):
-        """Usage: run"""
+        """Usage: run [-a]
+
+        Options:
+            -a, --attached  Does not detach the screen"""
 
         print("Running with args:")
-        print(arg)
+        print("\t", arg)
 
     @docopt_cmd
     def do_build(self, arg):
-        """Usage: build"""
+        """Usage: build [-a]
+
+        Options:
+            -a, --attached  Does not detach the screen"""
 
         print("Building with args:")
-        print(arg)
+        print("\t", arg)
 
     @docopt_cmd
     def do_reboot(self, arg):
-        """Usage: reboot"""
+        """Usage: reboot [-a]
 
-        print("Reboot with args:")
-        print(arg)
+        Options:
+            -a, --attached  Does not detach the screen"""
+
+        print("Rebooting with args:")
+        print("\t", arg)
+
+    def do_clear(self, arg):
+        """Clears the screen"""
+        for _ in range(50):
+            print()
 
     def do_exit(self, arg):
         """Puts the bot to sleep"""
 
         print('Now i will sleep')
         exit()
+
 
 opt = docopt(__doc__, sys.argv[1:])
 
