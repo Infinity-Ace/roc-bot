@@ -19,7 +19,7 @@ public class SourceCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         event.getTextChannel().sendMessage(
-                new EmbedBuilder().setThumbnail("https://github.com/Jens0512/roc-bot")
+                new EmbedBuilder().addField("See here!: ", "https://github.com/Jens0512/roc-bot", true)
                     .setTitle("Roc-bots innards!")
                     .setDescription("Roc-bot github source")
                 .build()
