@@ -1,9 +1,9 @@
 package jn.rocbot.commands;
 
-import jn.rocbot.commands.commands.HelloCommand;
-import jn.rocbot.commands.commands.HelpCommand;
-import jn.rocbot.commands.commands.ShipsCommand;
-import jn.rocbot.commands.commands.SourceCommand;
+import jn.rocbot.commands.normalcommands.HelloCommand;
+import jn.rocbot.commands.normalcommands.HelpCommand;
+import jn.rocbot.commands.normalcommands.ShipsCommand;
+import jn.rocbot.commands.normalcommands.SourceCommand;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.devcommands.SayCommand;
 import jn.rocbot.commands.devcommands.TestCommand;

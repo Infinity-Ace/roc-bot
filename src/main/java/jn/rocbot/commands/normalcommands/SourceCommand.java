@@ -1,11 +1,9 @@
-package jn.rocbot.commands.commands;
+package jn.rocbot.commands.normalcommands;
 
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.entities.impl.MessageEmbedImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class SourceCommand implements Command {
@@ -25,7 +23,7 @@ public class SourceCommand implements Command {
                     .setTitle("Roc-bots innards!")
                     .setDescription("Roc-bot github source")
                 .build()
-        );
+        ).complete();
     }
 
     @Override

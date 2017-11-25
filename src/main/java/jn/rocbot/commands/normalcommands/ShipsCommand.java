@@ -1,4 +1,4 @@
-package jn.rocbot.commands.commands;
+package jn.rocbot.commands.normalcommands;
 
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;

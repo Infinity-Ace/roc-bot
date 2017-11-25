@@ -2,13 +2,7 @@ package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.RocParser.CommandContainer;
-import jn.rocbot.commands.commands.HelloCommand;
-import jn.rocbot.commands.commands.HelpCommand;
-import jn.rocbot.commands.commands.ShipsCommand;
-import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
-import jn.rocbot.commands.devcommands.SayCommand;
-import jn.rocbot.commands.devcommands.TestCommand;
 import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
@@ -16,7 +10,6 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.joda.time.DateTime;
 
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
 import java.util.StringJoiner;
