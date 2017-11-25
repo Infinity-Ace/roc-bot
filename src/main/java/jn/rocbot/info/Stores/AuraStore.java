@@ -7,8 +7,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
 import jn.rocbot.ships.Aura;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +18,15 @@ public class AuraStore {
         JsonParser parser = new JsonParser();
 
         try {
-            JsonObject aurasjson = parser.parse(new JsonReader(new FileReader("res/auras.json"))).getAsJsonObject();
+
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(
+                                    new File("res/auras.json")),
+                                            "UTF8")
+            );
+
+            JsonObject aurasjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
             JsonArray auras = (JsonArray) aurasjson.get("auras");
 
             for (JsonElement jsonelementaura : auras){
@@ -65,6 +72,8 @@ public class AuraStore {
             }
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

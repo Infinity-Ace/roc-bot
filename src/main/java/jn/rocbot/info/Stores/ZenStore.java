@@ -9,8 +9,7 @@ import jn.rocbot.Main;
 import jn.rocbot.ships.Zen;
 import org.json.JSONObject;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -23,7 +22,14 @@ public class ZenStore {
         JsonParser parser = new JsonParser();
 
         try {
-            JsonObject zensjson = parser.parse(new JsonReader(new FileReader("res/zens.json"))).getAsJsonObject();
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(
+                                    new File("res/ships.json")),
+                            "UTF8")
+            );
+
+            JsonObject zensjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
             JsonArray zens = (JsonArray) zensjson.get("zens");
 
             for (JsonElement jsonelementzen : zens){
@@ -53,6 +59,8 @@ public class ZenStore {
             }
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

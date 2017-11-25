@@ -8,8 +8,7 @@ import com.google.gson.stream.JsonReader;
 import jn.rocbot.ships.RARITY;
 import jn.rocbot.ships.Ship;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -28,7 +27,13 @@ public class ShipStore {
         JsonParser parser = new JsonParser();
 
         try {
-            JsonObject shipsjson = parser.parse(new JsonReader(new FileReader("res/ships.json"))).getAsJsonObject();
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(
+                                    new File("res/ships.json")),
+                            "UTF8")
+            );
+            JsonObject shipsjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
             JsonArray ships = (JsonArray) shipsjson.get("ships");
 
             for (JsonElement jsonelementship : ships){
@@ -52,6 +57,8 @@ public class ShipStore {
             }
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }

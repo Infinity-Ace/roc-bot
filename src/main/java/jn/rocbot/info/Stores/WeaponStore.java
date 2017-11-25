@@ -8,8 +8,7 @@ import com.google.gson.stream.JsonReader;
 import jn.rocbot.Main;
 import jn.rocbot.ships.Weapon;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -23,7 +22,14 @@ public class WeaponStore {
         JsonParser parser = new JsonParser();
 
         try {
-            JsonObject shispsjson= parser.parse(new JsonReader(new FileReader("res/ships.json"))).getAsJsonObject();
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(
+                                    new File("res/ships.json")),
+                            "UTF8")
+            );
+
+            JsonObject shispsjson= parser.parse(new JsonReader(reader)).getAsJsonObject();
             JsonArray ships = (JsonArray) shispsjson.get("ships");
 
             for (JsonElement jsonelementship : ships){
@@ -62,6 +68,8 @@ public class WeaponStore {
             }
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
