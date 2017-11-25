@@ -34,9 +34,6 @@ public class ShipsCommand implements Command {
                 if(args.length > 1) {
                     if(isInteger(args[1])){
                         rShip.rShipList(Integer.valueOf(args[1]), event);
-                    } else {
-                        if (info.isInvoke(args[1]))
-                            info.sendInfo(rShip.get(), event);
                     }
                 } else
                     rShip.sendRandomShip(event);
@@ -46,6 +43,9 @@ public class ShipsCommand implements Command {
                         try {
                             info.sendInfo(ShipStore.getShip(args[1]), event);
                         } catch (ShipStore.ShipNotFoundException e) { }
+                    }else {
+                        if (rShip.isInvoke(args[1]))
+                            info.sendInfo(rShip.get(), event);
                     }
                 }
             }
