@@ -25,7 +25,7 @@ public class ZenStore {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(
                             new FileInputStream(
-                                    new File("res/ships.json")),
+                                    new File("res/zens.json")),
                             "UTF8")
             );
 
