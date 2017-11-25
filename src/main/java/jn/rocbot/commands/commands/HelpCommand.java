@@ -1,12 +1,13 @@
-package jn.rocbot.commands;
+package jn.rocbot.commands.commands;
 
-import jn.rocbot.Bot;
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import static jn.rocbot.commands.Commands.COMMANDS;
 
 public class HelpCommand implements Command {
     private final static String HELP = "Usage: !help *command*";
@@ -24,13 +25,13 @@ public class HelpCommand implements Command {
             String allCommands = "Use *!help command* to get help on specific command";
             allCommands += "\nAvaible commands are: ";
             if(!Masters.isMaster(event.getAuthor())) {
-                for (String key : Bot.COMMANDS.keySet()) {
-                    if(Bot.COMMANDS.get(key).getType() == CommandType.NORMAL)
+                for (String key : COMMANDS.keySet()) {
+                    if(COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands += "\n\t!" + key;
                 } event.getTextChannel().sendMessage(allCommands).complete();
             }else{
-                for (String key : Bot.COMMANDS.keySet()) {
-                    switch (Bot.COMMANDS.get(key).getType()) {
+                for (String key : COMMANDS.keySet()) {
+                    switch (COMMANDS.get(key).getType()) {
                         case NORMAL:
                             allCommands += "\n\t!" + key;
                             break;
@@ -49,8 +50,8 @@ public class HelpCommand implements Command {
 
             }
         } else if (args.length > 0){
-            if(Bot.COMMANDS.containsKey(args[0].toLowerCase())){
-                event.getTextChannel().sendMessage(Bot.COMMANDS.get(args[0].toLowerCase()).help()).complete();
+            if(COMMANDS.containsKey(args[0].toLowerCase())){
+                event.getTextChannel().sendMessage(COMMANDS.get(args[0].toLowerCase()).help()).complete();
             } else {
                 event.getTextChannel().sendMessage("No command named *" + args[0] + "* use !help for a list of avaible commands").complete();
             }

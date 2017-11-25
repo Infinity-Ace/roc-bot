@@ -1,4 +1,4 @@
-package jn.rocbot.commands;
+package jn.rocbot.commands.commands;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;

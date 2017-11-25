@@ -1,13 +1,15 @@
-package jn.rocbot.commands;
+package jn.rocbot.commands.commands;
 
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.impl.MessageEmbedImpl;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class SourceCommand implements Command {
-    private CommandConfig config = new CommandConfig(CommandType.NORMAL, false);
+    private CommandConfig config = new CommandConfig(CommandType.NORMAL, true);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -19,10 +21,10 @@ public class SourceCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         event.getTextChannel().sendMessage(
-                new MessageEmbedImpl()
-                    .setUrl("https://github.com/Jens0512/roc-bot")
+                new EmbedBuilder().setThumbnail("https://github.com/Jens0512/roc-bot")
                     .setTitle("Roc-bots innards!")
                     .setDescription("Roc-bot github source")
+                .build()
         );
     }
 

@@ -1,4 +1,4 @@
-package jn.rocbot.commands;
+package jn.rocbot.commands.commands;
 
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
@@ -12,15 +12,18 @@ import java.util.Random;
 import java.util.StringJoiner;
 
 public class ShipsCommand implements Command {
-    private final static String HELP =
-            "Blame jens";
+    private RandomShipsSub rShip = new RandomShipsSub();
+    private InfoSub info = new InfoSub();
+
+    private String HELP =
+            "Usage: !ships <SomeCommand>" +
+                    "Commands: " +
+                    "Random:\n" + rShip.help() +
+                    "Info:\n" + info.help();
 
     private final Random r = new Random();
 
     private CommandConfig config = new CommandConfig(CommandType.NORMAL, true);
-
-    private RandomShipsSub rShip = new RandomShipsSub();
-    private InfoSub info = new InfoSub();
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -109,8 +112,8 @@ public class ShipsCommand implements Command {
 
         @Override
         public String help() {
-            return  "random  –  gives a random ship\n" +
-                    "random 20  –  gives a list of 20 random ships";
+            return  "\t!ships random  –  gives a random ship\n" +
+                    "\t!ships random 20  –  gives a list of 20 random ships";
         }
 
         public void rShipList(int amount, MessageReceivedEvent event) {
@@ -154,7 +157,6 @@ public class ShipsCommand implements Command {
             }
         }
 
-
         @Override
         public CommandConfig getConfig() {
             return config;
@@ -171,7 +173,7 @@ public class ShipsCommand implements Command {
 
         @Override
         public String help() {
-            return "(<SOME_SHIP>) info  –  displays stats about whatever ship *SOME_SHIP* is replaced with";
+            return "\t!ships info <SomeShip>  –  displays stats about whatever ship *SOME_SHIP* is replaced with";
         }
 
         public void sendInfo(Ship ship, MessageReceivedEvent event) {
@@ -180,7 +182,7 @@ public class ShipsCommand implements Command {
 
         @Override
         public CommandConfig getConfig() {
-            return null;
+            return config;
         }
     }
 }

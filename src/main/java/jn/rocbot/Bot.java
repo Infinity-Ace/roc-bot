@@ -2,9 +2,9 @@ package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.RocParser.CommandContainer;
-import jn.rocbot.commands.HelloCommand;
-import jn.rocbot.commands.HelpCommand;
-import jn.rocbot.commands.ShipsCommand;
+import jn.rocbot.commands.commands.HelloCommand;
+import jn.rocbot.commands.commands.HelpCommand;
+import jn.rocbot.commands.commands.ShipsCommand;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.devcommands.SayCommand;
@@ -23,10 +23,10 @@ import java.util.StringJoiner;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.*;
+import static jn.rocbot.commands.Commands.COMMANDS;
 
 public class Bot extends ListenerAdapter {
     private final Random r = new Random();
-    public static HashMap<String, Command> COMMANDS;
 
     private static boolean IS_EVIL_TEST_TWIN;
 
@@ -40,17 +40,6 @@ public class Bot extends ListenerAdapter {
 
     static {
         PARSER = new RocParser();
-
-        //Normal commands
-        COMMANDS = new HashMap<String, Command>();
-        COMMANDS.put("hello", new HelloCommand());
-        COMMANDS.put("help", new HelpCommand());
-        COMMANDS.put("ships", new ShipsCommand());
-        //COMMANDS.put("source", new SourceCommand());
-
-        //Master commands
-        COMMANDS.put("test", new TestCommand());
-        COMMANDS.put("say", new SayCommand());
     }
     @Override
     public void onReady(ReadyEvent event){
