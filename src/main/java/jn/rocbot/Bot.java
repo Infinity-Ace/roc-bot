@@ -1,27 +1,28 @@
 package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
-import jn.rocbot.commands.*;
-import jn.rocbot.commands.common.Command;
+import jn.rocbot.RocParser.CommandContainer;
 import jn.rocbot.commands.HelloCommand;
+import jn.rocbot.commands.HelpCommand;
+import jn.rocbot.commands.ShipsCommand;
+import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.devcommands.SayCommand;
 import jn.rocbot.commands.devcommands.TestCommand;
+import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import org.joda.time.DateTime;
 
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
+import java.util.StringJoiner;
+import java.util.logging.Logger;
 
-import static jn.rocbot.Main.LOGTYPE.ERROR;
-import static jn.rocbot.Main.LOGTYPE.INFO;
-
-import jn.rocbot.RocParser.CommandContainer;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
+import static java.util.logging.Level.*;
 
 public class Bot extends ListenerAdapter {
     private final Random r = new Random();
@@ -34,6 +35,8 @@ public class Bot extends ListenerAdapter {
     }
 
     public static RocParser PARSER;
+    
+    private Logger log = Logger.getLogger(Log.class.getName());
 
     static {
         PARSER = new RocParser();
@@ -53,21 +56,25 @@ public class Bot extends ListenerAdapter {
     public void onReady(ReadyEvent event){
 
         //Just some info to the log
-        Main.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
-        Main.log(Main.LOGTYPE.INFO, "Startup at: " + new DateTime().toString());
-        Main.log(INFO, "Roaming in the servers: ");
+        log.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
+        log.log(INFO, "Startup at: " + new DateTime().toString());
+        log.log(INFO, "Roaming in the servers: ");
+
+        StringJoiner serverList = new StringJoiner("\n");
         for (Guild g : event.getJDA().getGuilds()) {
-            Main.log(INFO,"\t" + g.getName() + ", IDLong: " + g.getIdLong());
-        }
+            serverList.add("\t" + g.getName() + ", IDLong: " + g.getIdLong());
+        } log.log(INFO, "\n" + serverList.toString());
 
         //Showing masters
-        Main.log(INFO, ("My masters are:"));
-        Masters.MASTERS.forEach((Masters.Master m) -> Main.log(INFO, "\t" + m.name + ", ID: " + m.longID));
+        log.log(INFO, ("My masters are:"));
+        StringJoiner masterList = new StringJoiner("\n");
+        Masters.MASTERS.forEach((Masters.Master m) -> masterList.add("\t" + m.name + ", ID: " + m.longID));
+        log.log(INFO,"\n" + masterList.toString());
 
         Guild phoenix2 = event.getJDA().getGuildById(325430508379176961L);
 
         if(IS_EVIL_TEST_TWIN){
-            Main.log(ERROR, ("\n\t+------------------ I AM EVIL! ------------------+\n"));
+            log.log(WARNING, ("\n\t+------------------ I AM EVIL! ------------------+\n"));
             phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Evil twin-Roc-bot");
         } else { //Does not work!
             phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Roc-bot");
@@ -134,10 +141,10 @@ public class Bot extends ListenerAdapter {
     }
 
     private void dlog(String msg){
-        Main.log(Main.LOGTYPE.DEBUG, msg);
+        log.log(FINE, msg);
     }
     private void vlog(String msg){
-        Main.log(Main.LOGTYPE.VERBOSE, msg);
+        log.log(FINER, msg);
     }
 
     /**
@@ -150,7 +157,8 @@ public class Bot extends ListenerAdapter {
         if(shouldReact(event)){
             String prefix = getPrefix(event);
             if (Main.LOG_MESSAGES) {
-                Main.log(Main.LOGTYPE.INFO, event.getAuthor().getName() + ": " + event.getMessage().getContent());
+                log.log(INFO, event.getAuthor().getName() + ": " + event.getMessage().getContent());
+
             } if(isValidKey(event.getMessage().getContent().replace(prefix, "").split(" ")[0])) {
                 //Checks if the message starts with ! and if the sender is not a bot
                 if (Objects.equals(prefix, "!") && !event.getMessage().getAuthor().isBot()) {

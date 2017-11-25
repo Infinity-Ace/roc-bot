@@ -28,12 +28,12 @@ public class TestCommand implements Command{
             sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
 
         } else if(args[0].equals("zen") && args.length > 1) {
-            StringJoiner zenname = new StringJoiner(" ");
+            StringJoiner zenName = new StringJoiner(" ");
             for (int i = 1; i < args.length; i++) {
-                zenname.add(args[i]);
-            } if(ZenStore.isZen(zenname.toString())) {
+                zenName.add(args[i]);
+            } if(ZenStore.isZen(zenName.toString())) {
                 try {
-                    Zen zen = ZenStore.fromName(zenname.toString());
+                    Zen zen = ZenStore.fromName(zenName.toString());
                     sendMessage(zen.simpleDesc(true), event);
                 } catch (ZenStore.ZenNotFoundException e) {
                     e.printStackTrace();
@@ -44,7 +44,7 @@ public class TestCommand implements Command{
             sendMessage(ZenStore.ZENS.get(r.nextInt(ZenStore.ZENS.size() - 1)).simpleDesc(true), event);
         }else if(args.length > 1 &&  args[0].toLowerCase().equals("emb") && args[1].toLowerCase().equals("random")){
             Random r = new Random();
-            event.getTextChannel().sendMessage(ShipStore.RandomShip().desc()).complete();
+            event.getTextChannel().sendMessage(ShipStore.randomShip().desc()).complete();
         }
     }
 

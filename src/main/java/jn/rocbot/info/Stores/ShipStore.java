@@ -17,7 +17,7 @@ import java.util.Random;
 public class ShipStore {
     public static ArrayList<Ship> SHIPS;
 
-    public static Ship RandomShip(){
+    public static Ship randomShip(){
         Random random = new Random();
         return SHIPS.get(random.nextInt(SHIPS.size() -1));
     }
