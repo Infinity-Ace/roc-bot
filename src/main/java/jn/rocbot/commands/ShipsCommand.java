@@ -137,7 +137,7 @@ public class ShipsCommand implements Command {
         }
 
         public Ship get(){
-            return ShipStore.SHIPS.get(ShipStore.SHIPS.size() - 1);
+            return ShipStore.SHIPS.get(r.nextInt(ShipStore.SHIPS.size() - 1));
         }
 
         public Ship get(String notTakenFrom){
