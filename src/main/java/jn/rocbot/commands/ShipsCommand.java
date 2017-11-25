@@ -13,10 +13,7 @@ import java.util.StringJoiner;
 
 public class ShipsCommand implements Command {
     private final static String HELP =
-            "Usage:" +
-            "\n\t!ships returns a list of all the ships" +
-            "\n\t!ships random gives a random ship" +
-            "\n\tAnd !ships random 10 gives a list of 10 random ships";
+            "Blame jens";
 
     private final Random r = new Random();
 
@@ -58,7 +55,7 @@ public class ShipsCommand implements Command {
     }
 
     private void sendAllShips(MessageReceivedEvent event){
-        StringJoiner shipList = new StringJoiner(",");
+        StringJoiner shipList = new StringJoiner(", ");
         for(Ship ship : ShipStore.SHIPS){
             shipList.add(ship.name);
         } event.getTextChannel().sendMessage(shipList.toString()).complete();
