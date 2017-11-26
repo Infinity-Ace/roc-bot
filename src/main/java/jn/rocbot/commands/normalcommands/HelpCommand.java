@@ -24,14 +24,16 @@ public class HelpCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
-            String header = "Use *!help <SomeCommand>* to get help on specific command";
-            header += "\nAvaible commands are: ";
+            String message = "Use *!help <SomeCommand>* to get help on specific command";
+            message += "\nAvaible commands are: ";
             StringJoiner allCommands = new StringJoiner(", ");
             if(!Masters.isMaster(event.getAuthor())) {
                 for (String key : COMMANDS.keySet()) {
                     if(COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands.add("!" + key);
-                } event.getTextChannel().sendMessage(header + allCommands.toString()).complete();
+                }
+                message += allCommands.toString();
+                event.getTextChannel().sendMessage(message).complete();
             }else{
                 for (String key : COMMANDS.keySet()) {
                     switch (COMMANDS.get(key).getType()) {
@@ -45,9 +47,11 @@ public class HelpCommand implements Command {
                             allCommands.add("§" + key);
                             break;
                     }
-                } header += "\n\tUse *!help <SomeCommand>* to get help on specific command";
+                }
 
-                event.getTextChannel().sendMessage(header + allCommands.toString()).complete();
+                message += allCommands.toString();
+
+                event.getTextChannel().sendMessage(message).complete();
             }
             if(Moderators.isModerator(event.getAuthor())){
                 for (String key : COMMANDS.keySet()) {
@@ -60,9 +64,10 @@ public class HelpCommand implements Command {
                             break;
                         case DEV: break;
                     }
-                } header += "\n\tUse *!help <SomeCommand>* to get help on specific command";
+                }
+                message += allCommands.toString();
 
-                event.getTextChannel().sendMessage(header + allCommands.toString()).complete();
+                event.getTextChannel().sendMessage(message).complete();
             }
         } else if (args.length > 0){
             if(COMMANDS.containsKey(args[0].toLowerCase())){
