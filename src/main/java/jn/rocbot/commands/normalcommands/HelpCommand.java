@@ -31,7 +31,7 @@ public class HelpCommand implements Command {
                 for (String key : COMMANDS.keySet()) {
                     if(COMMANDS.get(key).getType() == CommandType.NORMAL)
                         allCommands.add("!" + key);
-                } event.getTextChannel().sendMessage(header).complete();
+                } event.getTextChannel().sendMessage(header + allCommands.toString()).complete();
             }else{
                 for (String key : COMMANDS.keySet()) {
                     switch (COMMANDS.get(key).getType()) {
@@ -47,10 +47,22 @@ public class HelpCommand implements Command {
                     }
                 } header += "\n\tUse *!help <SomeCommand>* to get help on specific command";
 
-                event.getTextChannel().sendMessage(header).complete();
+                event.getTextChannel().sendMessage(header + allCommands.toString()).complete();
             }
             if(Moderators.isModerator(event.getAuthor())){
+                for (String key : COMMANDS.keySet()) {
+                    switch (COMMANDS.get(key).getType()) {
+                        case NORMAL:
+                            allCommands.add("!" + key);
+                            break;
+                        case MOD:
+                            allCommands.add("~!" + key);
+                            break;
+                        case DEV: break;
+                    }
+                } header += "\n\tUse *!help <SomeCommand>* to get help on specific command";
 
+                event.getTextChannel().sendMessage(header + allCommands.toString()).complete();
             }
         } else if (args.length > 0){
             if(COMMANDS.containsKey(args[0].toLowerCase())){
