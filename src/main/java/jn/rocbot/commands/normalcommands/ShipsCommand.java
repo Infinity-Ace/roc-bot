@@ -18,8 +18,8 @@ public class ShipsCommand implements Command {
     private String HELP =
             "Usage: !ships <SomeCommand>" +
                     "Commands: " +
-                    "Random:\n" + rShip.help() +
-                    "Info:\n" + info.help();
+                    "\nRandom:\n" + rShip.help() +
+                    "\nInfo:\n" + info.help();
 
     private final Random r = new Random();
 
