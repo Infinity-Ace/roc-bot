@@ -17,7 +17,7 @@ public class ShipsCommand implements Command {
 
     private String HELP =
             "Usage: !ships <SomeCommand>" +
-                    "Commands: " +
+                    "\nCommands: " +
                     "\nRandom:\n" + rShip.help() +
                     "\nInfo:\n" + info.help();
 
@@ -173,7 +173,7 @@ public class ShipsCommand implements Command {
 
         @Override
         public String help() {
-            return "\t!ships info <SomeShip>  –  displays stats about whatever ship *SOME_SHIP* is replaced with";
+            return "\t!ships info <SomeShip>  –  displays stats about the specified ship";
         }
 
         public void sendInfo(Ship ship, MessageReceivedEvent event) {
