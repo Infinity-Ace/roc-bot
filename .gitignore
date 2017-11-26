@@ -123,4 +123,6 @@ pics/ships-kopi/zephyr.png
 /scripts/scripts.iml
 Roc-bot Control/
 pics/bot.png
-scripts/scripts.iml
+
+!/Roc-bot Control/src/jn.rocbot_control/scenes/Roc-bot Control Center.fxml
+!/Roc-bot Control/src/jn.rocbot_control/scenes/Roc-bot login.fxml
