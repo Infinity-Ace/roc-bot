@@ -24,7 +24,7 @@ public class Commands {
         COMMANDS.put("source", new SourceCommand());
 
         //Moderator commads
-        COMMANDS.put("stats", new StatsCommand());
+        //COMMANDS.put("stats", new StatsCommand());
 
         //Master commands
         COMMANDS.put("test", new TestCommand());

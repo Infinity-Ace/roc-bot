@@ -7,6 +7,8 @@ import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.StringJoiner;
+
 import static jn.rocbot.commands.Commands.COMMANDS;
 
 public class HelpCommand implements Command {
@@ -22,29 +24,30 @@ public class HelpCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
-            String allCommands = "Use *!help command* to get help on specific command";
-            allCommands += "\nAvaible commands are: ";
+            String header = "Use *!help <SomeCommand>* to get help on specific command";
+            header += "\nAvaible commands are: ";
+            StringJoiner allCommands = new StringJoiner(", ");
             if(!Masters.isMaster(event.getAuthor())) {
                 for (String key : COMMANDS.keySet()) {
                     if(COMMANDS.get(key).getType() == CommandType.NORMAL)
-                        allCommands += "\n\t!" + key;
-                } event.getTextChannel().sendMessage(allCommands).complete();
+                        allCommands.add("!" + key);
+                } event.getTextChannel().sendMessage(header).complete();
             }else{
                 for (String key : COMMANDS.keySet()) {
                     switch (COMMANDS.get(key).getType()) {
                         case NORMAL:
-                            allCommands += "\n\t!" + key;
+                            allCommands.add("!" + key);
                             break;
                         case MOD:
-                            allCommands += "\n\t~!" + key;
+                            allCommands.add("~!" + key);
                             break;
                         case DEV:
-                            allCommands += "\n\t§" + key;
+                            allCommands.add("§" + key);
                             break;
                     }
-                } allCommands += "\n\tUse *!help somecommand* to get help on specific command";
+                } header += "\n\tUse *!help <SomeCommand>* to get help on specific command";
 
-                event.getTextChannel().sendMessage(allCommands).complete();
+                event.getTextChannel().sendMessage(header).complete();
             }
             if(Moderators.isModerator(event.getAuthor())){
 
