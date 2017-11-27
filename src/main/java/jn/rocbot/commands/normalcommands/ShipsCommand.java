@@ -12,14 +12,14 @@ import java.util.Random;
 import java.util.StringJoiner;
 
 public class ShipsCommand implements Command {
-    private RandomShipsSub rShip = new RandomShipsSub();
-    private InfoSub info = new InfoSub();
+    private RandomShipsSub randomShipsSub = new RandomShipsSub();
+    private InfoSub infoSub = new InfoSub();
 
     private String HELP =
             "Usage: !ships <SomeCommand>" +
                     "\nCommands: " +
-                    "\nRandom:\n" + rShip.help() +
-                    "\nInfo:\n" + info.help();
+                    "\nRandom:\n" + randomShipsSub.help() +
+                    "\nInfo:\n" + infoSub.help();
 
     private final Random r = new Random();
 
@@ -33,23 +33,23 @@ public class ShipsCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length > 0) {
-            if (rShip.isInvoke(args[0])){
+            if (randomShipsSub.isInvoke(args[0])){
                 if(args.length > 1) {
                     if(isInteger(args[1])){
-                        rShip.rShipList(Integer.valueOf(args[1]), event);
+                        randomShipsSub.rShipList(Integer.valueOf(args[1]), event);
                     }
                 } else
-                    rShip.sendRandomShip(event);
+                    randomShipsSub.sendRandomShip(event);
             } else {
                 if(args[0].toLowerCase().equals("info")){
                     if(args.length == 2){
                         if(Ship.isShip(args[1])){
                             try {
-                                info.sendInfo(ShipStore.getShip(args[1]), event);
+                                infoSub.sendInfo(ShipStore.getShip(args[1]), event);
                             } catch (ShipStore.ShipNotFoundException e) { }
                         }else {
-                            if (rShip.isInvoke(args[1]))
-                                info.sendInfo(rShip.get(), event);
+                            if (randomShipsSub.isInvoke(args[1]))
+                                infoSub.sendInfo(randomShipsSub.get(), event);
                         }
                     }else if (args.length > 2){
                         StringJoiner shipName = new StringJoiner(" ");
@@ -57,7 +57,7 @@ public class ShipsCommand implements Command {
                             shipName.add(args[i]);
                         } if(Ship.isShip(shipName.toString())){
                             try {
-                                info.sendInfo(ShipStore.getShip(shipName.toString()), event);
+                                infoSub.sendInfo(ShipStore.getShip(shipName.toString()), event);
                             } catch (ShipStore.ShipNotFoundException e) { }
                         }
                     }

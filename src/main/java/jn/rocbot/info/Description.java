@@ -6,11 +6,27 @@ import jn.rocbot.utils.Formatter;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
+import java.awt.*;
+
 public class Description implements Formatter{
     private EmbedBuilder desc;
 
     public Description(Ship ship){
         desc = new EmbedBuilder().setTitle(bold(ship.name + " " + ship.rarity.toEmoji()));
+
+        Color color = null;
+
+        switch (ship.weapon.damageType) {
+            case SB:
+                color = new Color(0x0080FE);
+                break;
+            case AP:
+                color = new Color(0xCAAE00);
+                break;
+            case HI:
+                color = new Color(0xB43200);
+                break;
+        } desc.setColor(color);
 
         if(ShipPicStore.hasPic(ship)) desc.setThumbnail(ShipPicStore.getPicURL(ship));
 
