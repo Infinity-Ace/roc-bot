@@ -53,6 +53,15 @@ public class Weapon implements Formatter{
             } return false;
         }
 
+        public String toString(){
+            switch (this) {
+                case SB: return "Shield breaking";
+                case AP: return "Armor piercing";
+                case HI: return "Hull ";
+                default: return null; //Doesn't happen
+            }
+        }
+
         public static DAMAGETYPE fromString(String s) throws Exception {
             for (DAMAGETYPE dt : DAMAGETYPE.values()){
                 if(s.toLowerCase().equals(dt.string)) return  dt;

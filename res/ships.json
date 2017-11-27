@@ -53,6 +53,7 @@
       "name": "Fujin",
       "weapon": {
         "damage type":"hi",
+        "damage output":39,
         "name":"Quantum beam"
       },
       "aura": "Laser storm", "zen": "Mega laser", "r":3

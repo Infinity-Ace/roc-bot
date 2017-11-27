@@ -22,10 +22,6 @@ public class Ship implements Formatter{
         this.rarity = rarity;
     }
 
-    public String simpleToString() {
-        return rarity.toEmoji() + " " + bold(name + ":") + " Weapon: " + italic(weapon.name) + ", Aura: " + italic(aura.name) + ", Zen: " + italic(zen.name);
-    }
-
     public String info(){
         SimpleDescBuilder info = new SimpleDescBuilder(bold(name));
         info.addLine("Weapon: " + weapon.simpleDesc(true));
