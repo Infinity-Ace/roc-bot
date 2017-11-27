@@ -12,10 +12,4 @@ public interface Formatter {
     default String bold(String s){
         return "**" + s + "**";
     }
-
-    default String spaced_bold(String s){
-        return "**" + s + "**";
-    }
-
-    String newline = "\n";
 }
