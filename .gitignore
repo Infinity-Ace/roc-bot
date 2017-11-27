@@ -61,3 +61,6 @@ logtest.log
 
 /Roc-bot Control/Roc-bot Control.iml
 /scripts/scripts.iml
+/roc-bot_cc/roc-bot_cc.iml
+classes/
+roc-bot_cc/roc-bot_cc.iml

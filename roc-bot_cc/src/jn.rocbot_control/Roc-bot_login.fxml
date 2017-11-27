@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="138.0" prefWidth="296.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jn.rocbot_control.LoginController">
+   <children>
+      <AnchorPane prefHeight="138.0" prefWidth="324.0">
+         <children>
+            <ImageView fitHeight="138.0" fitWidth="296.0" layoutX="1.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.38" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bot.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="140.0" layoutY="14.0" prefHeight="17.0" prefWidth="156.0" text="Tell me who you are :el:" textFill="#9e9e9e" />
+            <Label layoutX="14.0" layoutY="94.0" text="Password:" />
+            <Label layoutX="14.0" layoutY="47.0" prefHeight="17.0" prefWidth="75.0" text="Username:" />
+            <TextField layoutX="89.0" layoutY="42.0" onAction="#loginEntered" opacity="0.75" prefHeight="27.0" prefWidth="197.0" promptText="Username goes here" />
+            <PasswordField layoutX="89.0" layoutY="89.0" opacity="0.75" prefHeight="27.0" prefWidth="197.0" promptText="Password goes here" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
