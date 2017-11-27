@@ -171,7 +171,7 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-        sendMessage("Welcome " + event.getMember().getNickname() + ", to the community of nerds!");
+        sendMessage("Welcome " + event.getMember().getEffectiveName() + ", to the community of nerds!");
 
         if(event.getGuild().getIdLong() == IDs.GUILDS.get("phoenix")) {
             event.getGuild().getController().
