@@ -52,18 +52,22 @@ public class WeaponStore {
                     }
                 }
 
-                if(weapon.keySet().contains("damage output")) {
-                    WEAPONS.add(new Weapon(
-                            weapon.get("name").getAsString(),
-                            weapon.get("damage output").getAsFloat(),
-                            damageType, propertiesList, propertiesFormatList
-                    ));
-                } else {
-                    WEAPONS.add(new Weapon(
-                            weapon.get("name").getAsString(),
-                            0f,
-                            damageType, propertiesList, propertiesFormatList
-                    ));
+                try {
+                    if(weapon.keySet().contains("damage output")) {
+                        WEAPONS.add(new Weapon(
+                                weapon.get("name").getAsString(),
+                                weapon.get("damage output").getAsFloat(),
+                                damageType, propertiesList, propertiesFormatList
+                        ));
+                    } else {
+                        WEAPONS.add(new Weapon(
+                                weapon.get("name").getAsString(),
+                                0f,
+                                damageType, propertiesList, propertiesFormatList
+                        ));
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 

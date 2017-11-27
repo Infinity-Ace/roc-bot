@@ -8,14 +8,14 @@ import java.util.HashMap;
 public class Weapon implements Formatter{
     public final String name;
     public final float dps;
-    public final String damageType;
+    public final DAMAGETYPE damageType;
     public final HashMap<String, String> properties;
     public final HashMap<String, String> propertiesFormat;
 
-    public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) {
+    public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) throws Exception {
         this.name = name;
         this.dps = dps;
-        this.damageType = damageType;
+        this.damageType = DAMAGETYPE.fromString(damageType);
         this.properties = properties;
         this.propertiesFormat = propertiesFormat;
     }
@@ -28,13 +28,35 @@ public class Weapon implements Formatter{
             desc = new SimpleDescBuilder();
         }
 
-        desc.addLine("Damage output: " + italic(String.valueOf(dps)));
-
+        desc.addLine(bold("Damage output: ") + italic(String.valueOf(dps)));
+        desc.addLine(bold("Damage type") + italic(damageType.string.toUpperCase()));
         for (String key : properties.keySet()) {
             if (propertiesFormat.containsKey(key + "-format"))
                 desc.addLine(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
             else
                 desc.addLine(key + ": " + italic(properties.get(key)));
         } return desc.get();
+    }
+
+    public enum DAMAGETYPE {
+        SB("sb"), AP("ap"), HI("hi");
+
+        private String string;
+
+        DAMAGETYPE(String s) {
+            this.string = s;
+        }
+
+        public static boolean isDamageType(String s){
+            for(DAMAGETYPE dt : DAMAGETYPE.values()){
+                if(dt.string.equals(s.toLowerCase())) return true;
+            } return false;
+        }
+
+        public static DAMAGETYPE fromString(String s) throws Exception {
+            for (DAMAGETYPE dt : DAMAGETYPE.values()){
+                if(s.toLowerCase().equals(dt.string)) return  dt;
+            } throw new Exception("No damagetype named " + s + "'");
+        }
     }
 }

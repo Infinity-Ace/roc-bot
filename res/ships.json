@@ -443,7 +443,7 @@
       "name": "Proteus",
       "weapon": {
         "damage type":"ap",
-        "damage type":35.76,
+        "damage output":35.76,
         "name": "Photon detonator"
       },
       "aura": "Point defense", "zen": "Mega laser", "r":2
