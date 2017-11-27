@@ -6,7 +6,7 @@ public interface Formatter {
     }
 
     default String spaced_italic(String s){
-        return "*" + s + "* ";
+        return " *" + s + "* ";
     }
 
     default String bold(String s){
