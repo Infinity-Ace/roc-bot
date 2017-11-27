@@ -42,13 +42,24 @@ public class ShipsCommand implements Command {
                     rShip.sendRandomShip(event);
             } else {
                 if(args[0].toLowerCase().equals("info")){
-                    if(Ship.isShip(args[1]) || Ship.isShip(args[1] + " " + args[2])){
-                        try {
-                            info.sendInfo(ShipStore.getShip(args[1]), event);
-                        } catch (ShipStore.ShipNotFoundException e) { }
-                    }else {
-                        if (rShip.isInvoke(args[1]))
-                            info.sendInfo(rShip.get(), event);
+                    if(args.length == 2){
+                        if(Ship.isShip(args[1])){
+                            try {
+                                info.sendInfo(ShipStore.getShip(args[1]), event);
+                            } catch (ShipStore.ShipNotFoundException e) { }
+                        }else {
+                            if (rShip.isInvoke(args[1]))
+                                info.sendInfo(rShip.get(), event);
+                        }
+                    }else if (args.length > 2){
+                        StringJoiner shipName = new StringJoiner(" ");
+                        for(int i = 1; i < args.length; i++){
+                            shipName.add(args[i]);
+                        } if(Ship.isShip(shipName.toString())){
+                            try {
+                                info.sendInfo(ShipStore.getShip(shipName.toString()), event);
+                            } catch (ShipStore.ShipNotFoundException e) { }
+                        }
                     }
                 }
             }
