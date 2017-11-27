@@ -29,7 +29,7 @@ public class Weapon implements Formatter{
         }
 
         desc.addLine(bold("Damage output: ") + spaced_italic(String.valueOf(dps)));
-        desc.addLine(bold("Damage type:  ") + spaced_italic(damageType.string.toUpperCase()));
+        desc.addLine(bold("Damage type:  ") + spaced_italic(damageType.toString()));
         for (String key : properties.keySet()) {
             if (propertiesFormat.containsKey(key + "-format"))
                 desc.addLine(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
@@ -57,7 +57,7 @@ public class Weapon implements Formatter{
             switch (this) {
                 case SB: return "Shield breaking";
                 case AP: return "Armor piercing";
-                case HI: return "Hull ";
+                case HI: return "High impact";
                 default: return null; //Doesn't happen
             }
         }
