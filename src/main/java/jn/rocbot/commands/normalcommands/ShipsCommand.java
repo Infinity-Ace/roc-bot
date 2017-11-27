@@ -42,7 +42,7 @@ public class ShipsCommand implements Command {
                     rShip.sendRandomShip(event);
             } else {
                 if(args[0].toLowerCase().equals("info")){
-                    if(Ship.isShip(args[1])){
+                    if(Ship.isShip(args[1]) || Ship.isShip(args[1] + " " + args[2])){
                         try {
                             info.sendInfo(ShipStore.getShip(args[1]), event);
                         } catch (ShipStore.ShipNotFoundException e) { }
@@ -98,8 +98,6 @@ public class ShipsCommand implements Command {
     public CommandType getType() {
         return config.type;
     }
-
-
 
     private class RandomShipsSub implements SubCommand {
         private final Random r = new Random();
