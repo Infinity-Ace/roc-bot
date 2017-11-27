@@ -16,10 +16,8 @@ public class Login extends Application {
         primaryStage.setTitle("Login");
         primaryStage.setScene(new Scene(
                 FXMLLoader.load(getClass().getResource("/jn.rocbot_control/Roc-bot_login.fxml")))
-        );
-        primaryStage.show();
+        ); primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

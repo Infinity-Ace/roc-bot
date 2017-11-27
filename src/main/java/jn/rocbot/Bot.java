@@ -3,9 +3,14 @@ package jn.rocbot;
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.RocParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
+import jn.rocbot.info.IDs;
 import jn.rocbot.utils.Log;
+import net.dv8tion.jda.client.events.call.CallDeleteEvent;
+import net.dv8tion.jda.client.events.call.voice.CallVoiceJoinEvent;
+import net.dv8tion.jda.client.events.group.GroupJoinEvent;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.joda.time.DateTime;
@@ -163,6 +168,20 @@ public class Bot extends ListenerAdapter {
         }
     }
 
+
+    @Override
+    public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+        sendMessage("Welcome " + event.getMember().getNickname() + ", to the community of nerds!");
+
+        if(event.getGuild().getIdLong() == IDs.GUILDS.get("phoenix")) {
+            event.getGuild().getController().
+                    addRolesToMember(
+                        event.getMember(),
+                        event.getGuild().getRolesByName("pilot", true)
+            );
+        }
+    }
+
     /**
      * Makes the bot say something in the bot-channel in the phoenix II server
      * @param event
@@ -207,5 +226,9 @@ public class Bot extends ListenerAdapter {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void sendMessage(String message){
+        Main.JDA.getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage(message).complete();
     }
 }

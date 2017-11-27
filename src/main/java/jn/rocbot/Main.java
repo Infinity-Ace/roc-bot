@@ -2,6 +2,7 @@ package jn.rocbot;
 
 import jn.rocbot.Permissions.Masters;
 import jn.rocbot.Permissions.Moderators;
+import jn.rocbot.info.IDs;
 import jn.rocbot.info.Stores.*;
 import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.AccountType;
@@ -56,6 +57,8 @@ public class Main {
 
     private static void init() {
         Log.init(); //Keep above the init's which may need to log something!
+
+        IDs.init();
 
         Masters.init();
         Moderators.init();
