@@ -5,9 +5,8 @@ import jn.rocbot.RocParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.info.IDs;
 import jn.rocbot.utils.Log;
-import net.dv8tion.jda.client.events.call.CallDeleteEvent;
-import net.dv8tion.jda.client.events.call.voice.CallVoiceJoinEvent;
-import net.dv8tion.jda.client.events.group.GroupJoinEvent;
+import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
@@ -15,6 +14,11 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.joda.time.DateTime;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.StringJoiner;
@@ -41,7 +45,6 @@ public class Bot extends ListenerAdapter {
     }
     @Override
     public void onReady(ReadyEvent event){
-
         //Just some info to the log
         log.log(INFO, "Logged in as " + event.getJDA().getSelfUser().getName());
         log.log(INFO, "Startup at: " + new DateTime().toString());
@@ -155,7 +158,7 @@ public class Bot extends ListenerAdapter {
                 } else if (prefix.equals("§")
                         && Masters.isMaster(event.getAuthor())
                         ) { // If it is a mastercommand
-                    dlog("Recieved message starting with \"§\": " + event.getMessage().getContent());
+                    dlog("Received message starting with \"§\": " + event.getMessage().getContent());
                     handleCommand(PARSER.parse(
                             event.getMessage().getContent(),
                             getConfig(event.getMessage().getContent().replace("§", "").split(" ")[0]),
@@ -171,7 +174,7 @@ public class Bot extends ListenerAdapter {
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
-        sendMessage("Welcome " + event.getMember().getEffectiveName() + ", to the community of nerds!");
+        sendMessage("Welcome, pilot "+event.getMember().getEffectiveName()+" to the Phoenix 2 community!");
 
         if(event.getGuild().getIdLong() == IDs.GUILDS.get("phoenix")) {
             event.getGuild().getController().
