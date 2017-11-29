@@ -27,7 +27,7 @@ public class SuggestCommand implements Command{
         try {
             writer = new BufferedWriter(new FileWriter("Suggestions.txt"));
 
-            writer.write("\n\n" + message.toString() + "\n\n");
+            writer.write("\n\n" + event.getAuthor().getName() + ":\n" + message.toString() + "\n\n");
 
             writer.close();
         } catch (IOException e) {
@@ -37,7 +37,7 @@ public class SuggestCommand implements Command{
 
     @Override
     public String help() {
-        return "Usage: !suggest Make the bot awesome!";
+        return "Usage: !suggest <(Suggestion)>";
     }
 
     @Override
