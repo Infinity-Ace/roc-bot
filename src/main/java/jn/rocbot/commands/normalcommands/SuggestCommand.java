@@ -6,8 +6,11 @@ import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.StringJoiner;
 
 public class SuggestCommand implements Command{
@@ -21,13 +24,15 @@ public class SuggestCommand implements Command{
         sendMessage("Thank you! The message has been sent to Jens", event);
         BufferedWriter writer = null;
         StringJoiner message = new StringJoiner(" ");
+
         for (int i = 0; i < args.length; i++) {
             message.add(args[i]);
         }
         try {
-            writer = new BufferedWriter(new FileWriter("Suggestions.txt"));
+            String content = new String(Files.readAllBytes(Paths.get("suggestions.txt")));
 
-            writer.write("\n\n" + event.getAuthor().getName() + ":\n" + message.toString() + "\n\n");
+            writer = new BufferedWriter(new FileWriter("suggestions.txt"));
+            writer.write(content + "\n\n" + event.getAuthor().getName() + ":\n" + message.toString() + "\n\n");
 
             writer.close();
         } catch (IOException e) {
