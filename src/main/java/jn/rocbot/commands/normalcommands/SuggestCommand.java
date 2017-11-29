@@ -37,7 +37,7 @@ public class SuggestCommand implements Command{
 
     @Override
     public String help() {
-        return "Blame Jens";
+        return "Usage: !suggest Make the bot awesome!";
     }
 
     @Override
