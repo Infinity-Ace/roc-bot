@@ -5,10 +5,7 @@ import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.StringJoiner;
@@ -29,7 +26,7 @@ public class SuggestCommand implements Command{
             message.add(args[i]);
         }
         try {
-            String content = new String(Files.readAllBytes(Paths.get("suggestions.txt")));
+            String content = new String(Files.readAllBytes(new File("suggestions.txt").toPath()));
 
             writer = new BufferedWriter(new FileWriter("suggestions.txt"));
             writer.write(content + "\n\n" + event.getAuthor().getName() + ":\n" + message.toString() + "\n\n");
