@@ -4,7 +4,7 @@
       "name": "Shinova",
       "weapon": {
         "damage type":"sb",
-        "damage output":34.38,
+        "damage output":31.25,
         "name":"Tachyon cannon"
       },
       "aura": "Bullet EMP", "zen": "Kappa drive", "r":1
@@ -13,6 +13,7 @@
       "name": "NC-150",
       "weapon": {
         "damage type":"sb",
+        "damage output": 34.38,
         "name":"Plasma cannon"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -37,6 +38,7 @@
       "name": "Krillou",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.25,
         "name":"Photon bombs"
       },
       "aura": "Stun EMP", "zen": "Mega bomb", "r":2
@@ -419,7 +421,7 @@
       "name": "Barret",
       "weapon": {
         "damage type":"hi",
-        "damage output":34.38,
+        "damage output":31.25,
         "name": "Boson cannon"
       },
       "aura": "Ion cannon", "zen": "Teleport", "r":2
