@@ -175,7 +175,6 @@ public class Bot extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         sendMessage("Welcome, pilot "+event.getMember().getEffectiveName()+" to the Phoenix 2 community!");
-
         if(event.getGuild().getIdLong() == IDs.GUILDS.get("phoenix")) {
             event.getGuild().getController().
                     addRolesToMember(
