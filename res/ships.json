@@ -22,6 +22,7 @@
       "name": "Tar'cah",
       "weapon": {
         "damage type":"hi",
+        "damage output":31.25,
         "name": "Storm Blaster"
       },
       "aura": "Point defense", "zen": "Kappa Drive", "r":1
@@ -101,6 +102,8 @@
       "name": "Mist star",
       "weapon": {
         "damage type":"sb",
+        "damage output":25,
+        "homing capability":"Perfect",
         "name": "Flux seekers"
       },
       "aura": "Stun EMP", "zen": "Kappa drive", "r":1
@@ -133,6 +136,7 @@
       "name": "Wrackr",
       "weapon": {
         "damage type":"hi",
+        "damage output":34,
         "name": "Seismic blaster"
       },
       "aura": "Point defense", "zen": "Mega bomb", "r":1
@@ -234,7 +238,7 @@
     {
       "name": "Vuxine",
       "weapon": {
-        "damage output":26,
+        "damage output":25,
         "damage type":"sb",
         "name": "Vortex launcher"
       },
@@ -473,6 +477,7 @@
       "name": "Torrent",
       "weapon": {
         "damage type":"hi",
+        "damage output":32.5,
         "name": "Quantum stream"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -539,6 +544,7 @@
       "name": "UHB",
       "weapon": {
         "damage type":"hi",
+        "damage output":25,
         "name": "Blast laser"
       },
       "aura": "Vorpal lance", "zen": "Reflex EMP", "r":2
