@@ -9,7 +9,6 @@ import java.util.logging.SimpleFormatter;
 public class Log {
     private final static Logger LOGGER = Logger.getLogger(Log.class.getName());
 
-    private final static Logger logger = Logger.getLogger(Log.class.getName());
     private static FileHandler fh = null;
 
     public static void init(){

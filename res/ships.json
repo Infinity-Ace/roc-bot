@@ -90,6 +90,9 @@
       "name": "Razor VI",
       "weapon": {
         "damage type":"sb",
+        "damage output":31.25,
+        "capacity":1000,
+        "capacity-format":"ms",
         "name":"Phase disruptor"
       },
       "aura": "Barrier", "zen": "Mega laser", "r":1
@@ -284,6 +287,9 @@
       "name": "EX04239",
       "weapon": {
         "damage type":"ap",
+        "damage output":37.5,
+        "capacity":500,
+        "capacity-format":"ms",
         "name": "Meson projectors"
       },
       "aura": "Missile swarm", "zen": "Mega laser", "r":2
@@ -303,6 +309,7 @@
       "name": "Von Braun",
       "weapon": {
         "damage type":"ap",
+        "damage output":37.5,
         "name": "Daisy cutter"
       },
       "aura": "Missile swarm", "zen": "Kappa drive", "r":2
@@ -353,6 +360,7 @@
       "name": "Zephyr",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.24,
         "name": "Photon rails"
       },
       "aura": "Point defense", "zen": "Kappa drive", "r":1
@@ -481,6 +489,8 @@
       "name": "Exarch",
       "weapon": {
         "damage type":"sb",
+        "damage output":34.38,
+        "laser beams":18,
         "name":"Phase prisms"
       },
       "aura": "Vorpal lance", "zen": "Mega laser", "r":3
