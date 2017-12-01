@@ -45,11 +45,10 @@ public class ShipStore {
                             RARITY.valueOf(RARITY.fromInt(jsonship.get("r").getAsInt())));
 
                     SHIPS.add(ship);
-                } catch (AuraStore.AuraNotFoundException e) {
-                    e.printStackTrace();
-                } catch (ZenStore.ZenNotFoundException e) {
-                    e.printStackTrace();
-                } catch (WeaponStore.WeaponNotFoundException e) {
+                } catch (AuraStore.AuraNotFoundException
+                        | WeaponStore.WeaponNotFoundException
+                        | ZenStore.ZenNotFoundException e) {
+
                     e.printStackTrace();
                 }
             }

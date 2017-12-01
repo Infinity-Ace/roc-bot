@@ -38,13 +38,10 @@ public class Search {
         HashMap<Ship, Integer> ratios = new HashMap<>();
         int lowestRatio = 35;
         for(String shipName : shipNames){
-            Integer currentSearchResult = FuzzySearch.tokenSetPartialRatio(shipName, searchString);
+            Integer currentSearchResult = FuzzySearch.ratio(shipName, searchString);
             if(currentSearchResult < lowestRatio) lowestRatio = currentSearchResult;
             try {
-                ratios.put(
-                        ShipStore.getShip(shipName),
-                        currentSearchResult
-                );
+                ratios.put(ShipStore.getShip(shipName), currentSearchResult);
             } catch (ShipStore.ShipNotFoundException e) {
                 returned.add(String.format("shipName %s is not a valid name!", shipName));
             }

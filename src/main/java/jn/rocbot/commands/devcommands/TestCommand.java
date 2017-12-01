@@ -62,6 +62,8 @@ public class TestCommand implements Command {
         }
     }
 
+
+
     private class IsShipTest extends BasicTestSubCommand{
         public void sendResult(String[] args, MessageReceivedEvent event) {
             StringJoiner ship = new StringJoiner(" ");

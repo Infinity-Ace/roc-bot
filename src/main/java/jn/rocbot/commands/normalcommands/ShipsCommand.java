@@ -50,7 +50,7 @@ public class ShipsCommand implements Command {
                             try {
                                 infoSub.sendInfo(new Search().findShip(args[1].toString()), event);
                             } catch (ShipStore.ShipNotFoundException e) {
-                                sendMessage(String.format("Found no ship name %s!", args[1]), event);
+                                sendMessage(String.format("Found no ship named %s!", args[1]), event);
                             }
                     }else if (args.length > 2){
                         StringJoiner shipName = new StringJoiner(" ");
@@ -59,7 +59,7 @@ public class ShipsCommand implements Command {
                         } try {
                             infoSub.sendInfo(new Search().findShip(shipName.toString()), event);
                         } catch (ShipStore.ShipNotFoundException e) {
-                            sendMessage(String.format("Found no ship name %s!", args[1]), event);
+                            sendMessage(String.format("Found no ship named %s!", args[1]), event);
                         }
                     }
                 }
