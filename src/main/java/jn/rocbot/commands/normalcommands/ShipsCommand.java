@@ -5,7 +5,7 @@ import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.commands.common.SubCommand;
 import jn.rocbot.ships.Ship;
-import jn.rocbot.info.Stores.ShipStore;
+import jn.rocbot.info.stores.ShipStore;
 import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 

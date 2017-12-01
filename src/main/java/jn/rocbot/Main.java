@@ -1,9 +1,9 @@
 package jn.rocbot;
 
-import jn.rocbot.Permissions.Masters;
-import jn.rocbot.Permissions.Moderators;
+import jn.rocbot.info.stores.*;
+import jn.rocbot.permissions.Masters;
+import jn.rocbot.permissions.Moderators;
 import jn.rocbot.info.IDs;
-import jn.rocbot.info.Stores.*;
 import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;

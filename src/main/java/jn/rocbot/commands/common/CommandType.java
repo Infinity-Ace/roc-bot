@@ -1,7 +1,7 @@
 package jn.rocbot.commands.common;
 
-import jn.rocbot.Permissions.Masters;
-import jn.rocbot.Permissions.Moderators;
+import jn.rocbot.permissions.Masters;
+import jn.rocbot.permissions.Moderators;
 import net.dv8tion.jda.core.entities.User;
 
 import javax.naming.OperationNotSupportedException;

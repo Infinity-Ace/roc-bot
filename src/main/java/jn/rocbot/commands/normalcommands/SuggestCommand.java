@@ -7,7 +7,6 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.StringJoiner;
 
 public class SuggestCommand implements Command{
@@ -19,11 +18,11 @@ public class SuggestCommand implements Command{
     @Override
     public synchronized void action(String[] args, MessageReceivedEvent event) {
         sendMessage("Thank you! The message has been sent to Jens", event);
-        BufferedWriter writer = null;
+        BufferedWriter writer;
         StringJoiner message = new StringJoiner(" ");
 
-        for (int i = 0; i < args.length; i++) {
-            message.add(args[i]);
+        for (String arg : args) {
+            message.add(arg);
         }
         try {
             String content = new String(Files.readAllBytes(new File("suggestions.txt").toPath()));

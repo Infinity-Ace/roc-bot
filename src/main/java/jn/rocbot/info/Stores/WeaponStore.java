@@ -1,11 +1,10 @@
-package jn.rocbot.info.Stores;
+package jn.rocbot.info.stores;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import jn.rocbot.Main;
 import jn.rocbot.ships.Weapon;
 
 import java.io.*;

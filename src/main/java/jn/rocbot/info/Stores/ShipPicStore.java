@@ -1,16 +1,9 @@
-package jn.rocbot.info.Stores;
+package jn.rocbot.info.stores;
 
-import jn.rocbot.Main;
 import jn.rocbot.ships.Ship;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class ShipPicStore {
     private static ArrayList<String> pics;

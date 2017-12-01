@@ -1,12 +1,10 @@
 package jn.rocbot;
 
-import jn.rocbot.Permissions.Masters;
+import jn.rocbot.permissions.Masters;
 import jn.rocbot.RocParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.info.IDs;
 import jn.rocbot.utils.Log;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
@@ -14,11 +12,6 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.joda.time.DateTime;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 import java.util.StringJoiner;
@@ -175,7 +168,7 @@ public class Bot extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         sendMessage("Welcome, pilot "+event.getMember().getEffectiveName()+" to the Phoenix 2 community!");
-        if(event.getGuild().getIdLong() == IDs.GUILDS.get("phoenix")) {
+        if(event.getGuild().getIdLong() == IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II)) {
             event.getGuild().getController().
                     addRolesToMember(
                         event.getMember(),
@@ -189,9 +182,9 @@ public class Bot extends ListenerAdapter {
      * @param event
      * @param message
      */
-    public void say(MessageReceivedEvent event, String message, long channelid){
-        if(channelid == 0L) channelid = 378546862627749908L;
-        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(channelid).sendMessage(message).complete();
+    public void sayToBotChannel(MessageReceivedEvent event, String message, long channelId){
+        if(channelId == 0L) channelId = 378546862627749908L;
+        event.getJDA().getGuildById(325430508379176961L).getTextChannelById(channelId).sendMessage(message).complete();
     }
 
     /**

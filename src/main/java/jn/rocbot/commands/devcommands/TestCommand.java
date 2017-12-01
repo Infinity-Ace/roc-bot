@@ -1,14 +1,10 @@
 package jn.rocbot.commands.devcommands;
 
 import jn.rocbot.commands.common.*;
-import jn.rocbot.info.Stores.ShipStore;
-import jn.rocbot.info.Stores.ZenStore;
 import jn.rocbot.ships.Ship;
-import jn.rocbot.ships.Zen;
 import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-import java.util.Random;
 import java.util.StringJoiner;
 
 public class TestCommand implements Command{

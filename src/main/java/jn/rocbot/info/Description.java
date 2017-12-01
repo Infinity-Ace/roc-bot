@@ -1,6 +1,6 @@
 package jn.rocbot.info;
 
-import jn.rocbot.info.Stores.ShipPicStore;
+import jn.rocbot.info.stores.ShipPicStore;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.utils.Formatter;
 import net.dv8tion.jda.core.EmbedBuilder;

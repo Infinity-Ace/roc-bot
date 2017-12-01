@@ -1,13 +1,11 @@
 package jn.rocbot.utils;
 
-import jn.rocbot.info.Stores.ShipStore;
+import jn.rocbot.info.stores.ShipStore;
 import jn.rocbot.ships.Ship;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.StringJoiner;
-import java.util.logging.Logger;
 
 public class Search {
     public static Ship findShip(String searchString) throws ShipStore.ShipNotFoundException {

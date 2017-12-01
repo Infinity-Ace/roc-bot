@@ -1,7 +1,6 @@
 package jn.rocbot;
 
 import jn.rocbot.commands.common.CommandConfig;
-import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;

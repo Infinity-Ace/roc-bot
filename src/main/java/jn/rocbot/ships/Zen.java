@@ -4,7 +4,6 @@ import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
 
 import java.util.HashMap;
-import java.util.StringJoiner;
 
 public class Zen implements Formatter{
     public final String name;

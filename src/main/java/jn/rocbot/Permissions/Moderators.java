@@ -1,4 +1,4 @@
-package jn.rocbot.Permissions;
+package jn.rocbot.permissions;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

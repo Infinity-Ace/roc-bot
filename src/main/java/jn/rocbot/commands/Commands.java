@@ -4,7 +4,6 @@ import jn.rocbot.commands.normalcommands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.devcommands.SayCommand;
 import jn.rocbot.commands.devcommands.TestCommand;
-import jn.rocbot.commands.modcommands.StatsCommand;
 
 import java.util.HashMap;
 

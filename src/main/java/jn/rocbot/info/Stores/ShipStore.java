@@ -1,4 +1,4 @@
-package jn.rocbot.info.Stores;
+package jn.rocbot.info.stores;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
