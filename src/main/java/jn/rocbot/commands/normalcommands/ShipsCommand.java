@@ -43,27 +43,24 @@ public class ShipsCommand implements Command {
                     randomShipsSub.sendRandomShip(event);
             } else {
                 if(args[0].toLowerCase().equals("info")){
-                    if(args.length == 2){
-                        try {
-                            new Search().findShip(args[1]);
-                        } catch (ShipStore.ShipNotFoundException e) {
-                            sendMessage("F");
-                        } {
+                    if(args.length == 2) {
+                        if (randomShipsSub.isInvoke(args[1]))
+                            infoSub.sendInfo(randomShipsSub.get(), event);
+                        else
                             try {
-                                infoSub.sendInfo(ShipStore.getShip(args[1]), event);
-                            } catch (ShipStore.ShipNotFoundException e) { }
-                        }else {
-                            if (randomShipsSub.isInvoke(args[1]))
-                                infoSub.sendInfo(randomShipsSub.get(), event);
-                        }
+                                infoSub.sendInfo(new Search().findShip(args[1].toString()), event);
+                            } catch (ShipStore.ShipNotFoundException e) {
+                                sendMessage(String.format("Found no ship name %s!", args[1]), event);
+                            }
                     }else if (args.length > 2){
                         StringJoiner shipName = new StringJoiner(" ");
                         for(int i = 1; i < args.length; i++){
                             shipName.add(args[i]);
-                        }
-                        try {
+                        } try {
                             infoSub.sendInfo(new Search().findShip(shipName.toString()), event);
-                        } catch (ShipStore.ShipNotFoundException e) { }
+                        } catch (ShipStore.ShipNotFoundException e) {
+                            sendMessage(String.format("Found no ship name %s!", args[1]), event);
+                        }
                     }
                 }
             }

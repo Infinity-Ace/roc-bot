@@ -1,12 +1,11 @@
 package jn.rocbot.commands.devcommands;
 
-import jn.rocbot.commands.common.Command;
-import jn.rocbot.commands.common.CommandConfig;
-import jn.rocbot.commands.common.CommandType;
+import jn.rocbot.commands.common.*;
 import jn.rocbot.info.Stores.ShipStore;
 import jn.rocbot.info.Stores.ZenStore;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.ships.Zen;
+import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
@@ -20,34 +19,19 @@ public class TestCommand implements Command{
         return true;
     }
 
+    private IsShipTest isShipTest = new IsShipTest();
+    private SearchTestSub searchTestSub = new SearchTestSub();
+
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if(args[0].equals("isShip") && args.length > 1){
-            StringJoiner ship = new StringJoiner(" ");
-            for(String arg : args) if(!args.equals("extra")) ship.add(arg);
-            sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
-
-        } else if(args[0].equals("zen") && args.length > 1) {
-            StringJoiner zenName = new StringJoiner(" ");
-            for (int i = 1; i < args.length; i++) {
-                zenName.add(args[i]);
-            } if(ZenStore.isZen(zenName.toString())) {
-                try {
-                    Zen zen = ZenStore.fromName(zenName.toString());
-                    sendMessage(zen.simpleDesc(true), event);
-                } catch (ZenStore.ZenNotFoundException e) {
-                    e.printStackTrace();
-                }
-            }
-        }else if(args.length > 1 && args[0].toLowerCase().equals("zen") && args[1].toLowerCase().equals("random")){
-            Random r = new Random();
-            sendMessage(ZenStore.ZENS.get(r.nextInt(ZenStore.ZENS.size() - 1)).simpleDesc(true), event);
-        }else if(args.length > 1 &&  args[0].toLowerCase().equals("emb") && args[1].toLowerCase().equals("random")){
-            Random r = new Random();
-            event.getTextChannel().sendMessage(ShipStore.randomShip().desc()).complete();
+        if(isShipTest.isInvoke(args[0]) && args.length > 1){
+           isShipTest.sendResult(args, event);
+        }else if(searchTestSub.isInvoke(args[0])){
+            searchTestSub.sendResult(args[0], event);
         }
     }
 
+    //<editor-fold desc="Boring stuff">
     @Override
     public String help() {
         return "NO HELP YET";
@@ -66,5 +50,32 @@ public class TestCommand implements Command{
     @Override
     public CommandType getType() {
         return config.type;
+    }
+    //</editor-fold>
+
+    private class SearchTestSub extends BasicTestSubCommand{
+
+        public void sendResult(String search, MessageReceivedEvent event){
+            sendMessage(new Search().testShipSearch(search), event);
+        }
+
+        @Override
+        public String invoke() {
+            return "search";
+        }
+    }
+    private class IsShipTest extends BasicTestSubCommand{
+        public void sendResult(String[] args, MessageReceivedEvent event){
+            StringJoiner ship = new StringJoiner(" ");
+            for(String arg : args) if(!args.equals("extra")) ship.add(arg);
+            sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
+        }
+        public IsShipTest(){
+            super(false);
+        }
+        @Override
+        public String invoke() {
+            return "isShip";
+        }
     }
 }
