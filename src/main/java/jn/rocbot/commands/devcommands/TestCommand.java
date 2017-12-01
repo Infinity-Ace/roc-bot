@@ -53,7 +53,9 @@ public class TestCommand implements Command {
 
         public void sendResult(String[] args, MessageReceivedEvent event){
             StringJoiner search = new StringJoiner(" ");
-            for (String arg : args) { search.add(arg); }
+            for (int i = 1; i < args.length; i++) {
+                search.add(args[i]);
+            }
             sendMessage(new Search().testShipSearch(search.toString()), event);
         }
 
