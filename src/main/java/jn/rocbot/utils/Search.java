@@ -15,7 +15,7 @@ public class Search {
         HashMap<Ship, Integer> ratios = new HashMap<>();
         int lowestRatio = 35;
         for(String shipName : shipNames){
-            Integer currentSearchResult = FuzzySearch.ratio(shipName, searchString.toLowerCase());
+            Integer currentSearchResult = FuzzySearch.partialRatio(shipName, searchString.toLowerCase());
 
             if(currentSearchResult < lowestRatio)
                 lowestRatio = currentSearchResult;
