@@ -69,6 +69,23 @@ public class ShipStore {
         throw new ShipNotFoundException("Found no ship with name: " + shipname);
     }
 
+    public static boolean isShip(String name) {
+        for (Ship ship : SHIPS) {
+            if (ship.name.toLowerCase().equals(name.toLowerCase()))
+                return true;
+        } return false;
+    }
+
+    public static boolean isShip(String[] name) {
+        StringJoiner shipName = new StringJoiner(" ");
+        for(int i = 1; i < name.length; i++){
+            shipName.add(name[i]);
+            for(Ship ship : SHIPS) {
+                if(ship.name.toLowerCase().equals(shipName.toString().toLowerCase())) return true;
+            }
+        } return false;
+    }
+
     public static class ShipNotFoundException extends Exception{
         public ShipNotFoundException(String s) { super(s); }
     }

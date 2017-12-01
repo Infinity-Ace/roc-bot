@@ -33,12 +33,4 @@ public class Ship implements Formatter{
         return new Description(this).get();
     }
 
-    public static boolean isShip(String name) {
-        Boolean found = false;
-        for (Ship s : ShipStore.SHIPS) {
-            if (s.name.toLowerCase().equals(name.toLowerCase())) {
-                found = true; break;
-            }
-        } return found;
-    }
 }

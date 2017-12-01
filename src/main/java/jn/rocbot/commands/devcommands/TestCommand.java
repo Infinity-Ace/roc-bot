@@ -1,13 +1,13 @@
 package jn.rocbot.commands.devcommands;
 
 import jn.rocbot.commands.common.*;
-import jn.rocbot.ships.Ship;
+import jn.rocbot.info.stores.ShipStore;
 import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.StringJoiner;
 
-public class TestCommand implements Command{
+public class TestCommand implements Command {
     private CommandConfig config = new CommandConfig(CommandType.DEV, false);
 
     @Override
@@ -23,7 +23,7 @@ public class TestCommand implements Command{
         if(isShipTest.isInvoke(args[0]) && args.length > 1){
            isShipTest.sendResult(args, event);
         }else if(searchTestSub.isInvoke(args[0])){
-            searchTestSub.sendResult(args[0], event);
+            searchTestSub.sendResult(args, event);
         }
     }
 
@@ -49,32 +49,31 @@ public class TestCommand implements Command{
     }
     //</editor-fold>
 
-    private class SearchTestSub extends BasicTestSubCommand{
+    private class SearchTestSub extends BasicTestSubCommand {
 
-        public void sendResult(String search, MessageReceivedEvent event){
-            sendMessage(new Search().testShipSearch(search), event);
+        public void sendResult(String[] args, MessageReceivedEvent event){
+            StringJoiner search = new StringJoiner(" ");
+            for (String arg : args) { search.add(arg); }
+            sendMessage(new Search().testShipSearch(search.toString()), event);
         }
 
-        @Override
-        public String invoke() {
+        @Override public String invoke() {
             return "search";
         }
     }
-    private class IsShipTest extends BasicTestSubCommand{
-        public void sendResult(String[] args, MessageReceivedEvent event){
-            if(!args[0].equals("simple")) {
-                StringJoiner ship = new StringJoiner(" ");
-                for (String arg : args) if (!args.equals("extra")) ship.add(arg);
-                sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
-            }else{
 
-            }
+    private class IsShipTest extends BasicTestSubCommand{
+        public void sendResult(String[] args, MessageReceivedEvent event) {
+            StringJoiner ship = new StringJoiner(" ");
+            for (String arg : args) if (!args.equals("extra")) ship.add(arg);
+            sendMessage(ship.toString() + " isShip: " + ShipStore.isShip(ship.toString()), event);
         }
+
         public IsShipTest(){
             super(false);
         }
-        @Override
-        public String invoke() {
+
+        @Override public String invoke() {
             return "isShip";
         }
     }
