@@ -66,9 +66,13 @@ public class TestCommand implements Command{
     }
     private class IsShipTest extends BasicTestSubCommand{
         public void sendResult(String[] args, MessageReceivedEvent event){
-            StringJoiner ship = new StringJoiner(" ");
-            for(String arg : args) if(!args.equals("extra")) ship.add(arg);
-            sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
+            if(!args[0].equals("simple")) {
+                StringJoiner ship = new StringJoiner(" ");
+                for (String arg : args) if (!args.equals("extra")) ship.add(arg);
+                sendMessage(ship.toString() + " isShip: " + Ship.isShip(ship.toString()), event);
+            }else{
+
+            }
         }
         public IsShipTest(){
             super(false);

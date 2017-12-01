@@ -32,11 +32,10 @@ public class Search {
             if(ratios.get(key) > ratios.get(highestHit)) highestHit = key;
         } return highestHit;
     }
-    private static Logger log = Logger.getLogger(Log.class.getName());
+
     public String testShipSearch(String searchString){
         StringJoiner returned = new StringJoiner("\n");
         String[] shipNames = ShipStore.allNames().split("\n");
-        returned.add(Arrays.toString(shipNames));
 
         HashMap<Ship, Integer> ratios = new HashMap<>();
         int lowestRatio = 35;
@@ -49,14 +48,15 @@ public class Search {
                         currentSearchResult
                 );
             } catch (ShipStore.ShipNotFoundException e) {
-                returned.add(String.format("shipName %s is not a valid name", shipName));
+                returned.add(String.format("shipName %s is not a valid name!", shipName));
             }
         }
 
-        returned.add(String.format("!Lowest ratio is %d", lowestRatio));
+        returned.add(String.format("Lowest ratio is %d!", lowestRatio));
 
         Ship highestHit = ShipStore.randomShip();
         for(Ship key : ratios.keySet()){
+            returned.add(String.format("%s had a ratio of %d", key.name, ratios.get(key)));
             if(ratios.get(key) > ratios.get(highestHit)) highestHit = key;
         } returned.add("Most matching is: " + highestHit.name + " with a ratio of " + ratios.get(highestHit));
 

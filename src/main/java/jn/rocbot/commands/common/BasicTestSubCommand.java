@@ -22,7 +22,7 @@ public abstract class BasicTestSubCommand implements SubCommand {
 
     @Override
     public CommandConfig getConfig() {
-        return null;
+        return config;
     }
 
 
