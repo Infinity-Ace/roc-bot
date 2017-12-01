@@ -6,6 +6,7 @@ import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.commands.common.SubCommand;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.info.Stores.ShipStore;
+import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.Random;
@@ -35,7 +36,7 @@ public class ShipsCommand implements Command {
         if(args.length > 0) {
             if (randomShipsSub.isInvoke(args[0])){
                 if(args.length > 1) {
-                    if(isInteger(args[1])){
+                    if(isInteger(args[1])) {
                         randomShipsSub.rShipList(Integer.valueOf(args[1]), event);
                     }
                 } else
@@ -43,7 +44,11 @@ public class ShipsCommand implements Command {
             } else {
                 if(args[0].toLowerCase().equals("info")){
                     if(args.length == 2){
-                        if(Ship.isShip(args[1])){
+                        try {
+                            new Search().findShip(args[1]);
+                        } catch (ShipStore.ShipNotFoundException e) {
+                            sendMessage("F");
+                        } {
                             try {
                                 infoSub.sendInfo(ShipStore.getShip(args[1]), event);
                             } catch (ShipStore.ShipNotFoundException e) { }
@@ -55,11 +60,10 @@ public class ShipsCommand implements Command {
                         StringJoiner shipName = new StringJoiner(" ");
                         for(int i = 1; i < args.length; i++){
                             shipName.add(args[i]);
-                        } if(Ship.isShip(shipName.toString())){
-                            try {
-                                infoSub.sendInfo(ShipStore.getShip(shipName.toString()), event);
-                            } catch (ShipStore.ShipNotFoundException e) { }
                         }
+                        try {
+                            infoSub.sendInfo(new Search().findShip(shipName.toString()), event);
+                        } catch (ShipStore.ShipNotFoundException e) { }
                     }
                 }
             }
@@ -85,9 +89,11 @@ public class ShipsCommand implements Command {
     }
 
     private int getShipNotTaken(String list){
-        int newship = r.nextInt(ShipStore.SHIPS.size());
-        if(list.contains(ShipStore.SHIPS.get(newship).name)) return getShipNotTaken(list);
-        else return newship;
+        int newShip = r.nextInt(ShipStore.SHIPS.size());
+        if(list.contains(ShipStore.SHIPS.get(newShip).name))
+            return getShipNotTaken(list);
+        else
+            return newShip;
     }
 
     @Override
