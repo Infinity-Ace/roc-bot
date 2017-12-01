@@ -9,9 +9,7 @@ import jn.rocbot.ships.RARITY;
 import jn.rocbot.ships.Ship;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
 
 public class ShipStore {
     public static ArrayList<Ship> SHIPS;
@@ -31,8 +29,8 @@ public class ShipStore {
                     new InputStreamReader(
                             new FileInputStream(
                                     new File("res/ships.json")),
-                            "UTF8")
-            );
+                            "UTF8"));
+
             JsonObject shipsjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
             JsonArray ships = (JsonArray) shipsjson.get("ships");
 
@@ -73,5 +71,12 @@ public class ShipStore {
 
     public static class ShipNotFoundException extends Exception{
         public ShipNotFoundException(String s) { super(s); }
+    }
+
+    public static String allNames(){
+        StringJoiner joiner = new StringJoiner("\n");
+        for(Ship ship : SHIPS){
+            joiner.add(ship.name.toLowerCase());
+        } return joiner.toString();
     }
 }

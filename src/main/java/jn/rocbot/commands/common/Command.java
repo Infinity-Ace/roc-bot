@@ -15,7 +15,7 @@ public interface Command {
     }
 
     default void sendMessage(String msg, MessageReceivedEvent event){
-        event.getJDA().getTextChannelById(378546862627749908L).sendMessage(msg).complete();
+        event.getTextChannel().sendMessage(msg).complete();
     }
 
     enum PREFIX {
