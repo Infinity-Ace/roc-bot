@@ -77,8 +77,6 @@ public class WithSubCommand implements SubCommand {
     }
 
     private WithFilter getShipsFilter(String[] passed_args){
-        //StringJoiner args = new StringJoiner(" ");
-        //for (String arg : passed_args) args.add(arg);
         ArrayList<WithProperty> properties = new ArrayList<>();
         StringJoiner passed = new StringJoiner(" ");
         for (String arg : passed_args) passed.add(arg);
@@ -138,7 +136,7 @@ public class WithSubCommand implements SubCommand {
     public ListAble getWith(WithFilter filter, CALLER caller, MessageReceivedEvent event) {
         switch (caller){
             case Ships:
-                Ship[] results =  Search.findShips(filter);
+                Ship[] results =  Search.shipsWith(filter);
                 log.log(Level.INFO, filter.hrInfo());
                 if(filter.properties.length > 0) {
                     StringJoiner filtered = new StringJoiner(", ");

@@ -12,6 +12,10 @@ import java.util.StringJoiner;
 
 public class Search {
     public static Ship findShip(String searchString) throws ShipStore.ShipNotFoundException {
+        return findShip(searchString, 40);
+    }
+
+    public static Ship findShip(String searchString, int ratio) throws ShipStore.ShipNotFoundException {
         String[] shipNames = ShipStore.allNames().split("\n");
 
         HashMap<Ship, Integer> ratios = new HashMap<>();
@@ -23,15 +27,17 @@ public class Search {
                 lowestRatio = currentSearchResult;
             try {
                 ratios.put(ShipStore.getShip(shipName), currentSearchResult);
-            } catch (ShipStore.ShipNotFoundException e) {
-                throw new ShipStore.ShipNotFoundException(String.format("FATAL: no ship named %s!", shipName));
-            }
+            } catch (ShipStore.ShipNotFoundException e) { } //Do nothing
         }
 
         Ship highestHit = ShipStore.randomShip();
         for(Ship key : ratios.keySet()){
             if(ratios.get(key) > ratios.get(highestHit)) highestHit = key;
-        } return highestHit;
+        }
+        if(ratios.get(highestHit) > ratio)
+            return highestHit;
+        else
+            throw new ShipStore.ShipNotFoundException("Found no ship with name matching " + searchString);
     }
 
     public String testShipSearch(String searchString){
@@ -62,7 +68,7 @@ public class Search {
         return returned.toString();
     }
 
-    public static Ship[] findShips(WithFilter filter){
+    public static Ship[] shipsWith(WithFilter filter){
         ArrayList<Ship> ships = new ArrayList<>();
 
         for(Ship ship : ShipStore.SHIPS){
