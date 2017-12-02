@@ -9,7 +9,8 @@ import jn.rocbot.info.ListAble;
 import jn.rocbot.info.stores.AuraStore;
 import jn.rocbot.info.stores.WeaponStore;
 import jn.rocbot.info.stores.ZenStore;
-import jn.rocbot.ships.RARITY;
+import jn.rocbot.ships.DamageType;
+import jn.rocbot.ships.Rarity;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.utils.Log;
 import jn.rocbot.utils.Search;
@@ -110,9 +111,27 @@ public class WithSubCommand implements SubCommand {
                 properties.add(
                         new WithProperty(
                                 WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                "rarity:" + RARITY.fromString(passed.toString().toLowerCase()).name.toLowerCase()
+                                "rarity:" + Rarity.fromString(passed.toString().toLowerCase()).name.toLowerCase()
                         )
                 ); break;
+            case DamageType:
+                try {
+                    String damageType = "";
+                    switch(passed.toString().toLowerCase()) {
+                        case "sb": damageType = "sb"; break;
+                        case "ap": damageType = "ap"; break;
+                        case "hi": damageType = "hi"; break;
+                        default: damageType =
+                                DamageType.fromString(passed.toString().replace("-", " ")).toString();
+                    }
+
+                    properties.add(new WithProperty(
+                            WithProperty.PROPERTY_TYPE.HasShipProperty,
+                            "damagetype:" + damageType
+                            ));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } break;
             case None:
                 break;
         }
@@ -121,10 +140,20 @@ public class WithSubCommand implements SubCommand {
     }
 
     private Ship.ShipPropertyType getShipPropertyType(String search){
-        if(AuraStore.isAura(search)) return Ship.ShipPropertyType.Aura;
-        if(ZenStore.isZen(search)) return Ship.ShipPropertyType.Zen;
-        if(WeaponStore.isWeapon(search)) return Ship.ShipPropertyType.Weapon;
-        if(RARITY.isRarity(search)) return Ship.ShipPropertyType.Rarity;
+        if(AuraStore.isAura(search))
+            return Ship.ShipPropertyType.Aura;
+
+        if(ZenStore.isZen(search))
+            return Ship.ShipPropertyType.Zen;
+
+        if(WeaponStore.isWeapon(search))
+            return Ship.ShipPropertyType.Weapon;
+
+        if(Rarity.isRarity(search))
+            return Ship.ShipPropertyType.Rarity;
+
+        if(DamageType.isDamageType(search.replace("-", " ")))
+            return Ship.ShipPropertyType.DamageType;
 
         return Ship.ShipPropertyType.None; //If none of the above has returned
     }

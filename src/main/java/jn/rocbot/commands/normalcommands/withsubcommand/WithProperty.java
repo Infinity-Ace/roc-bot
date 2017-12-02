@@ -2,6 +2,7 @@ package jn.rocbot.commands.normalcommands.withsubcommand;
 
 import jn.rocbot.info.stores.AuraStore;
 import jn.rocbot.info.stores.ZenStore;
+import jn.rocbot.ships.DamageType;
 import jn.rocbot.ships.Ship;
 
 public class WithProperty {
@@ -47,6 +48,17 @@ public class WithProperty {
                         return ship.weapon.name.toLowerCase().equals(value.split(":")[1].toLowerCase());
                     case "rarity":
                         return ship.rarity.name.toLowerCase().equals(value.split(":")[1].toLowerCase());
+                    case "damagetype":
+                        try {
+                            return ship.weapon.damageType.toString().toLowerCase().equals(
+                                    DamageType.fromString(
+                                            value.split(":")[1].toLowerCase()
+                                    ).toString().toLowerCase()
+                            );
+
+                        } catch (DamageType.DamageTypeNotFoundException e) {
+                            e.printStackTrace();
+                        }
                 } break;
         }
 

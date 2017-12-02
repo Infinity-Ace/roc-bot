@@ -5,7 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
-import jn.rocbot.ships.RARITY;
+import jn.rocbot.ships.Rarity;
 import jn.rocbot.ships.Ship;
 
 import java.io.*;
@@ -42,7 +42,7 @@ public class ShipStore {
                             WeaponStore.fromName(jsonship.getAsJsonObject("weapon").get("name").getAsString()),
                             AuraStore.fromName(jsonship.get("aura").getAsString()),
                             ZenStore.fromName(jsonship.get("zen").getAsString()),
-                            RARITY.fromString(RARITY.fromInt(jsonship.get("r").getAsInt())));
+                            Rarity.fromString(Rarity.fromInt(jsonship.get("r").getAsInt())));
 
                     SHIPS.add(ship);
                 } catch (AuraStore.AuraNotFoundException

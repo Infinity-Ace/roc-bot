@@ -10,9 +10,9 @@ public class Ship implements Formatter{
     public final Weapon weapon;
     public final Aura aura;
     public final Zen zen;
-    public final RARITY rarity;
+    public final Rarity rarity;
 
-    public Ship(String name, Weapon weapon, Aura aura, Zen zen, RARITY rarity) {
+    public Ship(String name, Weapon weapon, Aura aura, Zen zen, Rarity rarity) {
         this.name = name;
         this.weapon = weapon;
         this.aura = aura;
@@ -33,7 +33,7 @@ public class Ship implements Formatter{
     }
 
     public enum ShipPropertyType {
-        Aura, Zen, Weapon, Rarity, None;
+        Aura, Zen, Weapon, Rarity, DamageType, None
     }
 
     public static abstract class ShipProperty {

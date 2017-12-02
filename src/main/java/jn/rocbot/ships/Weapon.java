@@ -7,14 +7,14 @@ import java.util.HashMap;
 
 public class Weapon  extends Ship.ShipProperty implements Formatter{
     public final float dps;
-    public final DAMAGETYPE damageType;
+    public final DamageType damageType;
     public final HashMap<String, String> properties;
     public final HashMap<String, String> propertiesFormat;
 
     public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) throws Exception {
         super(name);
         this.dps = dps;
-        this.damageType = DAMAGETYPE.fromString(damageType);
+        this.damageType = DamageType.fromString(damageType);
         this.properties = properties;
         this.propertiesFormat = propertiesFormat;
     }
@@ -37,34 +37,4 @@ public class Weapon  extends Ship.ShipProperty implements Formatter{
         } return desc.get();
     }
 
-    public enum DAMAGETYPE {
-        SB("sb"), AP("ap"), HI("hi");
-
-        private String string;
-
-        DAMAGETYPE(String s) {
-            this.string = s;
-        }
-
-        public static boolean isDamageType(String s){
-            for(DAMAGETYPE dt : DAMAGETYPE.values()){
-                if(dt.string.equals(s.toLowerCase())) return true;
-            } return false;
-        }
-
-        public String toString(){
-            switch (this) {
-                case SB: return "Shield breaking";
-                case AP: return "Armor piercing";
-                case HI: return "High impact";
-                default: return null; //Doesn't happen
-            }
-        }
-
-        public static DAMAGETYPE fromString(String s) throws Exception {
-            for (DAMAGETYPE dt : DAMAGETYPE.values()){
-                if(s.toLowerCase().equals(dt.string)) return  dt;
-            } throw new Exception("No damagetype named " + s + "'");
-        }
-    }
 }

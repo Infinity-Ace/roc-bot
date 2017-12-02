@@ -2,22 +2,21 @@ package jn.rocbot.ships;
 
 import java.util.StringJoiner;
 
-public final class RARITY {
-    public static RARITY COMMON = new RARITY("Common", "<:common:378807923318718464>");
-    public static RARITY RARE = new RARITY("Rare", "<:rare:378807923377307648>");
-    public static RARITY SUPER_RARE = new RARITY("Super Rare","<:superrare:378808209709858819>");
+public final class Rarity extends Ship.ShipProperty{
+    public static Rarity COMMON = new Rarity("Common", "<:common:378807923318718464>");
+    public static Rarity RARE = new Rarity("Rare", "<:rare:378807923377307648>");
+    public static Rarity SUPER_RARE = new Rarity("Super Rare","<:superrare:378808209709858819>");
 
-    private static RARITY[] values = {COMMON, RARE, SUPER_RARE};
+    private static Rarity[] values = {COMMON, RARE, SUPER_RARE};
 
-    public static RARITY[] values() {
+    public static Rarity[] values() {
         return values;
     }
 
-    public String name;
     private String emoji;
 
-    private RARITY(String name, String emoji) {
-        this.name = name;
+    private Rarity(String name, String emoji) {
+        super(name);
         this.emoji = emoji;
     }
 
@@ -39,13 +38,13 @@ public final class RARITY {
     public static boolean isRarity(String name){
         String proccesed_name = name.replace("rarity ", "");
 
-        for (RARITY rarity : values())
+        for (Rarity rarity : values())
             if(rarity.name.toLowerCase().equals(proccesed_name.toLowerCase())) return true;
 
         return false;
     }
 
-    public static RARITY fromString(String name){
+    public static Rarity fromString(String name){
         String[] temp =  name.replace("rarity", "").split(" ");
         StringJoiner proccessed = new StringJoiner(" ");
         for (String string : temp) {

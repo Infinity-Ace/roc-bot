@@ -1,12 +1,17 @@
 package jn.rocbot.info;
 
 import jn.rocbot.info.stores.ShipPicStore;
+import jn.rocbot.ships.DamageType;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.utils.Formatter;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
 import java.awt.*;
+
+import static jn.rocbot.ships.DamageType.AP;
+import static jn.rocbot.ships.DamageType.HI;
+import static jn.rocbot.ships.DamageType.SB;
 
 public class ShipDescription implements Formatter{
     private EmbedBuilder desc;
@@ -16,16 +21,15 @@ public class ShipDescription implements Formatter{
 
         Color color = null;
 
-        switch (ship.weapon.damageType) {
-            case SB:
-                color = new Color(0x0080FE);
-                break;
-            case AP:
-                color = new Color(0xCAAE00);
-                break;
-            case HI:
-                color = new Color(0xB43200);
-                break;
+        if (ship.weapon.damageType.toString().toLowerCase().equals(SB.toString().toLowerCase())) {
+            color = new Color(0x0080FE);
+
+        } else if (ship.weapon.damageType.toString().toLowerCase().equals(AP.toString().toLowerCase())) {
+            color = new Color(0xCAAE00);
+
+        } else if (ship.weapon.damageType.toString().toLowerCase().equals(HI.toString().toLowerCase())) {
+            color = new Color(0xB43200);
+
         } desc.setColor(color);
 
         if(ShipPicStore.hasPic(ship)) desc.setThumbnail(ShipPicStore.getPicURL(ship));
