@@ -8,6 +8,7 @@ import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.joda.time.DateTime;
@@ -176,7 +177,10 @@ public class Bot extends ListenerAdapter {
         }
     }
 
-
+    @Override
+    public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
+        sendMessage(event.getMember().getUser().getName() + " has left the server");
+    }
 
     /**
      * Makes the bot say something in the bot-channel in the phoenix II server
