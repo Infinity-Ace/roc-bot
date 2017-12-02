@@ -164,7 +164,6 @@ public class Bot extends ListenerAdapter {
         }
     }
 
-
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         sendMessage("Welcome, pilot <@"+event.getMember().getUser().getIdLong()+"> to the Phoenix 2 community!");

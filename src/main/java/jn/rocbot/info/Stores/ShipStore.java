@@ -42,7 +42,7 @@ public class ShipStore {
                             WeaponStore.fromName(jsonship.getAsJsonObject("weapon").get("name").getAsString()),
                             AuraStore.fromName(jsonship.get("aura").getAsString()),
                             ZenStore.fromName(jsonship.get("zen").getAsString()),
-                            RARITY.valueOf(RARITY.fromInt(jsonship.get("r").getAsInt())));
+                            RARITY.fromString(RARITY.fromInt(jsonship.get("r").getAsInt())));
 
                     SHIPS.add(ship);
                 } catch (AuraStore.AuraNotFoundException

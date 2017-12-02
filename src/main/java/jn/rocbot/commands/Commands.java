@@ -17,6 +17,7 @@ public class Commands {
         COMMANDS.put("hello", new HelloCommand());
         COMMANDS.put("help", new HelpCommand());
         COMMANDS.put("ships", new ShipsCommand());
+        COMMANDS.put("auras", new AurasCommand());
         COMMANDS.put("source", new SourceCommand());
         COMMANDS.put("suggest", new SuggestCommand());
 

@@ -5,15 +5,14 @@ import jn.rocbot.utils.Formatter;
 
 import java.util.HashMap;
 
-public class Weapon implements Formatter{
-    public final String name;
+public class Weapon  extends Ship.ShipProperty implements Formatter{
     public final float dps;
     public final DAMAGETYPE damageType;
     public final HashMap<String, String> properties;
     public final HashMap<String, String> propertiesFormat;
 
     public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) throws Exception {
-        this.name = name;
+        super(name);
         this.dps = dps;
         this.damageType = DAMAGETYPE.fromString(damageType);
         this.properties = properties;

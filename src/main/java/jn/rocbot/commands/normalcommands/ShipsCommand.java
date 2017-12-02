@@ -1,26 +1,27 @@
 package jn.rocbot.commands.normalcommands;
 
-import jn.rocbot.commands.common.Command;
-import jn.rocbot.commands.common.CommandConfig;
-import jn.rocbot.commands.common.CommandType;
-import jn.rocbot.commands.common.SubCommand;
+import jn.rocbot.commands.common.*;
+import jn.rocbot.commands.normalcommands.withsubcommand.WithSubCommand;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.info.stores.ShipStore;
 import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.StringJoiner;
 
 public class ShipsCommand implements Command {
     private RandomShipsSub randomShipsSub = new RandomShipsSub();
     private InfoSub infoSub = new InfoSub();
+    private WithSubCommand withSub = new WithSubCommand(WithSubCommand.CALLER.Ships);
 
     private String HELP =
             "Usage: !ships <SomeCommand>" +
                     "\nCommands: " +
                     "\nRandom:\n" + randomShipsSub.help() +
-                    "\nInfo:\n" + infoSub.help();
+                    "\nInfo:\n" + infoSub.help() +
+                    "\nWith:\n" + withSub.help();
 
     private final Random r = new Random();
 
@@ -41,28 +42,28 @@ public class ShipsCommand implements Command {
                     }
                 } else
                     randomShipsSub.sendRandomShip(event);
-            } else {
-                if(args[0].toLowerCase().equals("info")){
-                    if(args.length == 2) {
-                        if (randomShipsSub.isInvoke(args[1]))
-                            infoSub.sendInfo(randomShipsSub.get(), event);
-                        else
-                            try {
-                                infoSub.sendInfo(new Search().findShip(args[1].toString()), event);
-                            } catch (ShipStore.ShipNotFoundException e) {
-                                sendMessage(String.format("Found no ship named %s!", args[1]), event);
-                            }
-                    }else if (args.length > 2){
-                        StringJoiner shipName = new StringJoiner(" ");
-                        for(int i = 1; i < args.length; i++){
-                            shipName.add(args[i]);
-                        } try {
-                            infoSub.sendInfo(new Search().findShip(shipName.toString()), event);
-                        } catch (ShipStore.ShipNotFoundException e) {
-                            sendMessage(String.format("Found no ship named %s!", args[1]), event);
-                        }
+            } else if(infoSub.isInvoke(args[0])){
+                if(args.length == 2) {
+                    if (randomShipsSub.isInvoke(args[1]))
+                        infoSub.sendInfo(randomShipsSub.get(), event);
+                    else
+                        try {
+                        infoSub.sendInfo(Search.findShip(args[1]), event);
+                    } catch (ShipStore.ShipNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }else if (args.length > 2){
+                    StringJoiner shipName = new StringJoiner(" ");
+                    for(int i = 1; i < args.length; i++){
+                        shipName.add(args[i]);
+                    } try {
+                        infoSub.sendInfo(Search.findShip(shipName.toString()), event);
+                    } catch (ShipStore.ShipNotFoundException e) {
+                        sendMessage(String.format("Found no ship named %s!", args[1]), event);
                     }
                 }
+            } else if(withSub.isInvoke(args[0]) && args.length > 1){
+                withSub.getWith(withSub.parseFilter(Arrays.copyOfRange(args, 1, args.length)), event);
             }
         } else {
             sendAllShips(event);
@@ -128,7 +129,7 @@ public class ShipsCommand implements Command {
                     "\t!ships random 20  –  gives a list of 20 random ships";
         }
 
-        public void rShipList(int amount, MessageReceivedEvent event) {
+        void rShipList(int amount, MessageReceivedEvent event) {
             String list = "";
 
             if(amount > 30) {
@@ -144,7 +145,7 @@ public class ShipsCommand implements Command {
             } event.getTextChannel().sendMessage(list).complete();
         }
 
-        public void sendRandomShip(MessageReceivedEvent event){
+        void sendRandomShip(MessageReceivedEvent event){
             Ship ship = get();
             event.getTextChannel().sendMessage(
                     "**" + ship.name + "** " + ship.rarity.toEmoji()
@@ -188,7 +189,7 @@ public class ShipsCommand implements Command {
             return "\t!ships info <SomeShip>  –  displays stats about the specified ship";
         }
 
-        public void sendInfo(Ship ship, MessageReceivedEvent event) {
+        void sendInfo(Ship ship, MessageReceivedEvent event) {
             event.getTextChannel().sendMessage(ship.desc()).complete();
         }
 

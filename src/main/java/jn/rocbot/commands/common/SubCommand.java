@@ -11,11 +11,22 @@ public interface SubCommand{
     }
 
     default boolean isInvoke(String arg){
-        if(arg.toLowerCase().equals(invoke().toLowerCase())) return true;
-        if(getConfig().OptionalInvokes.length != 0){
-            for (String opt : getConfig().OptionalInvokes){
-                if(opt.toLowerCase().equals(arg)) return true;
+        if(getConfig().ignoreCase) {
+            if (arg.equals(invoke())) return true;
+            if (getConfig().OptionalInvokes.length != 0) {
+                for (String opt : getConfig().OptionalInvokes) {
+                    if (opt.equals(arg)) return true;
+                }
             }
-        } return false;
+            return false;
+        } else {
+            if (arg.toLowerCase().equals(invoke().toLowerCase())) return true;
+            if (getConfig().OptionalInvokes.length != 0) {
+                for (String opt : getConfig().OptionalInvokes) {
+                    if (opt.toLowerCase().equals(arg.toLowerCase())) return true;
+                }
+            }
+            return false;
+        }
     }
 }

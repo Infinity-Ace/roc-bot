@@ -5,8 +5,9 @@ import jn.rocbot.utils.Formatter;
 
 import java.util.HashMap;
 
-public class Aura implements Formatter{
-    public final String name;
+import static jn.rocbot.ships.Ship.*;
+
+public class Aura extends Ship.ShipProperty implements Formatter{
     public final String desc;
     public final String ultimateName;
     public final HashMap<String, String> properties;
@@ -14,7 +15,7 @@ public class Aura implements Formatter{
     public final HashMap<String, String> formatting;
 
     public Aura(String name, String desc, String ultimateName, HashMap<String, String> properties, HashMap<String, String> ultimateProperties, HashMap<String, String> formatting) {
-        this.name = name;
+        super(name);
         this.desc = desc;
         this.ultimateName = ultimateName;
         this.properties = properties;
@@ -37,7 +38,7 @@ public class Aura implements Formatter{
         }
 
         desc.addLine("\nUltimate: " + italic(ultimateName));
-        desc.addLine("\tDescription: " + ultimateProperties.get("desc"));
+        desc.addLine("\tShipDescription: " + ultimateProperties.get("desc"));
         return desc.get();
     }
 

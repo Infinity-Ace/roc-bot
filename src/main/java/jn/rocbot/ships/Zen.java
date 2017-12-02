@@ -5,8 +5,7 @@ import jn.rocbot.utils.Formatter;
 
 import java.util.HashMap;
 
-public class Zen implements Formatter{
-    public final String name;
+public class Zen extends Ship.ShipProperty implements Formatter{
     public final String desc;
 
     public final String ultimateName;
@@ -16,7 +15,7 @@ public class Zen implements Formatter{
     private final HashMap<String, String> formatting;
 
     public Zen(String name, String desc, String ultimateName, String ultimateDesc, HashMap<String, String> properties, HashMap<String, String> formatting) {
-         /*  */ this.name = name;
+         /*  */ super(name);
          /*  */ this.desc = desc;
         this.ultimateName = ultimateName;
         this.ultimateDesc = ultimateDesc;
@@ -40,7 +39,7 @@ public class Zen implements Formatter{
         }
 
         desc.addLine("Ultimate: " + italic(ultimateName));
-        desc.addLine("\tDescription: " + this.ultimateDesc);
+        desc.addLine("\tShipDescription: " + this.ultimateDesc);
 
         return desc.get();
     }

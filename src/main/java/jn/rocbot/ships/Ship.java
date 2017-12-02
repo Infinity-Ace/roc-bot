@@ -1,9 +1,8 @@
 package jn.rocbot.ships;
 
-import jn.rocbot.info.Description;
+import jn.rocbot.info.ShipDescription;
 import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
-import jn.rocbot.info.stores.ShipStore;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 
 public class Ship implements Formatter{
@@ -30,7 +29,17 @@ public class Ship implements Formatter{
     }
 
     public MessageEmbed desc(){
-        return new Description(this).get();
+        return new ShipDescription(this).get();
     }
 
+    public enum ShipPropertyType {
+        Aura, Zen, Weapon, Rarity, None;
+    }
+
+    public static abstract class ShipProperty {
+        public final String name;
+        public ShipProperty(String name){
+            this.name = name;
+        }
+    }
 }

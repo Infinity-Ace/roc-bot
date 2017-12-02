@@ -78,11 +78,9 @@ public class WeaponStore {
     }
 
     public static boolean isWeapon(String weaponName){
-        boolean found = false;
         for(Weapon weapon: WEAPONS){
-            if(weapon.name.toLowerCase().equals(weaponName.toLowerCase())) { found = true; break; }
-        }
-        return found;
+            if(weapon.name.toLowerCase().equals(weaponName.toLowerCase())) return true;
+        } return false;
     }
 
     public static Weapon fromName(String name) throws WeaponNotFoundException{

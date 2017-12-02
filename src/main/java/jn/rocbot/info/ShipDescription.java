@@ -8,10 +8,10 @@ import net.dv8tion.jda.core.entities.MessageEmbed;
 
 import java.awt.*;
 
-public class Description implements Formatter{
+public class ShipDescription implements Formatter{
     private EmbedBuilder desc;
 
-    public Description(Ship ship){
+    public ShipDescription(Ship ship){
         desc = new EmbedBuilder().setTitle(bold(ship.name + " " + ship.rarity.toEmoji()));
 
         Color color = null;

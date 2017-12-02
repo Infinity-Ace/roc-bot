@@ -364,7 +364,7 @@
       "name": "Zephyr",
       "weapon": {
         "damage type":"ap",
-        "damage output":31.24,
+        "damage output":31.25,
         "name": "Photon rails"
       },
       "aura": "Point defense", "zen": "Kappa drive", "r":1
@@ -383,6 +383,7 @@
       "name": "502-Q8",
       "weapon": {
         "damage type":"sb",
+        "damage outpur":31.25,
         "name": "Plasma compresser"
       },
       "aura": "Phalanx", "zen": "Mega laser", "r":1
@@ -547,7 +548,7 @@
         "damage output":25,
         "name": "Blast laser"
       },
-      "aura": "Vorpal lance", "zen": "Reflex EMP", "r":2
+      "aura": "Missile swarm", "zen": "Reflex EMP", "r":2
     },
     {
       "name": "Trinity",

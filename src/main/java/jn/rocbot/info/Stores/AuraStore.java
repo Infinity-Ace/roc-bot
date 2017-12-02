@@ -99,5 +99,12 @@ public class AuraStore {
             super(message);
         }
     }
+
+    public static boolean isAura(String string){
+        for (Aura aura : AURAS)
+            if(aura.name.toLowerCase().equals(string.toLowerCase())) return true;
+
+        return false;
+    }
 }
 

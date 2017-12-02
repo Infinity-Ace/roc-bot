@@ -3,12 +3,14 @@ package jn.rocbot.commands.common;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public interface Command {
-    boolean called(String[] args, MessageReceivedEvent event);
-    void action(String[] args, MessageReceivedEvent event);
-    String help();
-    boolean executed(boolean success, MessageReceivedEvent event);
+    //<editor-fold desc="Defaults">
+    default boolean called(String[] args, MessageReceivedEvent event) {
+        return true;
+    }
 
-    CommandConfig getConfig();
+    default boolean executed(boolean success, MessageReceivedEvent event) {
+        return true;
+    }
 
     default CommandType getType(){
         return getConfig().type;
@@ -17,6 +19,13 @@ public interface Command {
     default void sendMessage(String msg, MessageReceivedEvent event){
         event.getTextChannel().sendMessage(msg).complete();
     }
+    //</editor-fold>
+
+    void action(String[] args, MessageReceivedEvent event);
+
+    String help();
+
+    CommandConfig getConfig();
 
     enum PREFIX {
         NORMAL("!"),

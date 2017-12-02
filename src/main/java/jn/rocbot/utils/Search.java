@@ -1,10 +1,12 @@
 package jn.rocbot.utils;
 
+import jn.rocbot.commands.normalcommands.withsubcommand.WithFilter;
+import jn.rocbot.commands.normalcommands.withsubcommand.WithProperty;
 import jn.rocbot.info.stores.ShipStore;
 import jn.rocbot.ships.Ship;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringJoiner;
 
@@ -25,7 +27,6 @@ public class Search {
                 throw new ShipStore.ShipNotFoundException(String.format("FATAL: no ship named %s!", shipName));
             }
         }
-
 
         Ship highestHit = ShipStore.randomShip();
         for(Ship key : ratios.keySet()){
@@ -59,5 +60,18 @@ public class Search {
         } returned.add("Most matching is: " + highestHit.name + " with a ratio of " + ratios.get(highestHit));
 
         return returned.toString();
+    }
+
+    public static Ship[] findShips(WithFilter filter){
+        ArrayList<Ship> ships = new ArrayList<>();
+
+        for(Ship ship : ShipStore.SHIPS){
+            for(WithProperty property : filter.properties) {
+                if(property.isFullFilledBy(ship)) {
+                    ships.add(ship);
+                    break;
+                }
+            }
+        } return ships.toArray(new Ship[ships.size()]);
     }
 }
