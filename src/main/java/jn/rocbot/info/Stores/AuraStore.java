@@ -61,14 +61,29 @@ public class AuraStore {
                 //String name, String desc, String ultimateName, HashMap<String, String> properties,
                 //HashMap<String, String> ultimateProperties
 
-                AURAS.add(new Aura(
-                        jsonaura.get("name").getAsString(),
-                        jsonaura.get("desc").getAsString(),
-                        ultimatePropertiesList.get("name"),
-                        propertiesList,
-                        ultimatePropertiesList,
-                        formatting
-                ));
+                if(!jsonaura.has("abbreviations")) {
+                    AURAS.add(new Aura(
+                            jsonaura.get("name").getAsString(),
+                            jsonaura.get("desc").getAsString(),
+                            ultimatePropertiesList.get("name"),
+                            propertiesList,
+                            ultimatePropertiesList,
+                            formatting
+                    ));
+                } else {
+                    ArrayList<String> abbreviations = new ArrayList<>();
+                    JsonArray jsonAbbreviations = jsonaura.getAsJsonArray("abbreviations");
+                    for (int i = 0; i < jsonAbbreviations.size(); i++){
+                        abbreviations.add(jsonAbbreviations.get(i).getAsString());
+                    } AURAS.add(new Aura(
+                            jsonaura.get("name").getAsString(),
+                            jsonaura.get("desc").getAsString(),
+                            ultimatePropertiesList.get("name"),
+                            propertiesList,
+                            ultimatePropertiesList,
+                            formatting
+                    ).setAbbreviations(abbreviations.toArray(new String[jsonAbbreviations.size()])));
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -91,6 +106,9 @@ public class AuraStore {
     public static Aura fromName(String name) throws AuraNotFoundException {
         for(Aura aura : AURAS){
             if(name.toLowerCase().equals(aura.name.toLowerCase())) return aura;
+            for (String abbreviation : aura.abbreviations){
+                if(abbreviation.toLowerCase().equals(name.toLowerCase())) return aura;
+            }
         } throw new AuraNotFoundException("Found no aura named: " + name);
     }
 
@@ -101,10 +119,12 @@ public class AuraStore {
     }
 
     public static boolean isAura(String string){
-        for (Aura aura : AURAS)
-            if(aura.name.toLowerCase().equals(string.toLowerCase())) return true;
-
-        return false;
+        for (Aura aura : AURAS) {
+            if (aura.name.toLowerCase().equals(string.toLowerCase())) return true;
+            for(String abbreviation : aura.abbreviations){
+                if(abbreviation.toLowerCase().equals(string.toLowerCase())) return true;
+            }
+        } return false;
     }
 }
 

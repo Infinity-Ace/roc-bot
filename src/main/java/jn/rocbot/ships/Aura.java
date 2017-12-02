@@ -14,6 +14,8 @@ public class Aura extends Ship.ShipProperty implements Formatter{
     public final HashMap<String, String> ultimateProperties;
     public final HashMap<String, String> formatting;
 
+    public String[] abbreviations = {};
+
     public Aura(String name, String desc, String ultimateName, HashMap<String, String> properties, HashMap<String, String> ultimateProperties, HashMap<String, String> formatting) {
         super(name);
         this.desc = desc;
@@ -21,6 +23,11 @@ public class Aura extends Ship.ShipProperty implements Formatter{
         this.properties = properties;
         this.ultimateProperties = ultimateProperties;
         this.formatting = formatting;
+    }
+
+    public Aura setAbbreviations(String[] abbreviations){
+        this.abbreviations = abbreviations;
+        return this;
     }
 
     public String simpleDesc(boolean withTitle){

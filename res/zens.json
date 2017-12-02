@@ -3,6 +3,7 @@
     {
       "name":"Kappa drive",
       "desc":"Attracts and generates energy particles.",
+      "abbreviations":["kd"],
       "properties":{
         "attraction power":214,
         "generator efficiency":157,
@@ -17,6 +18,7 @@
     {
       "name":"Personal Shield",
       "desc":"Become Invulnerable for a short time.",
+      "abbreviations":["ps"],
       "properties": {
         "max duration":3.5,
         "max duration-format":"s",
@@ -32,10 +34,11 @@
       }
     },
     
-     {
+    {
       "name":"Mega bomb",
       "desc":"Damages enemies on screen in a large radius",
-      "properties": {
+      "abbreviations":["mb"],
+       "properties": {
         "damage":30,
         "radius":400,
         "charge duration":2,
@@ -55,6 +58,7 @@
     {
       "name":"Mega Laser",
       "desc":"Deals massive damage in a straight line in front of your ship.also destroys bullets.",
+      "abbreviations":["ml"],
       "properties": {
         "damage":170,
         "charge duration":1.9,
@@ -69,29 +73,30 @@
         "name":"Beam width",
         "desc":"Makes the beam 50% wider"
       }
-    },
-    
-     {
-      "name":"Teleport",
-      "desc":"Teleports the ship anywhere on screen",
-      "properties": {
-        "charge duration":0.4,
-        "charge duration-format":"s",
-        "charge time increase":0.2,
-        "charge time increase-format":"s",
-        "charge time recovery":"fast"
-
       },
-      "ult": {
-        "name":"Arrival EMP",
-        "desc":"destroys bullets in a small radius around your ship upon arrival"
-      }
-    },
-    
-     {
+
+    {
+        "name":"Teleport",
+        "desc":"Teleports the ship anywhere on screen",
+        "abbreviations":["tp"],
+         "properties": {
+          "charge duration":0.4,
+          "charge duration-format":"s",
+          "charge time increase":0.2,
+          "charge time increase-format":"s",
+          "charge time recovery":"fast"
+        },
+        "ult": {
+          "name":"Arrival EMP",
+          "desc":"destroys bullets in a small radius around your ship upon arrival"
+        }
+      },
+
+    {
       "name":"Reflex EMP",
       "desc":"Destroys bullets in a moderate radius around your ship",
-      "properties": {
+      "abbreviations":["re"],
+       "properties": {
         "radius":225,
         "charge duration":0.6,
         "charge duration-format":"s",
@@ -105,9 +110,11 @@
         "desc":"deals moderate damage to ships in the radius of the blast"
       }
     },
+
     {
       "name": "Tracking Minigun",
       "desc": "activates a tracking minigun when charged",
+      "abbreviations":["tm"],
       "properties": {
         "target tracking": "fast",
         "damage": 210,
@@ -124,9 +131,11 @@
         "desc": "shoots homing missiles along with the minigun"
       }
     },
+
     {
       "name":"Trinity teleport",
       "desc":"shoots a moderate damage projectile upon arrival",
+      "abbreviations":["ttp"],
       "properties": {
         "damage":8,
         "charge duration":0.4,

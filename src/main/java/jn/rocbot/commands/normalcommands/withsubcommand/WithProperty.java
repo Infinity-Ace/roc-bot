@@ -1,5 +1,7 @@
 package jn.rocbot.commands.normalcommands.withsubcommand;
 
+import jn.rocbot.info.stores.AuraStore;
+import jn.rocbot.info.stores.ZenStore;
 import jn.rocbot.ships.Ship;
 
 public class WithProperty {
@@ -20,9 +22,27 @@ public class WithProperty {
             case HasShipProperty:
                 switch (value.split(":")[0]){
                     case "aura":
-                        return ship.aura.name.toLowerCase().equals(value.split(":")[1].toLowerCase());
+                        try {
+                            return ship.aura.name.toLowerCase().equals(
+                                    AuraStore.fromName(
+                                            value.split(":")[1].toLowerCase()
+                                    ).name.toLowerCase()
+                            );
+
+                        } catch (AuraStore.AuraNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     case "zen":
-                        return ship.zen.name.toLowerCase().equals(value.split(":")[1].toLowerCase());
+                        try {
+                            return ship.zen.name.toLowerCase().equals(
+                                    ZenStore.fromName(
+                                            value.split(":")[1].toLowerCase()
+                                    ).name.toLowerCase()
+                            );
+
+                        } catch (ZenStore.ZenNotFoundException e) {
+                            e.printStackTrace();
+                        }
                     case "weapon":
                         return ship.weapon.name.toLowerCase().equals(value.split(":")[1].toLowerCase());
                     case "rarity":

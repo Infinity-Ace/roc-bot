@@ -3,6 +3,7 @@
     {
       "name":"Vorpal lance",
       "desc":"Launches a piercing lance that deals considerable damage",
+      "abbreviations":["vl"],
       "properties": {
         "damage": 39.6,
         "count": 4
@@ -16,6 +17,7 @@
     {
       "name":"Laser Storm",
       "desc":"Releases Laser Moons for a short time that deal great damage",
+      "abbreviations":["ls"],
       "properties": {
         "laser moons":5,
         "max duration":4.5,
@@ -32,6 +34,7 @@
     {
       "name":"Missile swarm",
       "desc":"releases a volley of high-burst damage missiles",
+      "abbreviations":["ms"],
       "properties":{
         "missiles":46,
         "max damage":138,
@@ -47,6 +50,7 @@
     {
       "name": "Ion cannon",
       "desc":"launches a projectile that will stun whatever it hits",
+      "abbreviations":["ic"],
       "properties":{
         "stun time":4,
         "stun time-format":"s",
@@ -61,6 +65,7 @@
     {
       "name":"Bullet EMP",
       "desc":"destroys all bullets in it's radius",
+      "abbreviations":["be"],
       "properties": {
         "max radius":450
       },
@@ -73,6 +78,7 @@
     {
       "name":"Phalanx",
       "desc":"created a temporary shield in front of your ship",
+      "abbreviations":["p", "ph"],
       "properties":{
         "phalanx strength":150,
         "counters":6
@@ -86,6 +92,7 @@
     {
       "name":"Stun EMP",
       "desc":"stuns all enemies in the radius",
+      "abbreviations":["se"],
       "properties":{
         "max radius":450,
         "max stun time":5,
@@ -100,6 +107,7 @@
     {
       "name":"Chrono Field",
       "desc":"phases your ship out for a limited time in a small radius",
+      "abbreviations":["cf"],
       "properties": {
         "max duration":5,
         "max duration-format":"s",
@@ -115,6 +123,7 @@
     {
       "name":"Point Defense",
       "desc":"destroys a small amount of bullets around the ship",
+      "abbreviations":["pd"],
       "properties":{
         "radius":410,
         "laser beams":10,
@@ -129,6 +138,7 @@
     {
       "name":"Blade storm",
       "desc":"Variant of Missile Swarm. deals less damage but requires much less energy to use",
+      "abbreviations":["bs"],
       "properties":{
         "max radius":500,
         "max damage":100
@@ -141,6 +151,7 @@
     {
       "name":"Barrier",
       "desc":"Erects a circular barrier that absorbs enemy fire",
+      "abbreviations":["b", "ba"],
       "properties": {
         "max radius":450,
         "Barrier Strength":200,

@@ -59,7 +59,6 @@ public class Bot extends ListenerAdapter {
 
         if(IS_EVIL_TEST_TWIN){
             log.log(WARNING, ("\n\t+------------------ I AM EVIL! ------------------+\n"));
-            phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Evil twin-Roc-bot");
         } else { //Does not work!
             phoenix2.getController().setNickname(phoenix2.getSelfMember(), "Roc-bot");
         }

@@ -3,6 +3,7 @@ package jn.rocbot.ships;
 import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class Zen extends Ship.ShipProperty implements Formatter{
@@ -13,6 +14,7 @@ public class Zen extends Ship.ShipProperty implements Formatter{
 
     public final HashMap<String, String> properties;
     private final HashMap<String, String> formatting;
+    public String[] abbreviations;
 
     public Zen(String name, String desc, String ultimateName, String ultimateDesc, HashMap<String, String> properties, HashMap<String, String> formatting) {
          /*  */ super(name);
@@ -43,6 +45,12 @@ public class Zen extends Ship.ShipProperty implements Formatter{
 
         return desc.get();
     }
+
+    public Zen setAbbreviations(String[] abbreviations){
+        this.abbreviations = abbreviations;
+        return this;
+    }
+
 
     public boolean isInteger(String str) {
         int size = str.length();

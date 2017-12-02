@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import jn.rocbot.ships.Ship;
 import jn.rocbot.ships.Zen;
 
 import java.io.*;
@@ -50,10 +51,19 @@ public class ZenStore {
                 JsonObject ult = jsonzen.getAsJsonObject("ult");
                 String ultimateName = ult.get("name").getAsString();
                 String ultimateDesc = ult.get("desc").getAsString();
-
-                ZENS.add(new Zen(
-                        name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
-                ));
+                if(!jsonzen.has("abbreviations")) {
+                    ZENS.add(new Zen(
+                            name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
+                    ));
+                } else {
+                    ArrayList<String> abbreviations = new ArrayList<>();
+                    JsonArray jsonAbbreviations = jsonzen.getAsJsonArray("abbreviations");
+                    for (int i = 0; i < jsonAbbreviations.size(); i++){
+                        abbreviations.add(jsonAbbreviations.get(i).getAsString());
+                    } ZENS.add(new Zen(
+                            name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
+                    ).setAbbreviations(abbreviations.toArray(new String[jsonAbbreviations.size()])));
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -64,16 +74,19 @@ public class ZenStore {
     }
 
     public static boolean isZen(String zenName){
-        boolean found = false;
         for(Zen zen : ZENS){
-            if(zen.name.toLowerCase().equals(zenName.toLowerCase())) { found = true; break; }
-        }
-        return found;
+            for(String abbreviation : zen.abbreviations) {
+                if (zenName.toLowerCase().equals(abbreviation.toLowerCase())) return true;
+            } if(zen.name.toLowerCase().equals(zenName.toLowerCase())) return true;
+        } return false;
     }
 
     public static Zen fromName(String name) throws ZenNotFoundException {
         for(Zen zen : ZENS){
             if(name.toLowerCase().equals(zen.name.toLowerCase())) return zen;
+            for(String abbreviation: zen.abbreviations) {
+              if(abbreviation.toLowerCase().equals(name.toLowerCase())) return zen;
+            }
         } throw new ZenNotFoundException();
     }
 
