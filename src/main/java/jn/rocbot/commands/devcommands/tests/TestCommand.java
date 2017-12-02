@@ -15,6 +15,7 @@ public class TestCommand implements Command {
 
         TEST_COMMANDS.add(new IsShipTest(this));
         TEST_COMMANDS.add(new SearchTestSub(this));
+        TEST_COMMANDS.add(new EveryXHasY());
     }
 
     @Override

@@ -116,7 +116,7 @@ public class WithSubCommand implements SubCommand {
                 ); break;
             case DamageType:
                 try {
-                    String damageType = "";
+                    String damageType;
                     switch(passed.toString().toLowerCase()) {
                         case "sb": damageType = "sb"; break;
                         case "ap": damageType = "ap"; break;

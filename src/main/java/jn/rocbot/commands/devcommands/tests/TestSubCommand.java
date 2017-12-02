@@ -24,7 +24,7 @@ public abstract class TestSubCommand implements SubCommand {
         return "This is a dev command without help";
     }
 
-    public void action(String[] args, MessageReceivedEvent event) {}
+    public abstract void action(String[] args, MessageReceivedEvent event);
 
     private CommandConfig config = new CommandConfig(CommandType.DEV, ignoreCase);
 
@@ -33,5 +33,7 @@ public abstract class TestSubCommand implements SubCommand {
         return config;
     }
 
-
+    protected void sendMessage(String message, MessageReceivedEvent event){
+        event.getTextChannel().sendMessage(message).complete();
+    }
 }
