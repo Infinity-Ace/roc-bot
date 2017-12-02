@@ -1,6 +1,7 @@
 package jn.rocbot.commands.normalcommands.withsubcommand;
 
 
+import jn.rocbot.Main;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.commands.common.SubCommand;
@@ -10,13 +11,17 @@ import jn.rocbot.info.stores.WeaponStore;
 import jn.rocbot.info.stores.ZenStore;
 import jn.rocbot.ships.RARITY;
 import jn.rocbot.ships.Ship;
+import jn.rocbot.utils.Log;
 import jn.rocbot.utils.Search;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import javax.naming.OperationNotSupportedException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.StringJoiner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WithSubCommand implements SubCommand {
     private CALLER caller;
@@ -65,24 +70,51 @@ public class WithSubCommand implements SubCommand {
         return c;
     }
 
+    private static Logger log = Logger.getLogger(Log.class.getName());
+
+    private void dLog(String msg){
+        if(Main.DEBUG) log.log(Level.INFO, msg);
+    }
+
     private WithFilter getShipsFilter(String[] passed_args){
         //StringJoiner args = new StringJoiner(" ");
         //for (String arg : passed_args) args.add(arg);
         ArrayList<WithProperty> properties = new ArrayList<>();
+        StringJoiner passed = new StringJoiner(" ");
+        for (String arg : passed_args) passed.add(arg);
 
-        switch (getShipPropertyType(passed_args[0])) {
+        dLog("Filtering ships, received" +
+                "\n\targs: " + Arrays.toString(passed_args) +
+                "\n\tJoined: " + passed.toString() +
+                "\n\tType: " + getShipPropertyType(passed.toString()).name());
+
+        switch (getShipPropertyType(passed.toString())) {
             case Aura:
-                properties.add(new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty, "aura:" + passed_args[0].toLowerCase()));
-                break;
+                properties.add(
+                        new WithProperty(
+                                WithProperty.PROPERTY_TYPE.HasShipProperty,
+                                "aura:" + passed.toString().toLowerCase()
+                        )
+                ); break;
             case Zen:
-                properties.add(new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty, "zen:" + passed_args[0].toLowerCase()));
-                break;
+                properties.add(
+                        new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
+                                "zen:" + passed.toString().toLowerCase()
+                        )
+                ); break;
             case Weapon:
-                properties.add(new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty, "weapon:" + passed_args[0].toLowerCase()));
-                break;
+                properties.add(
+                        new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
+                                "weapon:" +passed.toString().toLowerCase()
+                        )
+                ); break;
             case Rarity:
-                properties.add(new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty, "rarity:" + passed_args[0].toLowerCase()));
-                break;
+                properties.add(
+                        new WithProperty(
+                                WithProperty.PROPERTY_TYPE.HasShipProperty,
+                                "rarity:" + RARITY.fromString(passed.toString().toLowerCase()).name.toLowerCase()
+                        )
+                ); break;
             case None:
                 break;
         }
@@ -107,6 +139,7 @@ public class WithSubCommand implements SubCommand {
         switch (caller){
             case Ships:
                 Ship[] results =  Search.findShips(filter);
+                log.log(Level.INFO, filter.hrInfo());
                 if(filter.properties.length > 0) {
                     StringJoiner filtered = new StringJoiner(", ");
 

@@ -36,6 +36,7 @@ public class Bot extends ListenerAdapter {
     static {
         PARSER = new RocParser();
     }
+
     @Override
     public void onReady(ReadyEvent event){
         //Just some info to the log
@@ -124,10 +125,10 @@ public class Bot extends ListenerAdapter {
     }
 
     private void dlog(String msg){
-        log.log(FINE, msg);
+        if(Main.DEBUG) log.log(INFO, msg);
     }
     private void vlog(String msg){
-        log.log(FINER, msg);
+        if(Main.VERBOSE) log.log(INFO, msg);
     }
 
     /**
@@ -175,6 +176,8 @@ public class Bot extends ListenerAdapter {
             );
         }
     }
+
+
 
     /**
      * Makes the bot say something in the bot-channel in the phoenix II server

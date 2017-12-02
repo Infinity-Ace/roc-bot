@@ -64,7 +64,7 @@ public class RocParser {
 
 
         public String hrInfo(){
-            return "Commandreceived:"
+            return "Command received:"
                     + "\n\tInvoke: " + invoke
                     + "\n\tRaw: " + raw
                     + "\n\tCommandType: " + config.type.stringName

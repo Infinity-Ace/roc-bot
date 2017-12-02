@@ -17,11 +17,11 @@ public class Main {
     public static boolean VERBOSE;
     public static boolean LOG_MESSAGES;
 
-    public static String TOKEN;
+    private static String TOKEN;
 
     public static net.dv8tion.jda.core.JDA JDA;
 
-    public static String[] ARGUMENTS;
+    private static String[] ARGUMENTS;
 
     private static Logger log = Logger.getLogger(Log.class.getName());
 
@@ -33,7 +33,6 @@ public class Main {
         log.log(Level.INFO, "Provided token: " + args[0]);
 
         //Just sets some variables from the main method arguments
-        //See the Procfile for the execution
         TOKEN = args[0];
         DEBUG = Boolean.parseBoolean(args[1].toLowerCase());
         VERBOSE = Boolean.parseBoolean(args[2].toLowerCase());

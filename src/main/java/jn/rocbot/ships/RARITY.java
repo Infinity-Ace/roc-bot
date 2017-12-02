@@ -1,5 +1,7 @@
 package jn.rocbot.ships;
 
+import java.util.StringJoiner;
+
 public final class RARITY {
     public static RARITY COMMON = new RARITY("Common", "<:common:378807923318718464>");
     public static RARITY RARE = new RARITY("Rare", "<:rare:378807923377307648>");
@@ -34,22 +36,31 @@ public final class RARITY {
         } throw new ArrayIndexOutOfBoundsException("The rarity must be from 1 - 3 not: " + i);
     }
 
-    public static boolean isRarity(String string){
+    public static boolean isRarity(String name){
+        String proccesed_name = name.replace("rarity ", "");
+
         for (RARITY rarity : values())
-            if(rarity.name.toLowerCase().equals(string.toLowerCase())) return true;
+            if(rarity.name.toLowerCase().equals(proccesed_name.toLowerCase())) return true;
 
         return false;
     }
 
     public static RARITY fromString(String name){
-        switch (name){
-            case "Common":
+        String[] temp =  name.replace("rarity", "").split(" ");
+        StringJoiner proccessed = new StringJoiner(" ");
+        for (String string : temp) {
+            if(!string.isEmpty()) proccessed.add(string);
+        }
+
+        switch (proccessed.toString().toLowerCase()){
+            case "common":
                 return COMMON;
-            case "Rare":
+            case "rare":
                 return RARE;
-            case "Super Rare":
+            case "super rare":
                 return SUPER_RARE;
             default: throw new IllegalArgumentException("There is no rarity named " + name + "!");
         }
     }
 }
+

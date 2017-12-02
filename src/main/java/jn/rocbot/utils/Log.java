@@ -1,5 +1,7 @@
 package jn.rocbot.utils;
 
+import jn.rocbot.Main;
+
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -22,5 +24,9 @@ public class Log {
         fh.setFormatter(new SimpleFormatter());
         l.addHandler(fh);
         l.setLevel(Level.CONFIG);
+    }
+
+    public static void setLogLevel(Level level){
+        LOGGER.setLevel(level);
     }
 }
