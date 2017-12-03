@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 
 public class Search {
     public static Ship findShip(String searchString) throws ShipStore.ShipNotFoundException {
-        return findShip(searchString, 40);
+        return findShip(searchString, 30);
     }
 
     public static Ship findShip(String searchString, int ratio) throws ShipStore.ShipNotFoundException {
