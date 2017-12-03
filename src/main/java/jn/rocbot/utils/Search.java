@@ -12,10 +12,10 @@ import java.util.StringJoiner;
 
 public class Search {
     public static Ship findShip(String searchString) throws ShipStore.ShipNotFoundException {
-        return findShip(searchString, 30);
+        return findShip(searchString, 55);
     }
 
-    public static Ship findShip(String searchString, int ratio) throws ShipStore.ShipNotFoundException {
+    public static Ship findShip(String searchString, int lowesetRatio) throws ShipStore.ShipNotFoundException {
         String[] shipNames = ShipStore.allNames().split("\n");
 
         HashMap<Ship, Integer> ratios = new HashMap<>();
@@ -34,7 +34,7 @@ public class Search {
         for(Ship key : ratios.keySet()){
             if(ratios.get(key) > ratios.get(highestHit)) highestHit = key;
         }
-        if(ratios.get(highestHit) > ratio)
+        if(ratios.get(highestHit) > lowesetRatio)
             return highestHit;
         else
             throw new ShipStore.ShipNotFoundException("Found no ship with name matching " + searchString);
