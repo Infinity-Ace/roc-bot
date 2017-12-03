@@ -8,4 +8,4 @@
 
 ##Ideas
 1.  Add stuff here @Margakis
-    - [ ] 
+    - [ ] Stuff
