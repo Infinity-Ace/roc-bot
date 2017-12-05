@@ -4,6 +4,7 @@ import jn.rocbot.info.stores.AuraStore;
 import jn.rocbot.info.stores.ZenStore;
 import jn.rocbot.ships.DamageType;
 import jn.rocbot.ships.Ship;
+import jn.rocbot.utils.Search;
 
 public class WithProperty {
     public PROPERTY_TYPE type;
@@ -25,8 +26,8 @@ public class WithProperty {
                     case "aura":
                         try {
                             return ship.aura.name.toLowerCase().equals(
-                                    AuraStore.fromName(
-                                            value.split(":")[1].toLowerCase()
+                                    Search.findAura(
+                                            value.split(":")[1].toLowerCase(), WithSubCommand.LOWEST_MATCH_RATIO
                                     ).name.toLowerCase()
                             );
 
@@ -36,8 +37,8 @@ public class WithProperty {
                     case "zen":
                         try {
                             return ship.zen.name.toLowerCase().equals(
-                                    ZenStore.fromName(
-                                            value.split(":")[1].toLowerCase()
+                                    Search.findZen(
+                                            value.split(":")[1].toLowerCase(), WithSubCommand.LOWEST_MATCH_RATIO
                                     ).name.toLowerCase()
                             );
 

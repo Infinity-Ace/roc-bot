@@ -10,6 +10,8 @@ import jn.rocbot.ships.Aura;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.StringJoiner;
 
 public class AuraStore {
     public static ArrayList<Aura> AURAS = new ArrayList<>();
@@ -103,7 +105,11 @@ public class AuraStore {
         return state;
     }
 
-    public static Aura fromName(String name) throws AuraNotFoundException {
+    public static Aura randomAura(){
+        return AURAS.get(new Random().nextInt(AURAS.size() - 1));
+    }
+
+    public static Aura getAura(String name) throws AuraNotFoundException {
         for(Aura aura : AURAS){
             if(name.toLowerCase().equals(aura.name.toLowerCase())) return aura;
             for (String abbreviation : aura.abbreviations){
@@ -125,6 +131,13 @@ public class AuraStore {
                 if(abbreviation.toLowerCase().equals(string.toLowerCase())) return true;
             }
         } return false;
+    }
+
+    public static String allNames(){
+        StringJoiner joiner = new StringJoiner("\n");
+        for(Aura aura : AURAS){
+            joiner.add(aura.name.toLowerCase());
+        } return joiner.toString();
     }
 }
 
