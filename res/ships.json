@@ -128,6 +128,7 @@
       "name": "Kada Veni",
       "weapon": {
         "damage type":"ap",
+        "damage output":25,
         "name":"Pulse battery"
       },
       "aura": "Barrier", "zen": "Mega bomb", "r":1
@@ -207,6 +208,9 @@
       "name": "Juggernaut",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.25,
+        "blast damage":"Low",
+        "blast radius":140,
         "name": "Devastator cannon"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":2
