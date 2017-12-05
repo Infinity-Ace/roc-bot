@@ -529,6 +529,7 @@
       "name": "Corsair",
       "weapon": {
         "damage type":"hi",
+	"damage output":32.5,
         "name": "Rocket pods"
       },
       "aura": "Missile swarm", "zen": "Tracking minigun", "r":3
