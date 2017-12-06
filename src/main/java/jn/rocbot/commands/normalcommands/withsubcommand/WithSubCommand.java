@@ -27,6 +27,8 @@ import java.util.logging.Logger;
 public class WithSubCommand implements SubCommand {
     private CALLER caller;
 
+    static final int LOWEST_MATCH_RATIO = 60;
+
     public WithSubCommand(CALLER caller) {
         this.caller = caller;
     }
@@ -49,6 +51,7 @@ public class WithSubCommand implements SubCommand {
             case Ships:
                 return getShipsFilter(args);
             case Auras:
+                break;
             default:
                 try {
                     throw new OperationNotSupportedException(String.format("the with command does not support %s yet", caller.name()));
@@ -56,19 +59,6 @@ public class WithSubCommand implements SubCommand {
                     e.printStackTrace();
                 }
         } return null; //Hopefully it never gets here
-    }
-
-    private  <T> T[] concatenate (T[] a, T[] b) {
-        int aLen = a.length;
-        int bLen = b.length;
-
-        @SuppressWarnings("unchecked")
-        T[] c = (T[]) Array.newInstance(a.getClass().getComponentType(), aLen+bLen);
-
-        System.arraycopy(a, 0, c, 0, aLen);
-        System.arraycopy(b, 0, c, aLen, bLen);
-
-        return c;
     }
 
     private static Logger log = Logger.getLogger(Log.class.getName());
@@ -79,6 +69,7 @@ public class WithSubCommand implements SubCommand {
 
     private WithFilter getShipsFilter(String[] passed_args){
         ArrayList<WithProperty> properties = new ArrayList<>();
+
         StringJoiner passed = new StringJoiner(" ");
         for (String arg : passed_args) passed.add(arg);
 
@@ -89,18 +80,28 @@ public class WithSubCommand implements SubCommand {
 
         switch (getShipPropertyType(passed.toString())) {
             case Aura:
-                properties.add(
-                        new WithProperty(
-                                WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                "aura:" + passed.toString().toLowerCase()
-                        )
-                ); break;
+                try {
+                    properties.add(
+                            new WithProperty(
+                                    WithProperty.PROPERTY_TYPE.HasShipProperty,
+                                    "aura:" + Search.findAura(
+                                            passed.toString(), LOWEST_MATCH_RATIO
+                                    ).name.toLowerCase()
+                            )
+                    );
+                } catch (AuraStore.AuraNotFoundException ignored) { }
+                break;
             case Zen:
-                properties.add(
-                        new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                "zen:" + passed.toString().toLowerCase()
-                        )
-                ); break;
+                try {
+                    properties.add(
+                            new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
+                                    "zen:" + Search.findZen(
+                                            passed.toString().toLowerCase(), LOWEST_MATCH_RATIO
+                                    ).name.toLowerCase()
+                            )
+                    );
+                } catch (ZenStore.ZenNotFoundException ignored) { }
+                break;
             case Weapon:
                 properties.add(
                         new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
@@ -139,21 +140,34 @@ public class WithSubCommand implements SubCommand {
         return new WithFilter(properties.toArray(new WithProperty[properties.size()]));
     }
 
-    private Ship.ShipPropertyType getShipPropertyType(String search){
-        if(AuraStore.isAura(search))
+    private Ship.ShipPropertyType getShipPropertyType(String searchWord){
+
+        //First checking if the searchword is grammatically correct
+        if(AuraStore.isAura(searchWord))
             return Ship.ShipPropertyType.Aura;
 
-        if(ZenStore.isZen(search))
+        if(ZenStore.isZen(searchWord))
             return Ship.ShipPropertyType.Zen;
 
-        if(WeaponStore.isWeapon(search))
+        if(WeaponStore.isWeapon(searchWord))
             return Ship.ShipPropertyType.Weapon;
 
-        if(Rarity.isRarity(search))
+        if(Rarity.isRarity(searchWord))
             return Ship.ShipPropertyType.Rarity;
 
-        if(DamageType.isDamageType(search.replace("-", " ")))
+        if(DamageType.isDamageType(searchWord.replace("-", " ")))
             return Ship.ShipPropertyType.DamageType;
+
+        // Checking if it is almost correct
+        try {
+            Search.findAura(searchWord, LOWEST_MATCH_RATIO);
+            return Ship.ShipPropertyType.Aura;
+        } catch (AuraStore.AuraNotFoundException ignored) { }
+
+        try {
+            Search.findZen(searchWord, LOWEST_MATCH_RATIO);
+            return Ship.ShipPropertyType.Zen;
+        } catch (ZenStore.ZenNotFoundException ignored) { }
 
         return Ship.ShipPropertyType.None; //If none of the above has returned
     }
@@ -208,4 +222,16 @@ public class WithSubCommand implements SubCommand {
         return config;
     }
 
+    private  <T> T[] concatenate (T[] a, T[] b) {
+        int aLength = a.length;
+        int bLength = b.length;
+
+        @SuppressWarnings("unchecked")
+        T[] c = (T[]) Array.newInstance(a.getClass().getComponentType(), aLength+bLength);
+
+        System.arraycopy(a, 0, c, 0, aLength);
+        System.arraycopy(b, 0, c, aLength, bLength);
+
+        return c;
+    }
 }

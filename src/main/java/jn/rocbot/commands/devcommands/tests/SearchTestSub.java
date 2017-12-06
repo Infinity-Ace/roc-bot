@@ -18,11 +18,18 @@ class SearchTestSub extends TestSubCommand {
         sendResult(args, event);
     }
 
-    public void sendResult(String[] args, MessageReceivedEvent event){
+    public void sendResult(String[] args, MessageReceivedEvent event) {
         StringJoiner search = new StringJoiner(" ");
-        for (int i = 1; i < args.length; i++) {
+
+        for (int i = 2; i < args.length; i++) {
             search.add(args[i]);
-        } testCommand.sendMessage(new Search().testShipSearch(search.toString()), event);
+        } switch (args[1]) {
+            case "ship":
+                testCommand.sendMessage(new Search().testShipSearch(search.toString()), event);
+                break;
+            case "aura":
+                testCommand.sendMessage(new Search().testAuraSearch(search.toString()), event);
+        }
     }
 
     @Override public String invoke() {

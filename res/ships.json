@@ -128,7 +128,6 @@
       "name": "Kada Veni",
       "weapon": {
         "damage type":"ap",
-        "damage output":25,
         "name":"Pulse battery"
       },
       "aura": "Barrier", "zen": "Mega bomb", "r":1
@@ -208,9 +207,6 @@
       "name": "Juggernaut",
       "weapon": {
         "damage type":"ap",
-        "damage output":31.25,
-        "blast damage":"Low",
-        "blast radius":140,
         "name": "Devastator cannon"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":2
@@ -227,9 +223,6 @@
       "name": "Elyon",
       "weapon": {
         "damage type":"hi",
-	"damage output":31.25,
-	"capacity":280,
-	"capacity-format":"ms",
         "name": "Blaze laser"
       },
       "aura": "Laser storm", "zen": "Kappa drive", "r":1
@@ -536,7 +529,6 @@
       "name": "Corsair",
       "weapon": {
         "damage type":"hi",
-	"damage output":32.5,
         "name": "Rocket pods"
       },
       "aura": "Missile swarm", "zen": "Tracking minigun", "r":3
