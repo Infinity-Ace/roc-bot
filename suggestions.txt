@@ -43,3 +43,13 @@ cinnri dps 25
 CIACONA:
 shogun dps 31.25
 
+
+
+CIACONA:
+corsair dps 31.25
+
+
+
+CIACONA:
+sonah dps 25
+
