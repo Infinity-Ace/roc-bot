@@ -5,12 +5,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import jn.rocbot.ships.Aura;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.ships.Zen;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.StringJoiner;
 
 public class ZenStore {
     public static ArrayList<Zen> ZENS;
@@ -81,14 +84,29 @@ public class ZenStore {
         } return false;
     }
 
-    public static Zen fromName(String name) throws ZenNotFoundException {
+    public static Zen getZen(String name) throws ZenNotFoundException {
         for(Zen zen : ZENS){
             if(name.toLowerCase().equals(zen.name.toLowerCase())) return zen;
             for(String abbreviation: zen.abbreviations) {
               if(abbreviation.toLowerCase().equals(name.toLowerCase())) return zen;
             }
-        } throw new ZenNotFoundException();
+        } throw new ZenNotFoundException(String.format("No zen with name %s!", name));
     }
 
-    public static class ZenNotFoundException extends Exception {}
+    public static String allNames() {
+        StringJoiner joiner = new StringJoiner("\n");
+        for(Zen zen: ZENS){
+            joiner.add(zen.name.toLowerCase());
+        } return joiner.toString();
+    }
+
+    public static Zen randomZen() {
+        return ZENS.get(new Random().nextInt(ZENS.size() - 1));
+    }
+
+    public static class ZenNotFoundException extends Exception {
+        public ZenNotFoundException(String message) {
+            super(message);
+        }
+    }
 }

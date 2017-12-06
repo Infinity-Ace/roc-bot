@@ -34,15 +34,15 @@ public class ShipStore {
             JsonObject shipsjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
             JsonArray ships = (JsonArray) shipsjson.get("ships");
 
-            for (JsonElement jsonelementship : ships){
-                JsonObject jsonship = jsonelementship.getAsJsonObject();
+            for (JsonElement jsonElement : ships){
+                JsonObject jsonShip = jsonElement.getAsJsonObject();
 
                 try {
-                    Ship ship = new Ship(jsonship.get("name").getAsString(),
-                            WeaponStore.fromName(jsonship.getAsJsonObject("weapon").get("name").getAsString()),
-                            AuraStore.fromName(jsonship.get("aura").getAsString()),
-                            ZenStore.fromName(jsonship.get("zen").getAsString()),
-                            Rarity.fromString(Rarity.fromInt(jsonship.get("r").getAsInt())));
+                    Ship ship = new Ship(jsonShip.get("name").getAsString(),
+                            WeaponStore.fromName(jsonShip.getAsJsonObject("weapon").get("name").getAsString()),
+                            AuraStore.getAura(jsonShip.get("aura").getAsString()),
+                            ZenStore.getZen(jsonShip.get("zen").getAsString()),
+                            Rarity.fromString(Rarity.fromInt(jsonShip.get("r").getAsInt())));
 
                     SHIPS.add(ship);
                 } catch (AuraStore.AuraNotFoundException
@@ -53,9 +53,7 @@ public class ShipStore {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
