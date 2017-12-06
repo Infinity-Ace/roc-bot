@@ -227,6 +227,9 @@
       "name": "Elyon",
       "weapon": {
         "damage type":"hi",
+	"damage output":31.25,
+	"capacity":280,
+	"capacity-format":"ms",
         "name": "Blaze laser"
       },
       "aura": "Laser storm", "zen": "Kappa drive", "r":1
