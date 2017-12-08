@@ -48,6 +48,10 @@ public class Search {
     }
 
     public static Aura findAura(String searchString, int lowestAllowedRatio) throws AuraStore.AuraNotFoundException{
+        try {
+            return AuraStore.getAura(searchString);
+        }catch (AuraStore.AuraNotFoundException ignored){}
+
         String[] auraNames = AuraStore.allNames().split("\n");
 
         HashMap<Aura, Integer> ratios = new HashMap<>();
@@ -76,6 +80,10 @@ public class Search {
     }
 
     public static Zen findZen(String searchString, int lowestAllowedRatio) throws ZenStore.ZenNotFoundException{
+        try {
+            return ZenStore.getZen(searchString);
+        }catch (ZenStore.ZenNotFoundException ignored){}
+
         String[] zenNames = ZenStore.allNames().split("\n");
 
         HashMap<Zen, Integer> ratios = new HashMap<>();
