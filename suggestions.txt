@@ -133,3 +133,58 @@ corsair dps 31.25
 CIACONA:
 sonah dps 25
 
+
+
+Turtleroku:
+photurius dps 34.38
+
+
+
+CIACONA:
+tempest dps 34.38
+
+
+
+CIACONA:
+veil dps 1000
+
+
+
+CIACONA:
+veil dps 1000000000000000
+
+
+
+CIACONA:
+veil dps 666666666666666666
+
+
+
+Phrog:
+play phin
+
+
+
+Margakis:
+buhloo damage output 31.25
+
+
+
+Circular Square:
+ogon dps 21.25
+
+
+
+Circular Square:
+ogon tracking slow
+
+
+
+SyzygySoldier:
+ls as acronym for laser storm.
+
+
+
+Loki:
+mod commands with the prefix %
+

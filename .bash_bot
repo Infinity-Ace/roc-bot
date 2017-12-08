@@ -1,0 +1,21 @@
+#Takes you to the bots root
+alias tobot='cd $BOT_HOME'
+
+#Shows you info about whatever
+alias bot:suggestions='cat $BOT_HOME/suggestions.txt'
+
+#Takes you here
+alias bot:aliases='vim $BOT_HOME/.bash_bot; source ~/.bash_bot'
+
+#runs the bot script, this should rather be installed
+alias bot='py3 $BOT_HOME/scripts/bot.py'
+
+#Temporary commands for the bot before the bot shript is complete
+alias bot:run='tobot;bot-cfg-standard;java -cp target/classes/:target/dependency/* jn.rocbot.Main $TOKEN $DEBUG $VERBOSE $LOG_MESSAGES $IS_EVIL_TWIN;'
+alias bot:build='tobot;mvn install'
+alias bot:reboot='bot:build;bot:run'
+alias bot:update='tobot;git pull;bot:reboot'
+
+#Also temporqry setting configs
+alias bot-cfg-standard='echo Do not rely on this method!;source $BASH_BOT/config/roc-bot-conf_normal'
+
