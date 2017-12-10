@@ -1,9 +1,11 @@
 package jn.rocbot.commands.devcommands;
 
 import jn.rocbot.Emojis;
+import jn.rocbot.Main;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
+import jn.rocbot.info.IDs;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class SayCommand implements Command{
@@ -25,7 +27,11 @@ public class SayCommand implements Command{
                 message += arg + " ";
             else
                 message += arg;
-        } sendMessage(message, event);
+        }
+
+        Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))
+                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_BOT_CHANNEL))
+                    .sendMessage(message).complete();
     }
 
     @Override
