@@ -2,6 +2,7 @@ package jn.rocbot.utils;
 
 import jn.rocbot.Main;
 import jn.rocbot.info.IDs;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Channel;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
@@ -63,7 +64,11 @@ public class Log {
 
         Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_BOT_CC))
                 .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_BOTCHANNEL_RCWD))
-                .sendMessage(message).complete();
+                .sendMessage(
+                        new MessageBuilder().append(
+                                message.getContent().replace("@", "<at>")
+                        ).build()
+                ).complete();
     }
 
     private static void logToControl(LogType type, String message) throws UnsupportedOperationException {

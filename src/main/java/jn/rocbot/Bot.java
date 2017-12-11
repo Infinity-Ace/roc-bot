@@ -119,7 +119,7 @@ public class Bot extends ListenerAdapter {
                     ||
                     event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
                         ||
-                        event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */
+                        event.getGuild().getIdLong() == 378949749883273217L) /* Rocs*/
                             &&
                             !event.getMessage().getAuthor().isBot() //Same as the other (^) !isbot
                                 &&
@@ -209,7 +209,7 @@ public class Bot extends ListenerAdapter {
                     addRolesToMember(
                         event.getMember(),
                         event.getGuild().getRolesByName("pilot", true)
-            );
+            ).complete();
         }
     }
 

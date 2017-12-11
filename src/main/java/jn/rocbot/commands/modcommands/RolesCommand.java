@@ -56,6 +56,7 @@ public class RolesCommand implements Command{
     }
 
     class CreateRoleSub implements SubCommand{
+
         @Override
         public void action(String[] args, MessageReceivedEvent event) {
             if(args.length == 0) {
@@ -125,7 +126,9 @@ public class RolesCommand implements Command{
             }
 
             if(roleList.size() == 0) {
-                event.getTextChannel().sendMessage("The delete-command must have a role to delete specified").complete();
+                event.getTextChannel().sendMessage(
+                        "The delete-command must have a role to delete specified\nMake sure you spell it correctly"
+                ).complete();
                 return;
             }
 
