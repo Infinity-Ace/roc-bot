@@ -13,6 +13,10 @@
   ],
   "moderators":[
     {
+      "name":"Jens",
+      "longID":319178540388057089
+    },
+    {
       "name":"DestroyTheSelf",
       "longID":243082239443730432,
       "greeting":"**BEGONE NERD**"

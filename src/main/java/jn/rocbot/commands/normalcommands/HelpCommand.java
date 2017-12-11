@@ -1,5 +1,6 @@
 package jn.rocbot.commands.normalcommands;
 
+import jn.rocbot.commands.Commands;
 import jn.rocbot.permissions.Masters;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.commands.common.Command;
@@ -27,49 +28,25 @@ public class HelpCommand implements Command {
             String message = "Use *!help <SomeCommand>* to get help on specific command";
             message += "\nAvaible commands are: ";
             StringJoiner allCommands = new StringJoiner(", ");
-            if(!Masters.isMaster(event.getAuthor())) {
-                for (String key : COMMANDS.keySet()) {
-                    if(COMMANDS.get(key).getType() == CommandType.NORMAL)
-                        allCommands.add("!" + key);
-                }
-                message += allCommands.toString();
-                event.getTextChannel().sendMessage(message).complete();
-            }else{
-                for (String key : COMMANDS.keySet()) {
-                    switch (COMMANDS.get(key).getType()) {
-                        case NORMAL:
-                            allCommands.add("!" + key);
-                            break;
-                        case MOD:
-                            allCommands.add("~!" + key);
-                            break;
-                        case DEV:
-                            allCommands.add("§" + key);
-                            break;
-                    }
-                }
 
-                message += allCommands.toString();
+            for(String key : COMMANDS.keySet()){
+                Command cmd = COMMANDS.get(key);
 
-                event.getTextChannel().sendMessage(message).complete();
+                switch (cmd.getType()) {
+                    case NORMAL: allCommands.add(String.format("!%s", key));
+                        break;
+                    case MOD: if(Moderators.isModerator(event.getAuthor())) allCommands.add(String.format("~!%s", key));
+                        break;
+                    case DEV: if(Masters.isMaster(event.getAuthor())) allCommands.add(String.format("§%s", key));
+                        break;
+                }
             }
-            if(Moderators.isModerator(event.getAuthor())){
-                for (String key : COMMANDS.keySet()) {
-                    switch (COMMANDS.get(key).getType()) {
-                        case NORMAL:
-                            allCommands.add("!" + key);
-                            break;
-                        case MOD:
-                            allCommands.add("~!" + key);
-                            break;
-                        case DEV: break;
-                    }
-                }
-                message += allCommands.toString();
 
-                event.getTextChannel().sendMessage(message).complete();
-            }
-        } else if (args.length > 0){
+            message += allCommands.toString();
+
+            event.getTextChannel().sendMessage(message).complete();
+
+        } else {
             if(COMMANDS.containsKey(args[0].toLowerCase())){
                 event.getTextChannel().sendMessage(COMMANDS.get(args[0].toLowerCase()).help()).complete();
             } else {

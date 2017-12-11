@@ -1,36 +1,48 @@
 package jn.rocbot;
 
 import jn.rocbot.info.stores.*;
+import jn.rocbot.misc.BotIsDoing;
+import jn.rocbot.misc.Sessions;
 import jn.rocbot.permissions.Masters;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.info.IDs;
+import jn.rocbot.ships.DamageType;
 import jn.rocbot.utils.Log;
+
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.exceptions.RateLimitedException;
+
+import javax.security.auth.login.LoginException;
+
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static jn.rocbot.utils.Log.LogType.*;
+
 public class Main {
-    public static boolean DEBUG;
-    public static boolean VERBOSE;
-    public static boolean LOG_MESSAGES;
+    public static boolean DEBUG, VERBOSE, LOG_MESSAGES;
 
     private static String TOKEN;
 
     public static net.dv8tion.jda.core.JDA JDA;
 
-    private static String[] ARGUMENTS;
-
     private static Logger log = Logger.getLogger(Log.class.getName());
 
     //requires the arguments String Token, boolean Debug, boolean Verbose
     public static void main(String[] args) {
+        IDs.init();
+
         StringJoiner env_args_received = new StringJoiner(", ");
         for(String arg : args) env_args_received.add(arg);
+
         log.log(Level.INFO, "Ran with args: " + env_args_received);
-        log.log(Level.INFO, "Provided token: " + args[0]);
+        log.log(Level.INFO,"Provided token: " + args[0]);
 
         //Just sets some variables from the main method arguments
         TOKEN = args[0];
@@ -38,35 +50,112 @@ public class Main {
         VERBOSE = Boolean.parseBoolean(args[2].toLowerCase());
         LOG_MESSAGES = Boolean.parseBoolean(args[3].toLowerCase());
 
-        ARGUMENTS = args; //For verbose debugging
-
-        init(); //======================================================= IMPORTANT
+        boolean IS_EVIL_TWIN = Boolean.parseBoolean(args[4].toLowerCase());
 
         try { //Establishes a connection to the the servers that have added the bot as a user
-            JDA = new JDABuilder(AccountType.BOT).addEventListener(
-                    new Bot(/*Evil twin or not*/ Boolean.parseBoolean(args[4]))
+            JDA = new JDABuilder(AccountType.BOT)
+                    .setGame(BotIsDoing.watchingYou)
+                    .addEventListener(
+                    new Bot(IS_EVIL_TWIN)
             ).setToken(TOKEN).buildBlocking();
 
             JDA.setAutoReconnect(true);
-        } catch (Exception e) {
+        } catch (InterruptedException | RateLimitedException | LoginException e) {
             e.printStackTrace();
+            failed();
         }
 
+        init(); //======================================================= IMPORTANT
+
+        StringJoiner logVars = new StringJoiner(", ");
+        logVars.add("DEBUG: " + DEBUG);
+        logVars.add("VERBOSE: " + VERBOSE);
+        logVars.add("LOG MESSAGES: " + LOG_MESSAGES);
+
+        Log.LogGroup group = new Log.LogGroup();
+        group.add(logVars.toString());
+
+        if (IS_EVIL_TWIN) {
+            group.add("Bot is evil! " + Emojis.EL );
+        }
+
+        Log.log(INFO, String.format("Log variables are: %s", group.get()));
+
+        Bot.onReadyLog();
+        Sessions.start();
+
+        Log.log(Log.LogType.CONNECTION, "Established connection with discord\nSession: " + Sessions.SESSIONS);
+    }
+
+    private static void failed() {
+        System.exit(0);
     }
 
     private static void init() {
+        Log.LogGroup group = new Log.LogGroup();
+
         Log.init(); //Keep above the init's which may need to log something!
+        group.add("Ids initiated");
 
-        IDs.init();
-
-        Masters.init();
-        Moderators.init();
+        try {
+            Masters.init();
+        } catch (FileNotFoundException e) {
+            Log.log(ERROR, "The masters section in the permissions.json file was not found by the bot\n" + e.getLocalizedMessage());
+            e.printStackTrace();
+            failed();
+        } try {
+            Moderators.init();
+        } catch (FileNotFoundException e) {
+            Log.log(ERROR, "The moderators section in the permissions.json file was not found by the bot\n" + e.getLocalizedMessage());
+            e.printStackTrace();
+            failed();
+        } group.add("Roles initiated");
 
         ShipPicStore.init();
-        WeaponStore.init();
-        AuraStore.init();
-        ZenStore.init();
+        group.add("Ship-pictures initiated");
 
-        ShipStore.init(); //Must be kept at bottom!
+        try {
+            WeaponStore.init();
+        } catch (FileNotFoundException | DamageType.DamageTypeNotFoundException | UnsupportedEncodingException e) {
+            Log.log(ERROR, "Something went wrong in the initialization of the weapons in the ships.json file:\n" + e.getMessage());
+            e.printStackTrace();
+            failed();
+        } group.add("Ship-weapons initiated");
+
+        try {
+            AuraStore.init();
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            Log.log(ERROR, "Something went wrong in the initialization of the auras in the auras.json file:\n" + e.getMessage());
+            e.printStackTrace();
+            failed();
+        } group.add("Auras initiated");
+
+        try {
+            ZenStore.init();
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            Log.log(ERROR, "Something went wrong in the initialization of the zens in the zens.json file:\n" + e.getMessage());
+            e.printStackTrace();
+            failed();
+        } group.add("Zens initiated");
+
+        try {
+            ShipStore.init(); //Must be kept at bottom!
+        } catch (FileNotFoundException e) {
+            Log.log(ERROR, "The ships.json file was not found by the bot");
+            e.printStackTrace();
+            failed();
+        } catch (UnsupportedEncodingException e) {
+            Log.log(ERROR, "Somethings went wrong in reading the ships.json file: " + e.getMessage());
+            e.printStackTrace();
+            failed();
+        } catch (AuraStore.AuraNotFoundException | WeaponStore.WeaponNotFoundException | ZenStore.ZenNotFoundException e) {
+            Log.log(ERROR, e.getMessage());
+            e.printStackTrace();
+            failed();
+        } group.add("Ships initiated!\nMeaning everything worked as it should");
+
+        Log.log(Log.LogType.VERBOSE, group.get());
+
+        Bot.READY = true;
     }
 }

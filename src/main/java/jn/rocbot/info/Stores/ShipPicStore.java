@@ -1,6 +1,7 @@
 package jn.rocbot.info.stores;
 
 import jn.rocbot.ships.Ship;
+import jn.rocbot.utils.Log;
 
 import java.io.File;
 import java.util.ArrayList;

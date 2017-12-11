@@ -222,6 +222,11 @@ public class WithSubCommand implements SubCommand {
         return config;
     }
 
+    @Override
+    public void action(String[] args, MessageReceivedEvent event) {
+
+    }
+
     private  <T> T[] concatenate (T[] a, T[] b) {
         int aLength = a.length;
         int bLength = b.length;

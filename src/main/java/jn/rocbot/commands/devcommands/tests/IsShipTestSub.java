@@ -5,7 +5,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.StringJoiner;
 
-class IsShipTest extends TestSubCommand {
+class IsShipTestSub extends TestSubCommand {
     private TestCommand testCommand;
 
     public void sendResult(String[] args, MessageReceivedEvent event) {
@@ -19,7 +19,7 @@ class IsShipTest extends TestSubCommand {
         sendResult(args, event);
     }
 
-    public IsShipTest(TestCommand testCommand){
+    public IsShipTestSub(TestCommand testCommand){
         super(false);
         this.testCommand = testCommand;
     }

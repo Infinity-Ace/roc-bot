@@ -1,10 +1,14 @@
 package jn.rocbot.commands.common;
 
+import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
 public interface SubCommand{
     String invoke();
     String help();
 
     CommandConfig getConfig();
+
+    void action(String[] args, MessageReceivedEvent event);
 
     default CommandType getType(){
         return getConfig().type;

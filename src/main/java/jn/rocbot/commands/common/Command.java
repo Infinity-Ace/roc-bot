@@ -27,15 +27,15 @@ public interface Command {
 
     CommandConfig getConfig();
 
-    enum PREFIX {
+    enum PREFIXES {
         NORMAL("!"),
         MODERATOR("~!"),
         MASTER("§");
 
-        private final String prefix;
+        public final String PREFIX;
 
-        PREFIX(String prefix){
-            this.prefix = prefix;
+        PREFIXES(String prefix){
+            this.PREFIX = prefix;
         }
     }
 }

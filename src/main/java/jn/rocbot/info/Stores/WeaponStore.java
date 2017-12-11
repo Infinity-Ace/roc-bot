@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonReader;
+import jn.rocbot.ships.DamageType;
 import jn.rocbot.ships.Weapon;
 
 import java.io.*;
@@ -15,63 +16,54 @@ import java.util.Objects;
 public class WeaponStore {
     public static ArrayList<Weapon> WEAPONS;
 
-    public static void init(){
+    public static void init() throws FileNotFoundException, UnsupportedEncodingException, DamageType.DamageTypeNotFoundException {
         WEAPONS = new ArrayList<>();
 
         JsonParser parser = new JsonParser();
 
-        try {
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(
-                                    new File("res/ships.json")),
-                            "UTF8")
-            );
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(
+                                new File("res/ships.json")),
+                        "UTF8")
+        );
 
-            JsonObject shispsjson= parser.parse(new JsonReader(reader)).getAsJsonObject();
-            JsonArray ships = (JsonArray) shispsjson.get("ships");
+        JsonObject shispsjson= parser.parse(new JsonReader(reader)).getAsJsonObject();
+        JsonArray ships = (JsonArray) shispsjson.get("ships");
 
-            for (JsonElement jsonelementship : ships){
-                JsonObject weapon = jsonelementship.getAsJsonObject().get("weapon").getAsJsonObject();
+        for (JsonElement jsonelementship : ships){
+            JsonObject weapon = jsonelementship.getAsJsonObject().get("weapon").getAsJsonObject();
 
-                String damageType = weapon.get("damage type").getAsString();
+            String damageType = weapon.get("damage type").getAsString();
 
-                HashMap<String, String> propertiesList = new HashMap<>();
-                HashMap<String, String> propertiesFormatList = new HashMap<>();
+            HashMap<String, String> propertiesList = new HashMap<>();
+            HashMap<String, String> propertiesFormatList = new HashMap<>();
 
-                for (String key : weapon.keySet()) {
-                    if(Objects.equals(key, "name") || Objects.equals(key, "damage output") || Objects.equals(key, "damage type")) {
+            for (String key : weapon.keySet()) {
+                if(Objects.equals(key, "name") || Objects.equals(key, "damage output") || Objects.equals(key, "damage type")) {
 
+                } else {
+                    if (!key.contains("-format")) {
+                        propertiesList.put(key, weapon.get(key).getAsString());
                     } else {
-                        if (!key.contains("-format")) {
-                            propertiesList.put(key, weapon.get(key).getAsString());
-                        } else {
-                            propertiesFormatList.put(key, weapon.get(key).getAsString());
-                        }
+                        propertiesFormatList.put(key, weapon.get(key).getAsString());
                     }
-                }
-
-                try {
-                    if(weapon.keySet().contains("damage output")) {
-                        WEAPONS.add(new Weapon(
-                                weapon.get("name").getAsString(),
-                                weapon.get("damage output").getAsFloat(),
-                                damageType, propertiesList, propertiesFormatList
-                        ));
-                    } else {
-                        WEAPONS.add(new Weapon(
-                                weapon.get("name").getAsString(),
-                                0f,
-                                damageType, propertiesList, propertiesFormatList
-                        ));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
+            if(weapon.keySet().contains("damage output")) {
+                WEAPONS.add(new Weapon(
+                        weapon.get("name").getAsString(),
+                        weapon.get("damage output").getAsFloat(),
+                        damageType, propertiesList, propertiesFormatList
+                ));
+            } else {
+                WEAPONS.add(new Weapon(
+                        weapon.get("name").getAsString(),
+                        0f,
+                        damageType, propertiesList, propertiesFormatList
+                ));
+            }
 
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
-            e.printStackTrace();
         }
     }
 

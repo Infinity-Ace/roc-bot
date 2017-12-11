@@ -3,12 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/roc-bot.iml" filepath="$PROJECT_DIR$/roc-bot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/roc-bot.iml" filepath="$PROJECT_DIR$/roc-bot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/roc-bot_cc/roc-bot_cc.iml" filepath="$PROJECT_DIR$/roc-bot_cc/roc-bot_cc.iml" />
       <module fileurl="file://$PROJECT_DIR$/roc-bot_cc/roc-bot_cc.iml" filepath="$PROJECT_DIR$/roc-bot_cc/roc-bot_cc.iml" />
       <module fileurl="file://$PROJECT_DIR$/scripts/scripts.iml" filepath="$PROJECT_DIR$/scripts/scripts.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scripts/scripts.iml" filepath="$PROJECT_DIR$/scripts/scripts.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tests/tests.iml" filepath="$PROJECT_DIR$/tests/tests.iml" />
       <module fileurl="file://$PROJECT_DIR$/tests/tests.iml" filepath="$PROJECT_DIR$/tests/tests.iml" />
     </modules>
   </component>

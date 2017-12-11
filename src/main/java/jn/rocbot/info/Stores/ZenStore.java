@@ -18,62 +18,56 @@ import java.util.StringJoiner;
 public class ZenStore {
     public static ArrayList<Zen> ZENS;
 
-    public static void init(){
+    public static void init() throws FileNotFoundException, UnsupportedEncodingException {
         ZENS = new ArrayList<>();
 
         JsonParser parser = new JsonParser();
 
-        try {
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            new FileInputStream(
-                                    new File("res/zens.json")),
-                            "UTF8")
-            );
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(
+                        new FileInputStream(
+                                new File("res/zens.json")),
+                        "UTF8")
+        );
 
-            JsonObject zensjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
-            JsonArray zens = (JsonArray) zensjson.get("zens");
+        JsonObject zensjson = parser.parse(new JsonReader(reader)).getAsJsonObject();
+        JsonArray zens = (JsonArray) zensjson.get("zens");
 
-            for (JsonElement jsonelementzen : zens){
-                JsonObject jsonzen = jsonelementzen.getAsJsonObject();
+        for (JsonElement jsonelementzen : zens){
+            JsonObject jsonzen = jsonelementzen.getAsJsonObject();
 
-                String name = jsonzen.get("name").getAsString();
-                String desc = jsonzen.get("desc").getAsString();
+            String name = jsonzen.get("name").getAsString();
+            String desc = jsonzen.get("desc").getAsString();
 
-                JsonObject properties = jsonzen.getAsJsonObject("properties");
-                HashMap<String, String> propertiesList = new HashMap<>();
-                HashMap<String, String> propertiesFormatList = new HashMap<>();
-                properties.keySet().forEach((String key) ->{
-                    if(!key.contains("-format")){
-                        propertiesList.put(key, properties.get(key).getAsString());
-                    } else {
-                        propertiesFormatList.put(key, properties.get(key).getAsString());
-                    }
-                });
-
-                JsonObject ult = jsonzen.getAsJsonObject("ult");
-                String ultimateName = ult.get("name").getAsString();
-                String ultimateDesc = ult.get("desc").getAsString();
-                if(!jsonzen.has("abbreviations")) {
-                    ZENS.add(new Zen(
-                            name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
-                    ));
+            JsonObject properties = jsonzen.getAsJsonObject("properties");
+            HashMap<String, String> propertiesList = new HashMap<>();
+            HashMap<String, String> propertiesFormatList = new HashMap<>();
+            properties.keySet().forEach((String key) ->{
+                if(!key.contains("-format")){
+                    propertiesList.put(key, properties.get(key).getAsString());
                 } else {
-                    ArrayList<String> abbreviations = new ArrayList<>();
-                    JsonArray jsonAbbreviations = jsonzen.getAsJsonArray("abbreviations");
-                    for (int i = 0; i < jsonAbbreviations.size(); i++){
-                        abbreviations.add(jsonAbbreviations.get(i).getAsString());
-                    } ZENS.add(new Zen(
-                            name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
-                    ).setAbbreviations(abbreviations.toArray(new String[jsonAbbreviations.size()])));
+                    propertiesFormatList.put(key, properties.get(key).getAsString());
                 }
-            }
+            });
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            JsonObject ult = jsonzen.getAsJsonObject("ult");
+            String ultimateName = ult.get("name").getAsString();
+            String ultimateDesc = ult.get("desc").getAsString();
+            if(!jsonzen.has("abbreviations")) {
+                ZENS.add(new Zen(
+                        name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
+                ));
+            } else {
+                ArrayList<String> abbreviations = new ArrayList<>();
+                JsonArray jsonAbbreviations = jsonzen.getAsJsonArray("abbreviations");
+                for (int i = 0; i < jsonAbbreviations.size(); i++){
+                    abbreviations.add(jsonAbbreviations.get(i).getAsString());
+                } ZENS.add(new Zen(
+                        name, desc, ultimateName, ultimateDesc, propertiesList, propertiesFormatList
+                ).setAbbreviations(abbreviations.toArray(new String[jsonAbbreviations.size()])));
+            }
         }
+
     }
 
     public static boolean isZen(String zenName){

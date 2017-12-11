@@ -13,9 +13,10 @@ public class TestCommand implements Command {
     public TestCommand() {
         TEST_COMMANDS = new ArrayList<>();
 
-        TEST_COMMANDS.add(new IsShipTest(this));
+        TEST_COMMANDS.add(new IsShipTestSub(this));
         TEST_COMMANDS.add(new SearchTestSub(this));
         TEST_COMMANDS.add(new EveryXHasY());
+        TEST_COMMANDS.add(new RolesTestSub());
     }
 
     @Override
@@ -23,7 +24,7 @@ public class TestCommand implements Command {
         return true;
     }
 
-    private IsShipTest isShipTest = new IsShipTest(this);
+    private IsShipTestSub isShipTestSub = new IsShipTestSub(this);
     private SearchTestSub searchTestSub = new SearchTestSub(this);
 
     @Override
@@ -38,7 +39,8 @@ public class TestCommand implements Command {
     //<editor-fold desc="Boring stuff">
     @Override
     public String help() {
-        return "NO HELP YET";
+        return "No help yet" +
+                "";
     }
 
     @Override

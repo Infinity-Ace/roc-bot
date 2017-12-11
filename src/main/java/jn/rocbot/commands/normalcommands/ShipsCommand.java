@@ -174,6 +174,11 @@ public class ShipsCommand implements Command {
         public CommandConfig getConfig() {
             return config;
         }
+
+        @Override
+        public void action(String[] args, MessageReceivedEvent event) {
+
+        }
     }
 
     private class InfoSub implements SubCommand {
@@ -196,6 +201,11 @@ public class ShipsCommand implements Command {
         @Override
         public CommandConfig getConfig() {
             return config;
+        }
+
+        @Override
+        public void action(String[] args, MessageReceivedEvent event) {
+
         }
     }
 }

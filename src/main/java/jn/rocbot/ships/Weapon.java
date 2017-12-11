@@ -11,7 +11,7 @@ public class Weapon  extends Ship.ShipProperty implements Formatter{
     public final HashMap<String, String> properties;
     public final HashMap<String, String> propertiesFormat;
 
-    public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) throws Exception {
+    public Weapon(String name, float dps, String damageType, HashMap<String, String> properties, HashMap<String, String> propertiesFormat) throws DamageType.DamageTypeNotFoundException {
         super(name);
         this.dps = dps;
         this.damageType = DamageType.fromString(damageType);

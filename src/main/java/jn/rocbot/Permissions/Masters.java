@@ -10,6 +10,7 @@ import net.dv8tion.jda.core.entities.User;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 public class Masters {
     public static class Master{
@@ -26,42 +27,43 @@ public class Masters {
 
     public static ArrayList<Master> MASTERS;
 
-    public static void init(){
+    public static void init() throws FileNotFoundException {
         MASTERS = new ArrayList<>();
 
-        JsonParser parser = new JsonParser(); try {
-            JsonObject mastersjson = parser.parse(new JsonReader(
-                    new FileReader("meta/permissions.json")
-            )).getAsJsonObject();
+        JsonParser parser = new JsonParser();
+        JsonObject mastersjson = parser.parse(new JsonReader(
+                new FileReader("meta/permissions.json")
+        )).getAsJsonObject();
 
-            JsonArray masters = (JsonArray) mastersjson.get("bot-masters");
+        JsonArray masters = (JsonArray) mastersjson.get("bot-masters");
 
-            for (JsonElement jsonelementmaster : masters){
-                JsonObject jsonmaster = jsonelementmaster.getAsJsonObject();
+        for (JsonElement jsonelementmaster : masters){
+            JsonObject jsonmaster = jsonelementmaster.getAsJsonObject();
 
-                MASTERS.add(new Master(
-                        jsonmaster.get("name").getAsString(),
-                        jsonmaster.get("greeting").getAsString()
-                                .replace("@", jsonmaster.get("name").getAsString()),
-                        jsonmaster.get("longID").getAsLong()
-                ));
-            }
-        } catch (FileNotFoundException e) { e.printStackTrace(); }
+            MASTERS.add(new Master(
+                    jsonmaster.get("name").getAsString(),
+                    jsonmaster.get("greeting").getAsString()
+                            .replace("@", jsonmaster.get("name").getAsString()),
+                    jsonmaster.get("longID").getAsLong()
+            ));
+        }
     }
 
     public static Master fromLongID(long id){
         for(Master master : MASTERS){
             if(master.longID == id) return master;
-        }
-
-        return null;
+        } return null;
     }
 
     public static boolean isMaster(User user){
         for(Master master : MASTERS){
             if(master.longID == user.getIdLong()) return true;
-        }
+        } return false;
+    }
 
-        return false;
+    public static String allMasters(){
+        StringJoiner allMasters = new StringJoiner(", ");
+        for(Master master : MASTERS) allMasters.add(master.name);
+        return allMasters.toString();
     }
 }
