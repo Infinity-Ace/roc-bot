@@ -84,6 +84,7 @@
         "damage output":25,
         "homing capability":"Perfect",
         "name":"Vortex howler"
+        "Description":"A laid back kit with the ability to tackle most missions. Does well in missions with a good mix of lasers and bullets,but struggles in most bullet heavy missions."
       },
       "aura": "Point defense", "zen": "Personal shield", "r":3
     },
@@ -105,6 +106,7 @@
         "damage output":25,
         "homing capability":"Perfect",
         "name": "Flux seekers"
+        "description":"Fun, non-scrubby Stun EMP kit with ample ability to tackle most laser missions."
       },
       "aura": "Stun EMP", "zen": "Kappa drive", "r":1
     },
@@ -148,6 +150,7 @@
         "damage output":21.25,
         "target tracking":"Instant",
         "name":"Burst pulsar"
+        "description":" A fast and reliable kit with ample offensive and defensive ability.struggles againt extreme MIRV spam.
       },
       "aura": "Missile swarm", "zen": "Teleport", "r":3
     },
