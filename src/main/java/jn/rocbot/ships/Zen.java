@@ -41,7 +41,7 @@ public class Zen extends Ship.ShipProperty implements Formatter{
         }
 
         desc.addLine("Ultimate: " + italic(ultimateName));
-        desc.addLine("\tShipDescription: " + this.ultimateDesc);
+        desc.addLine("\tDescription: " + this.ultimateDesc);
 
         return desc.get();
     }

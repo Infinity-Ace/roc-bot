@@ -45,7 +45,7 @@ public class Aura extends Ship.ShipProperty implements Formatter{
         }
 
         desc.addLine("\nUltimate: " + italic(ultimateName));
-        desc.addLine("\tShipDescription: " + ultimateProperties.get("desc"));
+        desc.addLine("\tDescription: " + ultimateProperties.get("desc"));
         return desc.get();
     }
 
