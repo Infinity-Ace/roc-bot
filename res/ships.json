@@ -399,6 +399,7 @@
       "name": "Dragonfly",
       "weapon": {
         "damage type":"hi",
+
         "name":"Twin miniguns"
       },
       "aura": "Ion cannon", "zen": "Mega bomb", "r":1

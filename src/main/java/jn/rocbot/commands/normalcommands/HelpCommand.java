@@ -36,13 +36,13 @@ public class HelpCommand implements Command {
 
                 switch (cmd.getType()) {
                     case NORMAL:
-                        allCommands.add(String.format("%s%s", PREFIXES.NORMAL, key));
+                        allCommands.add(String.format("%s%s", PREFIXES.NORMAL.PREFIX, key));
                         break;
                     case MOD:
-                        if (Moderators.isModerator(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MODERATOR, key));
+                        if (Moderators.isModerator(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MODERATOR.PREFIX, key));
                         break;
                     case DEV:
-                        if (Masters.isMaster(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MASTER, key));
+                        if (Masters.isMaster(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MASTER.PREFIX, key));
                         break;
                 }
             }
