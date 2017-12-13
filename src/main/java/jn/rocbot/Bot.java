@@ -201,7 +201,7 @@ public class Bot extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         if(event.getGuild().getIdLong() != IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II)) return;
 
-        event.getJDA().getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_GENERAL)).
+        event.getJDA().getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_WELCOME)).
                 sendMessage("Welcome, pilot <@"+event.getMember().getUser().getIdLong()+"> to the Phoenix 2 community!")
                 .complete();
 
