@@ -73,6 +73,7 @@
       "name": "Tempest",
       "weapon": {
         "damage type":"hi",
+        "damage output": 34.38,
         "name":"Ion crystalizer"
       },
       "aura": "Bullet EMP", "zen": "Mega laser", "r":1
@@ -171,6 +172,7 @@
       "name": "Buhloo",
       "weapon": {
         "damage type":"hi",
+        "damage output":31.25,
         "name":"Quantum prisms"
       },
       "aura": "Laser storm", "zen": "Mega bomb", "r":1
@@ -231,6 +233,8 @@
       "name": "Ogon",
       "weapon": {
         "damage type":"ap",
+        "damage output": 21.25,
+        "tracking":"slow",
         "name": "Photon array"
       },
       "aura": "Laser storm", "zen": "Kappa drive", "r":1
@@ -248,7 +252,7 @@
       "name": "Photurius",
       "weapon": {
         "damage type":"ap",
-        "damage output":35.76,
+        "damage output":34.38,
         "name": "Photon charge"
       },
       "aura": "Stun EMP", "zen": "Mega laser", "r":2
@@ -391,7 +395,7 @@
     {
       "name": "Dragonfly",
       "weapon": {
-        "damage type":"ap",
+        "damage type":"hi",
         "name":"Twin miniguns"
       },
       "aura": "Ion cannon", "zen": "Mega bomb", "r":1
@@ -513,6 +517,7 @@
       "name": "Boxer",
       "weapon": {
         "damage type":"hi",
+        "damage output":31.25,
         "name": "Flash cutter"
       },
       "aura": "Phalanx", "zen": "Reflex EMP", "r":1
@@ -521,6 +526,7 @@
       "name": "Sonah",
       "weapon": {
         "damage type":"ap",
+        "damage output":25,
         "name": "Firestorm"
       },
       "aura": "Ion cannon", "zen": "Reflex EMP", "r":2
@@ -529,6 +535,7 @@
       "name": "Corsair",
       "weapon": {
         "damage type":"hi",
+        "damage output":31.25,
         "name": "Rocket pods"
       },
       "aura": "Missile swarm", "zen": "Tracking minigun", "r":3

@@ -1,6 +1,6 @@
 package jn.rocbot.commands.normalcommands;
 
-import jn.rocbot.commands.Commands;
+import jn.rocbot.commands.common.PREFIXES;
 import jn.rocbot.permissions.Masters;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.commands.common.Command;
@@ -8,6 +8,7 @@ import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.util.Iterator;
 import java.util.StringJoiner;
 
 import static jn.rocbot.commands.Commands.COMMANDS;
@@ -26,18 +27,22 @@ public class HelpCommand implements Command {
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
             String message = "Use *!help <SomeCommand>* to get help on specific command";
-            message += "\nAvaible commands are: ";
-            StringJoiner allCommands = new StringJoiner(", ");
+            message += "\nAvailable commands are: ";
 
-            for(String key : COMMANDS.keySet()){
+            StringJoiner allCommands = new StringJoiner(", ");
+            for (Iterator<String> iterator = COMMANDS.keySet().iterator(); iterator.hasNext(); ) {
+                String key = iterator.next();
                 Command cmd = COMMANDS.get(key);
 
                 switch (cmd.getType()) {
-                    case NORMAL: allCommands.add(String.format("!%s", key));
+                    case NORMAL:
+                        allCommands.add(String.format("%s%s", PREFIXES.NORMAL, key));
                         break;
-                    case MOD: if(Moderators.isModerator(event.getAuthor())) allCommands.add(String.format("~!%s", key));
+                    case MOD:
+                        if (Moderators.isModerator(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MODERATOR, key));
                         break;
-                    case DEV: if(Masters.isMaster(event.getAuthor())) allCommands.add(String.format("§%s", key));
+                    case DEV:
+                        if (Masters.isMaster(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MASTER, key));
                         break;
                 }
             }

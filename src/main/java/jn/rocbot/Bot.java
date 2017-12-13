@@ -1,6 +1,6 @@
 package jn.rocbot;
 
-import jn.rocbot.commands.common.Command;
+import jn.rocbot.commands.common.PREFIXES;
 import jn.rocbot.permissions.Masters;
 import jn.rocbot.RocParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
@@ -8,7 +8,6 @@ import jn.rocbot.info.IDs;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -129,12 +128,12 @@ public class Bot extends ListenerAdapter {
 
     private String getPrefix(MessageReceivedEvent event){
         String message = event.getMessage().getContent();
-        if(message.startsWith(Command.PREFIXES.NORMAL.PREFIX)){
-            return Command.PREFIXES.NORMAL.PREFIX;
+        if(message.startsWith(PREFIXES.NORMAL.PREFIX)){
+            return PREFIXES.NORMAL.PREFIX;
         }else if(message.charAt(0) == '§'){
-            return Command.PREFIXES.MASTER.PREFIX;
-        }else if(message.startsWith(Command.PREFIXES.MODERATOR.PREFIX)){
-            return Command.PREFIXES.MODERATOR.PREFIX;
+            return PREFIXES.MASTER.PREFIX;
+        }else if(message.startsWith(PREFIXES.MODERATOR.PREFIX)){
+            return PREFIXES.MODERATOR.PREFIX;
         } else return "?";
     }
 
@@ -169,27 +168,27 @@ public class Bot extends ListenerAdapter {
                         prefix, ""
                 ).split(" ")[0]
         )) {
-            if (prefix.equals(Command.PREFIXES.NORMAL.PREFIX)) {
+            if (prefix.equals(PREFIXES.NORMAL.PREFIX)) {
                 handleCommand(PARSER.parse(event.getMessage().getContent().toLowerCase(),
                         getConfig(
                                 event.getMessage().getContent().replace(
-                                        Command.PREFIXES.NORMAL.PREFIX, ""
+                                        PREFIXES.NORMAL.PREFIX, ""
                                 ).split(" ")[0]
                         ), event)
                 );
-            } else if (prefix.equals(Command.PREFIXES.MASTER.PREFIX)
+            } else if (prefix.equals(PREFIXES.MASTER.PREFIX)
                     && Masters.isMaster(event.getAuthor())
                     ) { // If it is a mastercommand
                 handleCommand(PARSER.parse(
                         event.getMessage().getContent(),
-                        getConfig(event.getMessage().getContent().replace(Command.PREFIXES.MASTER.PREFIX, "").split(" ")[0]),
+                        getConfig(event.getMessage().getContent().replace(PREFIXES.MASTER.PREFIX, "").split(" ")[0]),
                         event)
                 );
-            } else if(prefix.equals(Command.PREFIXES.MODERATOR.PREFIX)
+            } else if(prefix.equals(PREFIXES.MODERATOR.PREFIX)
                     && Moderators.isModerator(event.getAuthor())) {
                 handleCommand(PARSER.parse(
                         event.getMessage().getContent(),
-                        getConfig(event.getMessage().getContent().replace(Command.PREFIXES.MODERATOR.PREFIX, "").split(" ")[0]),
+                        getConfig(event.getMessage().getContent().replace(PREFIXES.MODERATOR.PREFIX, "").split(" ")[0]),
                         event)
                 );
             }
