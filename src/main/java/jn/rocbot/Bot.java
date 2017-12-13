@@ -201,7 +201,9 @@ public class Bot extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         if(event.getGuild().getIdLong() != IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II)) return;
 
-        sendMessageToBotChannel("Welcome, pilot <@"+event.getMember().getUser().getIdLong()+"> to the Phoenix 2 community!");
+        event.getJDA().getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_GENERAL)).
+                sendMessage("Welcome, pilot <@"+event.getMember().getUser().getIdLong()+"> to the Phoenix 2 community!")
+                .complete();
 
         if(event.getGuild().getIdLong() == IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II)) {
             event.getGuild().getController().
@@ -225,7 +227,7 @@ public class Bot extends ListenerAdapter {
         dLog(cmd.hrInfo());
         if(COMMANDS.containsKey(cmd.invoke)){
             boolean safe = COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event);
-            dLog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
+            //dLog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
 
             if(safe){
                 COMMANDS.get(cmd.invoke).action(cmd.args, cmd.event);
