@@ -2,7 +2,6 @@
 .DS_Store
 .idea/
 /target/
-target/**
 roc-bot.iml
 suggestions.txt
 *.lck
@@ -58,12 +57,5 @@ crashlytics-build.properties
 fabric.properties
 
 roc-bot_config
-/.idea/
-/roc-bot.iml
 logtest.log
-
-/Roc-bot CC/Roc-bot Control.iml
-/scripts/scripts.iml
-/roc-bot_cc/roc-bot_cc.iml
-classes/
-roc-bot_cc/roc-bot_cc.iml
+/meta/sessions.json
