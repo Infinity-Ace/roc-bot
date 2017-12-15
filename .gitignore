@@ -5,6 +5,7 @@
 target/**
 roc-bot.iml
 suggestions.txt
+meta/sessions.json
 *.lck
 
 ### JetBrains template
