@@ -8,6 +8,7 @@ import jn.rocbot.info.IDs;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -130,8 +131,10 @@ public class Bot extends ListenerAdapter {
         String message = event.getMessage().getContent();
         if(message.startsWith(PREFIXES.NORMAL.PREFIX)){
             return PREFIXES.NORMAL.PREFIX;
-        }else if(message.charAt(0) == '§'){
+
+        }else if(message.startsWith(PREFIXES.MASTER.PREFIX)){
             return PREFIXES.MASTER.PREFIX;
+
         }else if(message.startsWith(PREFIXES.MODERATOR.PREFIX)){
             return PREFIXES.MODERATOR.PREFIX;
         } else return "?";
@@ -181,15 +184,20 @@ public class Bot extends ListenerAdapter {
                     ) { // If it is a mastercommand
                 handleCommand(PARSER.parse(
                         event.getMessage().getContent(),
-                        getConfig(event.getMessage().getContent().replace(PREFIXES.MASTER.PREFIX, "").split(" ")[0]),
-                        event)
+                        getConfig(
+                            event.getMessage().getContent().replace(PREFIXES.MASTER.PREFIX, "").split(" ")[0]),
+                            event
+                        )
                 );
             } else if(prefix.equals(PREFIXES.MODERATOR.PREFIX)
                     && Moderators.isModerator(event.getAuthor())) {
+
                 handleCommand(PARSER.parse(
                         event.getMessage().getContent(),
-                        getConfig(event.getMessage().getContent().replace(PREFIXES.MODERATOR.PREFIX, "").split(" ")[0]),
-                        event)
+                        getConfig(
+                            event.getMessage().getContent().replace(PREFIXES.MODERATOR.PREFIX, "").split(" ")[0]),
+                            event
+                        )
                 );
             }
         } else {
@@ -217,6 +225,14 @@ public class Bot extends ListenerAdapter {
     @Override
     public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
         sendMessageToBotChannel(event.getMember().getUser().getName() + " has left the server");
+    }
+
+    @Override
+    public void onReady(ReadyEvent event) {
+        event.getJDA().getGuilds().forEach(
+                (Guild g) -> g.getController()
+                        .setNickname(g.getMemberById(IDs.BOT_USER_IDLONG), "Roc-Bot").complete()
+        );
     }
 
     /**
