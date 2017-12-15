@@ -9,14 +9,17 @@ import jn.rocbot.info.ListAble;
 import jn.rocbot.info.stores.AuraStore;
 import jn.rocbot.info.stores.WeaponStore;
 import jn.rocbot.info.stores.ZenStore;
+import jn.rocbot.misc.NotFoundException;
 import jn.rocbot.ships.DamageType;
 import jn.rocbot.ships.Rarity;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.utils.Log;
 import jn.rocbot.utils.Search;
+
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import javax.naming.OperationNotSupportedException;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,11 +45,11 @@ public class WithSubCommand implements SubCommand {
         Ships, Auras
     }
 
-    public WithFilter parseFilter(String[] args){
+    public WithFilter parseFilter(String[] args) throws NotFoundException {
         return parseFilter(args, this.caller);
     }
 
-    public WithFilter parseFilter(String[] args, CALLER caller){
+    public WithFilter parseFilter(String[] args, CALLER caller) throws NotFoundException {
         switch (caller) {
             case Ships:
                 return getShipsFilter(args);
@@ -67,7 +70,7 @@ public class WithSubCommand implements SubCommand {
         if(Main.DEBUG) log.log(Level.INFO, msg);
     }
 
-    private WithFilter getShipsFilter(String[] passed_args){
+    private WithFilter getShipsFilter(String[] passed_args) throws NotFoundException {
         ArrayList<WithProperty> properties = new ArrayList<>();
 
         StringJoiner passed = new StringJoiner(" ");
@@ -76,100 +79,23 @@ public class WithSubCommand implements SubCommand {
         dLog("Filtering ships, received" +
                 "\n\targs: " + Arrays.toString(passed_args) +
                 "\n\tJoined: " + passed.toString() +
-                "\n\tType: " + getShipPropertyType(passed.toString()).name());
+                "\n\tType: " + Ship.ShipPropertyType.getShipPropertyType(passed.toString()).name());
 
-        switch (getShipPropertyType(passed.toString())) {
-            case Aura:
-                try {
-                    properties.add(
-                            new WithProperty(
-                                    WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                    "aura:" + Search.findAura(
-                                            passed.toString(), LOWEST_MATCH_RATIO
-                                    ).name.toLowerCase()
-                            )
-                    );
-                } catch (AuraStore.AuraNotFoundException ignored) { }
-                break;
-            case Zen:
-                try {
-                    properties.add(
-                            new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                    "zen:" + Search.findZen(
-                                            passed.toString().toLowerCase(), LOWEST_MATCH_RATIO
-                                    ).name.toLowerCase()
-                            )
-                    );
-                } catch (ZenStore.ZenNotFoundException ignored) { }
-                break;
-            case Weapon:
-                properties.add(
-                        new WithProperty(WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                "weapon:" +passed.toString().toLowerCase()
-                        )
-                ); break;
-            case Rarity:
-                properties.add(
-                        new WithProperty(
-                                WithProperty.PROPERTY_TYPE.HasShipProperty,
-                                "rarity:" + Rarity.fromString(passed.toString().toLowerCase()).name.toLowerCase()
-                        )
-                ); break;
-            case DamageType:
-                try {
-                    String damageType;
-                    switch(passed.toString().toLowerCase()) {
-                        case "sb": damageType = "sb"; break;
-                        case "ap": damageType = "ap"; break;
-                        case "hi": damageType = "hi"; break;
-                        default: damageType =
-                                DamageType.fromString(passed.toString().replace("-", " ")).toString();
-                    }
+        if(!passed.toString().contains(",")) {
 
-                    properties.add(new WithProperty(
-                            WithProperty.PROPERTY_TYPE.HasShipProperty,
-                            "damagetype:" + damageType
-                            ));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } break;
-            case None:
-                break;
+            try { properties.add(WithProperty.createFrom(passed.toString())); }
+            catch (NotFoundException ignored) { }
+
+            return new WithFilter(properties.toArray(new WithProperty[properties.size()]));
+
+        } else {
+            String[] passed_properties = passed.toString().split(", ");
+            for(String property : passed_properties){
+                if(!property.isEmpty())
+                    properties.add(WithProperty.createFrom(property));
+
+            } return new WithFilter(properties.toArray(new WithProperty[properties.size()]));
         }
-
-        return new WithFilter(properties.toArray(new WithProperty[properties.size()]));
-    }
-
-    private Ship.ShipPropertyType getShipPropertyType(String searchWord){
-
-        //First checking if the searchword is grammatically correct
-        if(AuraStore.isAura(searchWord))
-            return Ship.ShipPropertyType.Aura;
-
-        if(ZenStore.isZen(searchWord))
-            return Ship.ShipPropertyType.Zen;
-
-        if(WeaponStore.isWeapon(searchWord))
-            return Ship.ShipPropertyType.Weapon;
-
-        if(Rarity.isRarity(searchWord))
-            return Ship.ShipPropertyType.Rarity;
-
-        if(DamageType.isDamageType(searchWord.replace("-", " ")))
-            return Ship.ShipPropertyType.DamageType;
-
-        // Checking if it is almost correct
-        try {
-            Search.findAura(searchWord, LOWEST_MATCH_RATIO);
-            return Ship.ShipPropertyType.Aura;
-        } catch (AuraStore.AuraNotFoundException ignored) { }
-
-        try {
-            Search.findZen(searchWord, LOWEST_MATCH_RATIO);
-            return Ship.ShipPropertyType.Zen;
-        } catch (ZenStore.ZenNotFoundException ignored) { }
-
-        return Ship.ShipPropertyType.None; //If none of the above has returned
     }
 
     public ListAble getWith(WithFilter filter, MessageReceivedEvent event) {
@@ -190,8 +116,8 @@ public class WithSubCommand implements SubCommand {
                     event.getTextChannel().sendMessage(filtered.toString()).complete();
                 } else {
                     event.getTextChannel().sendMessage("Those are not valid arguments").complete();
-                }
-                break;
+                } break;
+
             case Auras:
                 break;
         } return null;

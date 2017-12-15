@@ -2,6 +2,7 @@ package jn.rocbot.commands.normalcommands;
 
 import jn.rocbot.commands.common.*;
 import jn.rocbot.commands.normalcommands.withsubcommand.WithSubCommand;
+import jn.rocbot.misc.NotFoundException;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.info.stores.ShipStore;
 import jn.rocbot.utils.Search;
@@ -63,7 +64,11 @@ public class ShipsCommand implements Command {
                     }
                 }
             } else if(withSub.isInvoke(args[0]) && args.length > 1){
-                withSub.getWith(withSub.parseFilter(Arrays.copyOfRange(args, 1, args.length)), event);
+                try {
+                    withSub.getWith(withSub.parseFilter(Arrays.copyOfRange(args, 1, args.length)), event);
+                } catch (NotFoundException e) {
+                    event.getTextChannel().sendMessage("Received the error: " + e.getMessage()).complete();
+                }
             }
         } else {
             sendAllShips(event);
