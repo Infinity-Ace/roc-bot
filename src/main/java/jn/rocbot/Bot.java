@@ -149,7 +149,7 @@ public class Bot extends ListenerAdapter {
 
     /**
      * Runs every time a message is received
-     * @param event here all the neccessary information is found
+     * @param event here all the necessary information is found
      */
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
@@ -161,7 +161,7 @@ public class Bot extends ListenerAdapter {
         String prefix = getPrefix(event);
 
         if(!prefix.startsWith("?"))
-            group.add("Recieved message starting with "+prefix+" from " + event.getAuthor().getName());
+            group.add("Received message starting with "+prefix+" from " + event.getAuthor().getName());
 
         if (Main.LOG_MESSAGES)
             Log.logMessage(event.getMessage(), event.getTextChannel());

@@ -1,6 +1,7 @@
 package jn.rocbot;
 
 import jn.rocbot.commands.common.CommandConfig;
+import jn.rocbot.commands.common.PREFIXES;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
@@ -20,19 +21,18 @@ public class RocParser {
 
         switch (config.type) {
             case NORMAL:
-                beheaded = raw.replaceFirst("!", "");
+                beheaded = raw.replaceFirst(PREFIXES.NORMAL.PREFIX, "");
                 break;
             case MOD:
-                beheaded = raw.replaceFirst("~", "");
-                beheaded = beheaded.replaceFirst("!", "");
+                beheaded = raw.replaceFirst(PREFIXES.MODERATOR.PREFIX, "");
                 break;
             case DEV:
-                beheaded = raw.replaceFirst("§", "");
+                beheaded = raw.replaceFirst(PREFIXES.MASTER.PREFIX, "");
                 break;
         }
 
         String[] sb = beheaded.split(" ");
-        for(String s : sb) split.add(s);
+        split.addAll(Arrays.asList(sb));
 
         String invoke = split.get(0);
 
