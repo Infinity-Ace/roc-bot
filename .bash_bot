@@ -5,7 +5,7 @@ alias tobot='cd $BOT_HOME'
 alias bot:suggestions='cat $BOT_HOME/suggestions.txt'
 
 #Takes you here
-alias bot:aliases='vim $BOT_HOME/.bash_bot; source ~/.bash_bot'
+alias bot:aliases='vim $BOT_HOME/.bash_bot; source $BOT_HOME/.bash_bot'
 
 #runs the bot script, this should rather be installed
 alias bot='py3 $BOT_HOME/scripts/bot.py'
@@ -17,5 +17,5 @@ alias bot:reboot='bot:build;bot:run'
 alias bot:update='tobot;git pull;bot:reboot'
 
 #Also temporqry setting configs
-alias bot-cfg-standard='echo Do not rely on this method!;source $BASH_BOT/config/roc-bot-conf_normal'
+alias bot-cfg-standard='echo Do not rely on this method!;source $BOT_HOME/config/roc-bot-conf_normal'
 

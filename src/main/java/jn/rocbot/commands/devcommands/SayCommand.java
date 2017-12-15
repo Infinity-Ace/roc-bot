@@ -29,9 +29,9 @@ public class SayCommand implements Command{
                 message += arg;
         }
 
-        Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))
+/*        Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))
                 .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_BOT_CHANNEL))
-                    .sendMessage(message).complete();
+                    .sendMessage(message).complete();*/
     }
 
     @Override
