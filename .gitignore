@@ -3,6 +3,7 @@
 .idea/
 /target/
 target/**
+config/
 roc-bot.iml
 suggestions.txt
 meta/sessions.json

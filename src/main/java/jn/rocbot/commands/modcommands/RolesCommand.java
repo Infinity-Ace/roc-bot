@@ -39,7 +39,14 @@ public class RolesCommand implements Command{
 
     @Override
     public String help() {
-        return "Blame Jens";
+        return String.format(
+                "The roles command is used for managing roles\n" +
+                "Usage:\n" +
+                    "\t%sroles  –  gives you a list of the current roles\n" +
+                    "\t%sroles delete (<role-name>) -  deletes the specified role\n" +
+                    "\tThe delete command is by default ignoring case, append \"!\" at the beginning of the role-name to make it case-sensitive",
+                PREFIXES.MODERATOR.PREFIX, PREFIXES.MODERATOR.PREFIX
+        );
     }
 
     private CommandConfig config = new CommandConfig(CommandType.MOD, false);
@@ -49,6 +56,8 @@ public class RolesCommand implements Command{
         return config;
     }
 
+
+
     class CreateRoleSub implements SubCommand{
 
         @Override
@@ -56,9 +65,16 @@ public class RolesCommand implements Command{
             if(args.length == 0) {
                 event.getTextChannel().sendMessage("You must at least specify a name!").complete();
                 return;
-            } event.getGuild()
+            }
+
+            StringJoiner joined = new StringJoiner(" ");
+            for(String string : args) joined.add(string);
+
+            event.getGuild()
                 .getController().createRole()
-                    .setName(args[0]).setColor(Color.GRAY).complete();
+                    .setName(joined.toString())
+                    .setColor(Color.GRAY)
+                    .complete();
         }
 
         @Override
@@ -68,7 +84,7 @@ public class RolesCommand implements Command{
 
         @Override
         public String help() {
-            return "Blame Jens once again";
+            return "";
         }
 
         private CommandConfig config = new CommandConfig(CommandType.MOD, false);
@@ -79,6 +95,8 @@ public class RolesCommand implements Command{
         }
     }
 
+
+
     class DeleteRoleSub implements SubCommand {
 
         @Override
@@ -88,7 +106,7 @@ public class RolesCommand implements Command{
 
         @Override
         public String help() {
-            return String.format("Usage: %sroles <delete (rolename)>", PREFIXES.MODERATOR.PREFIX);
+            return "";
         }
 
         private CommandConfig config = new CommandConfig(CommandType.MOD, false);
