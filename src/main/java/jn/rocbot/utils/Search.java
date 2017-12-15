@@ -162,12 +162,14 @@ public class Search {
         ArrayList<Ship> ships = new ArrayList<>();
 
         for(Ship ship : ShipStore.SHIPS){
+            boolean fullFilled = false;
             for(WithProperty property : filter.properties) {
                 if(property.isFullFilledBy(ship)) {
-                    ships.add(ship);
-                    break;
+                    fullFilled = true;
+                } else {
+                    fullFilled = false; break;
                 }
-            }
+            } if(fullFilled) ships.add(ship);
         } return ships.toArray(new Ship[ships.size()]);
     }
 }
