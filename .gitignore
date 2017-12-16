@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 .DS_Store
 .idea/
 /target/
-<<<<<<< HEAD
 target/**
 config/
-=======
->>>>>>> 77ac83b0a4158f900738216bb834d60406913e36
 roc-bot.iml
 suggestions.txt
 meta/sessions.json
@@ -62,6 +58,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+config/
 roc-bot_config
 *.log
 /meta/sessions.json
