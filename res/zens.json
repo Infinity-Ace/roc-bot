@@ -95,7 +95,7 @@
     {
       "name":"Reflex EMP",
       "desc":"Destroys bullets in a moderate radius around your ship",
-      "abbreviations":["re"],
+      "abbreviations":["re","remp"],
        "properties": {
         "radius":225,
         "charge duration":0.6,

@@ -426,6 +426,8 @@
       "name": "Gladius",
       "weapon": {
         "damage type":"sb",
+        "damage output":25,
+        "homing capability":"Average",
         "name": "Plasma missiles"
       },
       "aura": "Vorpal lance", "zen": "Kappa drive", "r":1
