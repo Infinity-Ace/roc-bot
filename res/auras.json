@@ -65,7 +65,7 @@
     {
       "name":"Bullet EMP",
       "desc":"destroys all bullets in it's radius",
-      "abbreviations":["be"],
+      "abbreviations":["be", "bemp"],
       "properties": {
         "max radius":450
       },
@@ -92,7 +92,7 @@
     {
       "name":"Stun EMP",
       "desc":"stuns all enemies in the radius",
-      "abbreviations":["se"],
+      "abbreviations":["se", "semp"],
       "properties":{
         "max radius":450,
         "max stun time":5,
