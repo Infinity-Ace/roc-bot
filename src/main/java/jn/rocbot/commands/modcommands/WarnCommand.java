@@ -32,13 +32,13 @@ public class WarnCommand implements Command{
 
         if(joined.toString().contains("|"))
             message = String.format(
-                    "You have been warned by a moderator, reason provided: %s",
+                    "You have been warned by a moderator, reason: %s",
                     joined.toString().substring(
                             joined.toString().indexOf("|") + 1
                     ).replace("|", "")
             ).trim();
-
         else message = "You have been warned by a moderator";
+
         try {
             if (event.getGuild().getMemberById(Long.valueOf(user)) != null) {
                 warnMember(event.getGuild().getMemberById(Long.valueOf(user)), message);
@@ -83,9 +83,9 @@ public class WarnCommand implements Command{
                 IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_MODLOG)
         ).sendMessage(
                 String.format(
-                        "Member %s has been warned\nReasoned provided: %s",
+                        "Member %s has been warned\nReasoned: %s",
                         member.getUser().getName(),
-                        reason_provided.replace("You have been warned by a moderator, reason provided: ", "")
+                        reason_provided.replace("You have been warned by a moderator, reason: ", "")
                 )
         ).complete();
     }
