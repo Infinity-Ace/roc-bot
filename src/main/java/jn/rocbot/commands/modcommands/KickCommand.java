@@ -105,6 +105,7 @@ public class KickCommand implements Command{
     }
 
     private CommandConfig config = new CommandConfig(CommandType.MOD, false);
+
     @Override
     public CommandConfig getConfig() {
         return config;

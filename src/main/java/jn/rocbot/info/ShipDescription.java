@@ -17,7 +17,7 @@ public class ShipDescription implements Formatter{
     private EmbedBuilder desc;
 
     public ShipDescription(Ship ship){
-        desc = new EmbedBuilder().setTitle(String.format("%s %s", bold(String.format("%s %s", ship.name, ship.rarity.toEmoji())), ship.weapon.damageType.emoji));
+        desc = new EmbedBuilder().setTitle(bold(String.format("%s %s", ship.name, ship.rarity.toEmoji())));
 
         Color color = null;
 
@@ -34,7 +34,7 @@ public class ShipDescription implements Formatter{
 
         if(ShipPicStore.hasPic(ship)) desc.setThumbnail(ShipPicStore.getPicURL(ship));
 
-        desc.addField(ship.weapon.name, ship.weapon.simpleDesc(false), false);
+        desc.addField(ship.weapon.name + " " + ship.weapon.damageType.emoji, ship.weapon.simpleDesc(false), false);
         desc.addField(ship.aura.name, ship.aura.simpleDesc(false), false);
         desc.addField(ship.zen.name, ship.zen.simpleDesc(false), false);
     }
