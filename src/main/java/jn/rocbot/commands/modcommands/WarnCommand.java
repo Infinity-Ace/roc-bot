@@ -86,7 +86,7 @@ public class WarnCommand implements Command{
                 IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_MOD_LOGS)
         ).sendMessage(
                 String.format(
-                        "Member %s has been warned\nReasoned: %s",
+                        "Member %s has been warned\nReason: %s",
                         member.getUser().getName(),
                         reason_provided.replace("You have been warned by a moderator, reason: ", "")
                 )

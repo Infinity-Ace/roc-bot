@@ -1,5 +1,6 @@
 package jn.rocbot.commands.modcommands;
 
+import jn.rocbot.IDs;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
@@ -74,6 +75,20 @@ public class BanCommand implements Command{
     }
 
     private void ban(Member member, String message){
+        String reason_provided;
+        if(message.equals("You have been banned by a moderator")) reason_provided = "None";
+        else reason_provided = message;
+
+        member.getGuild().getTextChannelById(
+                IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_MOD_LOGS)
+        ).sendMessage(
+                String.format(
+                        "Member %s has been banned\nReason: %s",
+                        member.getUser().getName(),
+                        reason_provided.replace("You have been banned by a moderator, reason: ", "")
+                )
+        ).complete();
+
         member.getGuild().getController().ban(member, 0, message).complete();
     }
 

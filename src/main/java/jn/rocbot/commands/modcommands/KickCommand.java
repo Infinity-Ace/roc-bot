@@ -1,5 +1,6 @@
 package jn.rocbot.commands.modcommands;
 
+import jn.rocbot.IDs;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
@@ -75,6 +76,20 @@ public class KickCommand implements Command{
 
     private void kick(Member member, String message){
         member.getGuild().getController().kick(member, message).complete();
+
+        String reason_provided;
+        if(message.equals("You have been kicked by a moderator")) reason_provided = "None";
+        else reason_provided = message;
+
+        member.getGuild().getTextChannelById(
+                IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_MOD_LOGS)
+        ).sendMessage(
+                String.format(
+                        "Member %s has been kicked\nReason: %s",
+                        member.getUser().getName(),
+                        reason_provided.replace("You have been kicked by a moderator, reason: ", "")
+                )
+        ).complete();
     }
 
     @Override
