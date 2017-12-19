@@ -1,12 +1,6 @@
 package jn.rocbot.commands.devcommands.tests;
 
-import jn.rocbot.info.IDs;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-
-import java.util.Arrays;
-import java.util.StringJoiner;
 
 public class RolesTestSub extends TestSubCommand{
 

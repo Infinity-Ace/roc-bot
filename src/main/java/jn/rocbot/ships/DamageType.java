@@ -1,14 +1,19 @@
 package jn.rocbot.ships;
 
+import jn.rocbot.Emojis;
+
 public final class DamageType {
-    public static DamageType SB = new DamageType("sb");
-    public static DamageType AP = new DamageType("ap");
-    public static DamageType HI = new DamageType("hi");
+    public static DamageType SB = new DamageType("sb", Emojis.SB);
+    public static DamageType AP = new DamageType("ap", Emojis.AP);
+    public static DamageType HI = new DamageType("hi", Emojis.HI);
 
     private String string;
+    public final String emoji;
 
-    private DamageType(String s) {
+    private DamageType(String s, String emoji) {
         this.string = s;
+
+        this.emoji = emoji;
     }
 
     private static DamageType[] values = {SB, AP, HI};
@@ -37,7 +42,7 @@ public final class DamageType {
                 } catch (DamageTypeNotFoundException e) {
                     e.printStackTrace();
                 }
-        } return null;
+        } return "";
     }
 
     public static DamageType fromString(String search) throws DamageTypeNotFoundException {

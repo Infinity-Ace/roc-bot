@@ -17,7 +17,7 @@ public class ShipDescription implements Formatter{
     private EmbedBuilder desc;
 
     public ShipDescription(Ship ship){
-        desc = new EmbedBuilder().setTitle(bold(ship.name + " " + ship.rarity.toEmoji()));
+        desc = new EmbedBuilder().setTitle(String.format("%s %s", bold(String.format("%s %s", ship.name, ship.rarity.toEmoji())), ship.weapon.damageType.emoji));
 
         Color color = null;
 

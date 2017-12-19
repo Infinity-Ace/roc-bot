@@ -4,7 +4,6 @@ import jn.rocbot.commands.common.PREFIXES;
 import jn.rocbot.permissions.Masters;
 import jn.rocbot.RocParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
-import jn.rocbot.info.IDs;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.utils.Log;
 import net.dv8tion.jda.core.entities.Guild;

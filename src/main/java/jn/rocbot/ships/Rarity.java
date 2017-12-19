@@ -1,15 +1,17 @@
 package jn.rocbot.ships;
 
+import jn.rocbot.Emojis;
+
 import java.util.StringJoiner;
 
 public final class Rarity extends Ship.ShipProperty{
-    public static Rarity COMMON = new Rarity("Common", "<:common:378807923318718464>");
-    public static Rarity RARE = new Rarity("Rare", "<:rare:378807923377307648>");
-    public static Rarity SUPER_RARE = new Rarity("Super Rare","<:superrare:378808209709858819>");
+    private static Rarity COMMON = new Rarity("Common", Emojis.COMMON);
+    private static Rarity RARE = new Rarity("Rare", Emojis.RARE);
+    private static Rarity SUPER_RARE = new Rarity("Super Rare",Emojis.SUPER_RARE);
 
     private static Rarity[] values = {COMMON, RARE, SUPER_RARE};
 
-    public static Rarity[] values() {
+    private static Rarity[] values() {
         return values;
     }
 
@@ -35,7 +37,7 @@ public final class Rarity extends Ship.ShipProperty{
         } throw new ArrayIndexOutOfBoundsException("The rarity must be from 1 - 3 not: " + i);
     }
 
-    public static boolean isRarity(String name){
+    static boolean isRarity(String name){
         String proccesed_name = name.replace("rarity ", "");
 
         for (Rarity rarity : values())

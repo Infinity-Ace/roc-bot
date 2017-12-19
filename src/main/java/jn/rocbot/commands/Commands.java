@@ -1,6 +1,7 @@
 package jn.rocbot.commands;
 
 import jn.rocbot.commands.modcommands.RolesCommand;
+import jn.rocbot.commands.modcommands.WarnCommand;
 import jn.rocbot.commands.normalcommands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.devcommands.SayCommand;
@@ -24,6 +25,7 @@ public class Commands {
 
         //Moderator commads
         COMMANDS.put("roles", new RolesCommand());
+        COMMANDS.put("warn", new WarnCommand());
 
         //Master commands
         COMMANDS.put("test", new TestCommand());

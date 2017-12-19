@@ -1,11 +1,9 @@
 package jn.rocbot.commands.devcommands;
 
 import jn.rocbot.Emojis;
-import jn.rocbot.Main;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
-import jn.rocbot.info.IDs;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class SayCommand implements Command{

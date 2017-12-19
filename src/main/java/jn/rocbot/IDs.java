@@ -1,8 +1,8 @@
-package jn.rocbot.info;
+package jn.rocbot;
 
 import java.util.HashMap;
 
-import static jn.rocbot.info.IDs.ID_KEY.*;
+import static jn.rocbot.IDs.ID_KEY.*;
 
 public class IDs {
     public static HashMap<ID_KEY, Long> CHANNELS;
@@ -12,10 +12,15 @@ public class IDs {
 
     public static void init() {
         CHANNELS = new HashMap<>();
+
+        //Phoenix II server
         CHANNELS.put(CHANNEL_GP2_BOT_CHANNEL, 378546862627749908L);
         CHANNELS.put(CHANNEL_GP2_GENERAL, 325430508379176961L);
         CHANNELS.put(CHANNEL_GP2_WELCOME, 390389477983387649L);
+        CHANNELS.put(CHANNEL_GP2_MODLOG, 392600148901101578L);
 
+
+        //Roc-bot control center
         CHANNELS.put(CHANNEL_GCC_LOGS_INFO,       389525278445273101L);
         CHANNELS.put(CHANNEL_GCC_LOGS_DEBUG,      389514936016961559L);
         CHANNELS.put(CHANNEL_GCC_LOGS_VERBOSE,    389515023141175316L);
@@ -24,6 +29,8 @@ public class IDs {
 
         CHANNELS.put(CHANNEL_GCC_LOGS_BOTCHANNEL_RCWD, 389799498131701782L);
 
+
+        // Self explanatory
         GUILDS = new HashMap<>();
         GUILDS.put(GUILD_PHOENIX_II, 325430508379176961L);
         GUILDS.put(GUILD_BOT_CC, 378949749883273217L);
@@ -33,6 +40,7 @@ public class IDs {
         CHANNEL_GP2_BOT_CHANNEL,
         CHANNEL_GP2_GENERAL,
         CHANNEL_GP2_WELCOME,
+        CHANNEL_GP2_MODLOG,
 
         CHANNEL_GCC_LOGS_INFO,
         CHANNEL_GCC_LOGS_DEBUG,

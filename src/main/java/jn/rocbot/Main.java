@@ -5,13 +5,11 @@ import jn.rocbot.misc.BotIsDoing;
 import jn.rocbot.misc.Sessions;
 import jn.rocbot.permissions.Masters;
 import jn.rocbot.permissions.Moderators;
-import jn.rocbot.info.IDs;
 import jn.rocbot.ships.DamageType;
 import jn.rocbot.utils.Log;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 
 import javax.security.auth.login.LoginException;

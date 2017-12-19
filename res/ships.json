@@ -131,6 +131,7 @@
       "name": "Kada Veni",
       "weapon": {
         "damage type":"ap",
+        "damage output":25,
         "name":"Pulse battery"
       },
       "aura": "Barrier", "zen": "Mega bomb", "r":1
@@ -596,6 +597,7 @@
       "name": "Scuuxun",
       "weapon": {
         "damage type":"sb",
+        "damge output":32.25,
         "name": "T'kari spikes"
       },
       "aura": "Laser storm", "zen": "Reflex EMP", "r":2
