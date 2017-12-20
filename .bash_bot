@@ -1,4 +1,4 @@
-#Takes you to the bots root
+#Takes you to the bots home
 alias tobot='cd $BOT_HOME'
 
 #Shows you info about whatever
