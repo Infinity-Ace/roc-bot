@@ -17,5 +17,5 @@ alias bot:reboot='bot:build;bot:run'
 alias bot:update='tobot;git pull;bot:reboot'
 
 #Also temporqry setting configs
-alias bot-cfg-standard='echo Do not rely on this method!;source $BOT_HOME/config/roc-bot-conf_normal'
+alias bot-cfg-standard='echo Do not rely on this method!;source $BOT_HOME/secret/roc-bot-conf_normal'
 
