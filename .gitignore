@@ -58,7 +58,7 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-config/
+secret/
 roc-bot_config
 *.log
 /meta/sessions.json
