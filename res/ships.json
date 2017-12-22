@@ -631,7 +631,7 @@
         "damage type":"ap",
         "name":"Dual blaster"
       },
-      "aura": "Barrier", "zen": "Reflex EMP.", "r":2
+      "aura": "Barrier", "zen": "Reflex EMP", "r":2
     }
   ]
 }
