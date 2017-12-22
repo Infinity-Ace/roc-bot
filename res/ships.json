@@ -14,6 +14,7 @@
       "weapon": {
         "damage type":"sb",
         "damage output": 34.38,
+        "spread":"Medium",
         "name":"Plasma cannon"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -348,6 +349,7 @@
       "name": "Prime X",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.25,
         "name": "Vulcan"
       },
       "aura": "Missile swarm", "zen": "Teleport", "r":2
@@ -454,6 +456,7 @@
       "name": "Saber",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.25,
         "name": "Nova blaster"
       },
       "aura": "Vorpal lance", "zen": "Reflex EMP", "r":2
@@ -489,7 +492,7 @@
       "name": "Torrent",
       "weapon": {
         "damage type":"hi",
-        "damage output":32.5,
+        "damage output":31.5,
         "name": "Quantum stream"
       },
       "aura": "Stun EMP", "zen": "Personal shield", "r":1
@@ -597,7 +600,7 @@
       "name": "Scuuxun",
       "weapon": {
         "damage type":"sb",
-        "damge output":32.25,
+        "damage output":32.25,
         "name": "T'kari spikes"
       },
       "aura": "Laser storm", "zen": "Reflex EMP", "r":2
@@ -611,6 +614,24 @@
         "name": "Phantom katana"
       },
       "aura": "Blade storm", "zen": "Reflex EMP", "r":3
+    },
+    {
+      "name":"NC-271",
+      "weapon": {
+        "damage output":31.25,
+        "damage type":"sb",
+        "name":"Plasma cluster"
+      },
+      "aura": "Ion cannon", "zen": "Personal shield", "r":2
+    },
+    {
+      "name":"Predator",
+      "weapon": {
+        "damage output":31.25,
+        "damage type":"ap",
+        "name":"Dual blaster"
+      },
+      "aura": "Barrier", "zen": "Reflex EMP.", "r":2
     }
   ]
 }
