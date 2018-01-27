@@ -17,6 +17,7 @@ public class TestCommand implements Command {
         TEST_COMMANDS.add(new SearchTestSub(this));
         TEST_COMMANDS.add(new EveryXHasY());
         TEST_COMMANDS.add(new RolesTestSub());
+        TEST_COMMANDS.add(new ShipsMissingDPS());
     }
 
     @Override
