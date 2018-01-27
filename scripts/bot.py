@@ -50,7 +50,7 @@ def docopt_cmd(func):
 class MyInteractive(cmd.Cmd):
     intro = 'Welcome ' + os.environ['USER'] \
             + '\nAsk me for Help at any moment'
-    prompt = 'Roc-bot:$ '
+    prompt = 'Roc-bot@: '
 
     nohelp = 'Sorry, ask jens to fix the help for %s'
 
@@ -59,7 +59,8 @@ class MyInteractive(cmd.Cmd):
         """Usage: run [-a]
 
         Options:
-            -a, --attached  Does not detach the screen"""
+            -a, --attached  Does not detach the screen
+        """
 
         print("Running with args:")
         print("\t", arg)

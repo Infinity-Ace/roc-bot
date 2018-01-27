@@ -116,6 +116,7 @@
       "name": "Proxymar",
       "weapon": {
         "damage type":"sb",
+        "damage output": 21.25,
         "name":"Lightning conduit"
       },
       "aura": "Missile swarm", "zen": "Mega bomb", "r":1
@@ -171,7 +172,7 @@
       "name": "Phoenix",
       "weapon": {
         "damage type":"sb",
-        "damge output":31.25,
+        "damage output":31.25,
         "name":"Helix cannon"
       },
       "aura": "Bullet EMP", "zen": "Personal shield", "r":2
@@ -371,6 +372,7 @@
       "name": "Vani-Vith",
       "weapon": {
         "damage type":"hi",
+        "damage output": 31.25,
         "name": "Spark fusor"
       },
       "aura": "Vorpal lance", "zen": "Teleport", "r":2
@@ -525,6 +527,7 @@
       "name": "Njörun",
       "weapon": {
         "damage type":"sb",
+        "damage output": 31.25,
         "name": "Wave cannons"
       },
       "aura": "Chrono field", "zen": "Personal shield", "r":2
