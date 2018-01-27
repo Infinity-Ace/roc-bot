@@ -49,6 +49,7 @@
       "name": "Jericho",
       "weapon": {
         "damage type":"ap",
+        "damage output": 25,
         "name":"Inferno seekers"
       },
       "aura": "Bullet EMP", "zen": "Personal shield", "r":1
@@ -364,6 +365,7 @@
       "name": "Sakura",
       "weapon": {
         "damage type":"ap",
+        "damage output": 37.5,
         "name": "Edge projector"
       },
       "aura": "Barrier", "zen": "Teleport", "r":3
@@ -509,6 +511,7 @@
       "name": "Orion",
       "weapon": {
         "damage type":"ap",
+        "damage output": 25,
         "name": "Photon scatter"
       },
       "aura": "Point defense", "zen": "Teleport", "r":2
