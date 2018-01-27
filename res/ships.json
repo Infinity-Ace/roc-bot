@@ -124,6 +124,7 @@
       "name": "Oran",
       "weapon": {
         "damage type":"ap",
+        "damage output": 21.25,
         "name":"Meson laser"
       },
       "aura": "Stun EMP", "zen": "Kappa drive", "r":3
@@ -161,6 +162,7 @@
       "name": "Cinnri",
       "weapon": {
         "damage type":"hi",
+        "damage output": 25,
         "name": "Neutron launcher"
       },
       "aura": "Stun EMP", "zen": "Mega laser", "r":3
@@ -169,6 +171,7 @@
       "name": "Phoenix",
       "weapon": {
         "damage type":"sb",
+        "damge output":31.25,
         "name":"Helix cannon"
       },
       "aura": "Bullet EMP", "zen": "Personal shield", "r":2
@@ -214,6 +217,7 @@
       "name": "Juggernaut",
       "weapon": {
         "damage type":"ap",
+        "damage output": 25,
         "name": "Devastator cannon"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":2
@@ -331,6 +335,7 @@
       "name": "Gorthaur",
       "weapon": {
         "damage type":"hi",
+        "damage output": 27.5,
         "name": "Barrage cannons"
       },
       "aura": "Barrier", "zen": "Personal shield", "r":2
@@ -421,6 +426,7 @@
       "name": "Hunter",
       "weapon": {
         "damage type":"ap",
+        "damage output": 25,
         "name": "Hyper blaster"
       },
       "aura": "Phalanx", "zen": "Teleport", "r":2
