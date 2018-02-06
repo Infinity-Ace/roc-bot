@@ -282,6 +282,7 @@
       "name": "Arietis",
       "weapon": {
         "damage type":"sb",
+        "damage output":34.38,
         "name": "Particle disruptor"
       },
       "aura": "Point defense", "zen": "Mega Laser", "r":2
@@ -290,6 +291,7 @@
       "name": "Atlas",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.25,
         "name":"Autocannon"
       },
       "aura": "Missile swarm", "zen": "Personal shield", "r":2
@@ -411,6 +413,7 @@
       "name": "Dragonfly",
       "weapon": {
         "damage type":"hi",
+        "damage output":31.25,
 
         "name":"Twin miniguns"
       },
@@ -475,6 +478,7 @@
       "name": "Valkyrie",
       "weapon": {
         "damage type":"sb",
+        "damage output":31.25,
         "name": "Tachyon projector"
       },
       "aura": "Phalanx", "zen": "Mega bomb", "r":1
@@ -566,6 +570,7 @@
       "name": "Antioch",
       "weapon": {
         "damage type":"ap",
+        "damage output":31.25,
         "name": "Proton crystallizer"
       },
       "aura": "Vorpal lance", "zen": "Personal shield", "r":1
