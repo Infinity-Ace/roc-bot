@@ -404,7 +404,7 @@
       "name": "502-Q8",
       "weapon": {
         "damage type":"sb",
-        "damage outpur":31.25,
+        "damage output":31.25,
         "name": "Plasma compresser"
       },
       "aura": "Phalanx", "zen": "Mega laser", "r":1
