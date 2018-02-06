@@ -32,6 +32,7 @@
       "name": "Veil",
       "weapon": {
         "damage type":"sb",
+        "damage output":31.25,
         "name":"Fusion Laser"
       },
       "aura": "Bullet EMP", "zen": "Mega bomb", "r":1
@@ -67,6 +68,7 @@
       "name": "Jn'dur",
       "weapon": {
         "damage type":"sb",
+        "damage output":34.38,
         "name":"Plasma diffuser"
       },
       "aura": "Barrier", "zen": "Mega bomb", "r":1
@@ -201,6 +203,7 @@
       "name": "Havoc",
       "weapon": {
         "damage type":"ap",
+        "damage output": 31.25,
         "name": "Mass driver"
       },
       "aura": "Laser storm", "zen": "Mega laser", "r":2
@@ -649,6 +652,24 @@
         "name":"Dual blaster"
       },
       "aura": "Barrier", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name":"Lorilou",
+      "weapon": {
+        "damage output":21.25,
+        "damage type":"hi",
+        "name":"Quad phaser"
+      },
+      "aura": "Phalanx", "zen": "Mega laser"
+    },
+    {
+      "name":"AB8/Klyn",
+      "weapon": {
+        "damage output":34.38,
+        "damage type":"hi",        
+        "name":"Photon diffuser"
+      },
+      "aura": "Point defense", "zen": "Reflex EMP"
     }
   ]
 }
