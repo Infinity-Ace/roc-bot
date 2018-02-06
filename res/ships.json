@@ -660,16 +660,16 @@
         "damage type":"hi",
         "name":"Quad phaser"
       },
-      "aura": "Phalanx", "zen": "Mega laser"
+      "aura": "Phalanx", "zen": "Mega laser", "r":2
     },
     {
       "name":"AB8/Klyn",
       "weapon": {
         "damage output":34.38,
-        "damage type":"hi",        
+        "damage type":"hi",
         "name":"Photon diffuser"
       },
-      "aura": "Point defense", "zen": "Reflex EMP"
+      "aura": "Point defense", "zen": "Reflex EMP", "r":2
     }
   ]
 }
