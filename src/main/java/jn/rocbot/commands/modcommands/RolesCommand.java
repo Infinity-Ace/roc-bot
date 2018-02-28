@@ -17,6 +17,7 @@ public class RolesCommand implements Command{
         SUB_COMMANDS = new ArrayList<>();
         SUB_COMMANDS.add(new CreateRoleSub());
         SUB_COMMANDS.add(new DeleteRoleSub());
+        //SUB_COMMANDS.add(new AssignRoleSub());
     }
 
     @Override
@@ -44,8 +45,13 @@ public class RolesCommand implements Command{
                 "Usage:\n" +
                     "\t%sroles  –  gives you a list of the current roles\n" +
                     "\t%sroles delete (<role-name>) -  deletes the specified role\n" +
-                    "\tThe delete command is by default ignoring case, append \"!\" at the beginning of the role-name to make it case-sensitive",
-                PREFIXES.MODERATOR.PREFIX, PREFIXES.MODERATOR.PREFIX
+                    "\tThe delete command is by default ignoring case, append \"!\" at the beginning of the role-name to make it case-sensitive\n" +
+                    "\t%sroles create (<role-name>) -  creates role with specified name\n" +
+                    "\t%sroles assign ( <username/nickname/ID> | <role-name>...)",
+                PREFIXES.MODERATOR.PREFIX,
+                PREFIXES.MODERATOR.PREFIX,
+                PREFIXES.MODERATOR.PREFIX,
+                PREFIXES.MODERATOR.PREFIX
         );
     }
 
@@ -59,7 +65,6 @@ public class RolesCommand implements Command{
 
 
     class CreateRoleSub implements SubCommand{
-
         @Override
         public void action(String[] args, MessageReceivedEvent event) {
             if(args.length == 0) {
@@ -142,12 +147,9 @@ public class RolesCommand implements Command{
                         "The delete-command must have a role to delete specified\nMake sure you spell it correctly"
                 ).complete();
                 return;
-            }
-
-            if(roleList.size() > 1) {
+            } else  if(roleList.size() > 1) {
                 event.getTextChannel().sendMessage("An error where more than one role was found").complete();
                 event.getTextChannel().sendMessage("Contact <@319178540388057089>").complete();
-                //event.getTextChannel().sendMessage(String.format("%s is not a role", joined)).complete();
                 return;
             }
 
@@ -155,4 +157,54 @@ public class RolesCommand implements Command{
             event.getTextChannel().sendMessage(String.format("Role %s deleted", joined)).complete();
         }
     }
+
+    /*class AssignRoleSub implements SubCommand {
+        @Override
+        public void action(String[] args, MessageReceivedEvent event) {
+            StringJoiner joined = new StringJoiner(" ");
+            for(String string : args) joined.add(string);
+            if(args.length == 0){
+                event.getTextChannel().sendMessage("You must specify a user, and a role").complete();
+                return;
+            }
+
+            List<Role> roleList;
+
+            roleList = event.getGuild().getRolesByName(
+                    joined.toString().replaceFirst("!", ""), !joined.toString().startsWith("!")
+            );
+
+            if(roleList.size() == 0) {
+                event.getTextChannel().sendMessage(
+                        "The assign-command must have a role to be assigned specified\nMake sure you spell it correctly"
+                ).complete();
+                return;
+            } else  if(roleList.size() > 1) {
+                event.getTextChannel().sendMessage("An error where more than one role was found").complete();
+                event.getTextChannel().sendMessage("Contact <@319178540388057089>").complete();
+                return;
+            }
+
+
+
+            event.
+        }
+
+        @Override
+        public String invoke() {
+            return "assign";
+        }
+
+        @Override
+        public String help() {
+            return "";
+        }
+
+        private CommandConfig config = new CommandConfig(CommandType.MOD, false);
+
+        @Override
+        public CommandConfig getConfig() {
+            return config;
+        }
+    }*/
 }
