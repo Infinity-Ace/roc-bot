@@ -36,11 +36,13 @@ public class ShipStore {
         for (JsonElement jsonElement : ships){
             JsonObject jsonShip = jsonElement.getAsJsonObject();
 
-            Ship ship = new Ship(jsonShip.get("name").getAsString(),
+            Ship ship = new Ship(
+                    jsonShip.get("name").getAsString(),
                     WeaponStore.fromName(jsonShip.getAsJsonObject("weapon").get("name").getAsString()),
                     AuraStore.getAura(jsonShip.get("aura").getAsString()),
                     ZenStore.getZen(jsonShip.get("zen").getAsString()),
-                    Rarity.fromString(Rarity.fromInt(jsonShip.get("r").getAsInt())));
+                    Rarity.fromInt(jsonShip.get("r").getAsInt())
+            );
 
             SHIPS.add(ship);
         }
