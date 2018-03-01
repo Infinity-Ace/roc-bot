@@ -31,6 +31,7 @@ public class Main {
     public static net.dv8tion.jda.core.JDA JDA;
 
     private static Logger log = Logger.getLogger(Log.class.getName());
+    private static int status;
 
     //requires the arguments String Token, boolean Debug, boolean Verbose
     public static void main(String[] args) {
@@ -60,7 +61,7 @@ public class Main {
             JDA.setAutoReconnect(true);
         } catch (InterruptedException | RateLimitedException | LoginException e) {
             e.printStackTrace();
-            failed();
+            abort();
         }
 
         init(); //======================================================= IMPORTANT
@@ -85,8 +86,9 @@ public class Main {
         Log.log(Log.LogType.CONNECTION, "Established connection with discord\nSession: " + Sessions.SESSIONS);
     }
 
-    private static void failed() {
-        System.exit(0);
+    private static void abort() { abort(1); }
+    private static void abort(int status) {
+        System.exit(status);
     }
 
     private static void init() {
@@ -100,13 +102,13 @@ public class Main {
         } catch (FileNotFoundException e) {
             Log.log(ERROR, "The masters section in the permissions.json file was not found by the bot\n" + e.getLocalizedMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } try {
             Moderators.init();
         } catch (FileNotFoundException e) {
             Log.log(ERROR, "The moderators section in the permissions.json file was not found by the bot\n" + e.getLocalizedMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } group.add("Roles initiated");
 
         ShipPicStore.init();
@@ -117,7 +119,7 @@ public class Main {
         } catch (FileNotFoundException | DamageType.DamageTypeNotFoundException | UnsupportedEncodingException e) {
             Log.log(ERROR, "Something went wrong in the initialization of the weapons in the ships.json file:\n" + e.getMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } group.add("Ship-weapons initiated");
 
         try {
@@ -125,7 +127,7 @@ public class Main {
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             Log.log(ERROR, "Something went wrong in the initialization of the auras in the auras.json file:\n" + e.getMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } group.add("Auras initiated");
 
         try {
@@ -133,7 +135,7 @@ public class Main {
         } catch (FileNotFoundException | UnsupportedEncodingException e) {
             Log.log(ERROR, "Something went wrong in the initialization of the zens in the zens.json file:\n" + e.getMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } group.add("Zens initiated");
 
         try {
@@ -141,15 +143,15 @@ public class Main {
         } catch (FileNotFoundException e) {
             Log.log(ERROR, "The ships.json file was not found by the bot");
             e.printStackTrace();
-            failed();
+            abort();
         } catch (UnsupportedEncodingException e) {
             Log.log(ERROR, "Somethings went wrong in reading the ships.json file: " + e.getMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } catch (AuraStore.AuraNotFoundException | WeaponStore.WeaponNotFoundException | ZenStore.ZenNotFoundException e) {
             Log.log(ERROR, e.getMessage());
             e.printStackTrace();
-            failed();
+            abort();
         } group.add("Ships initiated!\nMeaning everything worked as it should");
 
         Log.log(Log.LogType.VERBOSE, group.get());

@@ -34,7 +34,7 @@ public class Weapon  extends Ship.ShipProperty implements Formatter{
                 desc.addLine(key + ": " + italic(properties.get(key) + propertiesFormat.get(key + "-format")));
             else
                 desc.addLine(key + ": " + italic(properties.get(key)));
-        } return desc.get();
+        } return desc.toString();
     }
 
 }

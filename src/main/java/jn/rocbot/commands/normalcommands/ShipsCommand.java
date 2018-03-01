@@ -39,7 +39,7 @@ public class ShipsCommand implements Command {
             if (randomShipsSub.isInvoke(args[0])){
                 if(args.length > 1) {
                     if(isInteger(args[1])) {
-                        randomShipsSub.rShipList(Integer.valueOf(args[1]), event);
+                        randomShipsSub.randomShipList(Integer.valueOf(args[1]), event);
                     }
                 } else
                     randomShipsSub.sendRandomShip(event);
@@ -134,13 +134,12 @@ public class ShipsCommand implements Command {
                     "\t!ships random 20  –  gives a list of 20 random ships";
         }
 
-        void rShipList(int amount, MessageReceivedEvent event) {
+        void randomShipList(int size, MessageReceivedEvent event) {
             String list = "";
 
-            if(amount > 30) {
-                amount = 30;
-                list += "Can not list more than 30 ships!\nSo here is 30:\n";
-            } for(int i = 0; i < amount; i++){
+            if(size > 30) {
+                size = 30; list += "Can not list more than 30 ships!\nSo here is 30:\n";
+            } for(int i = 0; i < size; i++){
                 if(list.length() > 1500){
                     event.getTextChannel().sendMessage(list).complete();
                     list = "";

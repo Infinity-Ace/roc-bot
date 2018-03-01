@@ -8,11 +8,11 @@ public class WithParserTest {
     }
 
     private WithParserTest(){
-        println(testParenthes("sb & (ml or (mb & vl))"));
-        println(testParenthes(testParenthes("sb & (ml or (mb & vl))")));
+        println(testParentheses("sb & (ml or (mb & vl))"));
+        println(testParentheses(testParentheses("sb & (ml or (mb & vl))")));
     }
 
-    private String testParenthes(String string){
+    private String testParentheses(String string){
         char[] array = string.toCharArray();
         try {
             for (int i = 0; i < array.length; i++) {

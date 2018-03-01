@@ -4,11 +4,10 @@ import jn.rocbot.info.stores.AuraStore;
 import jn.rocbot.info.stores.ZenStore;
 import jn.rocbot.misc.NotFoundException;
 import jn.rocbot.ships.DamageType;
-import jn.rocbot.ships.Rarity;
 import jn.rocbot.ships.Ship;
 import jn.rocbot.utils.Search;
 
-import static jn.rocbot.ships.Ship.ShipPropertyType.*;
+import static jn.rocbot.ships.ShipPropertyType.*;
 
 public class WithProperty {
     public PROPERTY_TYPE type;

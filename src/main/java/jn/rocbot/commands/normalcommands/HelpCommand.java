@@ -26,7 +26,7 @@ public class HelpCommand implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         if(args.length == 0){
-            String message = "Use *!help <SomeCommand>* to get help on specific command";
+            String message = "Use *!help <SomeCommand>* to toString help on specific command";
             message += "\nAvailable commands are: ";
 
             StringJoiner allCommands = new StringJoiner(", ");

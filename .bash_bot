@@ -1,3 +1,4 @@
+#!/bin/bash
 #Takes you to the bots home
 alias tobot='cd $BOT_HOME'
 

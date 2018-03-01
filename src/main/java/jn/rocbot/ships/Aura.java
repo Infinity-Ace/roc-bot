@@ -5,8 +5,6 @@ import jn.rocbot.utils.Formatter;
 
 import java.util.HashMap;
 
-import static jn.rocbot.ships.Ship.*;
-
 public class Aura extends Ship.ShipProperty implements Formatter{
     public final String desc;
     public final String ultimateName;
@@ -46,7 +44,7 @@ public class Aura extends Ship.ShipProperty implements Formatter{
 
         desc.addLine("\nUltimate: " + italic(ultimateName));
         desc.addLine("\tDescription: " + ultimateProperties.get("desc"));
-        return desc.get();
+        return desc.toString();
     }
 
     public boolean isInteger(String str) {

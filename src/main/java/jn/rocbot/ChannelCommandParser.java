@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RocParser {
+public class ChannelCommandParser {
     public CommandContainer parse(String rw, CommandConfig config, MessageReceivedEvent event){
         ArrayList<String> split = new ArrayList<>();
         String raw;

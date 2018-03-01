@@ -3,7 +3,6 @@ package jn.rocbot.ships;
 import jn.rocbot.info.SimpleDescBuilder;
 import jn.rocbot.utils.Formatter;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Zen extends Ship.ShipProperty implements Formatter{
@@ -43,7 +42,7 @@ public class Zen extends Ship.ShipProperty implements Formatter{
         desc.addLine("Ultimate: " + italic(ultimateName));
         desc.addLine("\tDescription: " + this.ultimateDesc);
 
-        return desc.get();
+        return desc.toString();
     }
 
     public Zen setAbbreviations(String[] abbreviations){

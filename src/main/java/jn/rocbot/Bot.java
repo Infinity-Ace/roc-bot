@@ -2,7 +2,7 @@ package jn.rocbot;
 
 import jn.rocbot.commands.common.PREFIXES;
 import jn.rocbot.permissions.Masters;
-import jn.rocbot.RocParser.CommandContainer;
+import jn.rocbot.ChannelCommandParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.utils.Log;
@@ -32,12 +32,12 @@ public class Bot extends ListenerAdapter {
         Bot.IS_EVIL_TEST_TWIN = is_evil_twin;
     }
 
-    public static RocParser PARSER;
+    public static ChannelCommandParser PARSER;
     
     private Logger log = Logger.getLogger(Log.class.getName());
 
     static {
-        PARSER = new RocParser();
+        PARSER = new ChannelCommandParser();
     }
 
     public static void onReadyLog(){
@@ -242,7 +242,7 @@ public class Bot extends ListenerAdapter {
         dLog(cmd.hrInfo());
         if(COMMANDS.containsKey(cmd.invoke)){
             boolean safe = COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event);
-            //dLog("\tExecuted = " + COMMANDS.get(cmd.invoke).called(cmd.args, cmd.event));
+            //dLog("\tExecuted = " + COMMANDS.toString(cmd.invoke).called(cmd.args, cmd.event));
 
             if(safe){
                 COMMANDS.get(cmd.invoke).action(cmd.args, cmd.event);

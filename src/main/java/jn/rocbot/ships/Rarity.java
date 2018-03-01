@@ -26,34 +26,35 @@ public final class Rarity extends Ship.ShipProperty{
         return this.emoji;
     }
 
-    public static String fromInt(int i) throws ArrayIndexOutOfBoundsException {
+    public static Rarity fromInt(int i) throws ArrayIndexOutOfBoundsException {
         switch (i) {
             case 1:
-                return "Common";
+                return COMMON;
             case 2:
-                return "Rare";
+                return RARE;
             case 3:
-                return "Super Rare";
+                return SUPER_RARE;
         } throw new ArrayIndexOutOfBoundsException("The rarity must be from 1 - 3 not: " + i);
     }
 
     static boolean isRarity(String name){
-        String proccesed_name = name.replace("rarity ", "");
+        String processedName = name.replace("rarity ", "");
 
-        for (Rarity rarity : values())
-            if(rarity.name.toLowerCase().equals(proccesed_name.toLowerCase())) return true;
+        for (Rarity rarity : values()) {
+            if (rarity.name.toLowerCase().equals(processedName.toLowerCase())) return true;
+        }
 
         return false;
     }
 
     public static Rarity fromString(String name){
         String[] temp =  name.replace("rarity", "").split(" ");
-        StringJoiner proccessed = new StringJoiner(" ");
+        StringJoiner processed = new StringJoiner(" ");
         for (String string : temp) {
-            if(!string.isEmpty()) proccessed.add(string);
+            if(!string.isEmpty()) processed.add(string);
         }
 
-        switch (proccessed.toString().toLowerCase()){
+        switch (processed.toString().toLowerCase()){
             case "common":
                 return COMMON;
             case "rare":

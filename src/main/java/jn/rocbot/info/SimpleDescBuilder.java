@@ -15,7 +15,8 @@ public class SimpleDescBuilder {
         desc.add(line);
     }
 
-    public String get() {
+    @Override
+    public String toString() {
         return desc.toString();
     }
 }

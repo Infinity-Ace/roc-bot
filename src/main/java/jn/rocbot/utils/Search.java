@@ -19,7 +19,7 @@ public class Search {
         return findShip(searchString, 55);
     }
 
-    public static Ship findShip(String searchString, int lowestAllowedRatio) throws ShipStore.ShipNotFoundException {
+    public static Ship findShip(String searchString, int minumumRatio) throws ShipStore.ShipNotFoundException {
         String[] shipNames = ShipStore.allNames().split("\n");
 
         HashMap<Ship, Integer> ratios = new HashMap<>();
@@ -37,7 +37,7 @@ public class Search {
         Ship highestHit = ShipStore.randomShip();
         for(Ship key : ratios.keySet()){
             if(ratios.get(key) > ratios.get(highestHit)) highestHit = key;
-        } if(ratios.get(highestHit) > lowestAllowedRatio)
+        } if(ratios.get(highestHit) > minumumRatio)
             return highestHit;
 
         throw new ShipStore.ShipNotFoundException("Found no ship with name matching " + searchString);

@@ -6,13 +6,9 @@ import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.commands.common.CommandType;
 import jn.rocbot.commands.common.SubCommand;
 import jn.rocbot.info.ListAble;
-import jn.rocbot.info.stores.AuraStore;
-import jn.rocbot.info.stores.WeaponStore;
-import jn.rocbot.info.stores.ZenStore;
 import jn.rocbot.misc.NotFoundException;
-import jn.rocbot.ships.DamageType;
-import jn.rocbot.ships.Rarity;
 import jn.rocbot.ships.Ship;
+import jn.rocbot.ships.ShipPropertyType;
 import jn.rocbot.utils.Log;
 import jn.rocbot.utils.Search;
 
@@ -79,7 +75,7 @@ public class WithSubCommand implements SubCommand {
         dLog("Filtering ships, received" +
                 "\n\targs: " + Arrays.toString(passed_args) +
                 "\n\tJoined: " + passed.toString() +
-                "\n\tType: " + Ship.ShipPropertyType.getShipPropertyType(passed.toString()).name());
+                "\n\tType: " + ShipPropertyType.getShipPropertyType(passed.toString()).name());
 
         if(!passed.toString().contains(",")) {
 

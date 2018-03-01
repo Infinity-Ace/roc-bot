@@ -21,6 +21,7 @@ public class ShipDescription implements Formatter{
 
         Color color = null;
 
+        // Get ca. the color for damage-types
         if (ship.weapon.damageType.toString().toLowerCase().equals(SB.toString().toLowerCase())) {
             color = new Color(0x0080FE);
 
@@ -34,7 +35,8 @@ public class ShipDescription implements Formatter{
 
         if(ShipPicStore.hasPic(ship)) desc.setThumbnail(ShipPicStore.getPicURL(ship));
 
-        desc.addField(ship.weapon.name + " " + ship.weapon.damageType.emoji, ship.weapon.simpleDesc(false), false);
+        desc.addField(ship.weapon.name + " " + ship.weapon.damageType.emoji,
+                ship.weapon.simpleDesc(false), false);
         desc.addField(ship.aura.name, ship.aura.simpleDesc(false), false);
         desc.addField(ship.zen.name, ship.zen.simpleDesc(false), false);
     }
