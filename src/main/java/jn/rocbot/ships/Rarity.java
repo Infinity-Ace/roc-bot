@@ -5,11 +5,12 @@ import jn.rocbot.Emojis;
 import java.util.StringJoiner;
 
 public final class Rarity extends Ship.ShipProperty{
-    private static Rarity COMMON = new Rarity("Common", Emojis.COMMON);
-    private static Rarity RARE = new Rarity("Rare", Emojis.RARE);
+
+    private static Rarity COMMON     = new Rarity("Common",    Emojis.COMMON);
+    private static Rarity RARE       = new Rarity("Rare",      Emojis.RARE);
     private static Rarity SUPER_RARE = new Rarity("Super Rare",Emojis.SUPER_RARE);
 
-    private static Rarity[] values = {COMMON, RARE, SUPER_RARE};
+    private static Rarity[] values = { COMMON, RARE, SUPER_RARE };
 
     private static Rarity[] values() {
         return values;
