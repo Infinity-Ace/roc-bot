@@ -670,6 +670,27 @@
         "name":"Photon diffuser"
       },
       "aura": "Point defense", "zen": "Reflex EMP", "r":2
+    },
+    {
+      "name":"Polaris",
+      "weapon": {
+        "damage output":31.25,
+        "damage type":"sb",
+        "tracking": "fast",
+        "name":"Gamma blaster"
+      },
+      "aura": "Ion cannon", "zen": "Kappa drive", "r":2
+    },
+    {
+      "name":"Icarus",
+      "weapon": {
+        "damage output":37.5,
+        "damage type":"ap",
+        "capacity": 800,
+        "capacity-format": "ms",
+        "name":"Inferno laser"
+      },
+      "aura": "Vorpal lance", "zen": "Teleport", "r":2
     }
   ]
 }
