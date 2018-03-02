@@ -18,6 +18,7 @@ public class TestCommand implements Command {
         TEST_COMMANDS.add(new EveryXHasY());
         TEST_COMMANDS.add(new RolesTestSub());
         TEST_COMMANDS.add(new ShipsMissingDPS());
+        TEST_COMMANDS.add(new PingTestSub(this));
     }
 
     @Override

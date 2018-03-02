@@ -8,7 +8,8 @@ public class IDs {
     public static HashMap<ID_KEY, Long> CHANNELS;
     public static HashMap<ID_KEY, Long> GUILDS;
 
-    public static final long BOT_USER_IDLONG = 377812695585390602L;
+    public static final long BOT_USER_IDLONG  = 377812695585390602L;
+    public static final long JENS_USER_IDLONG = 319178540388057089L;
 
     public static void init() {
         CHANNELS = new HashMap<>();

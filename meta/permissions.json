@@ -17,14 +17,18 @@
       "longID":319178540388057089
     },
     {
+      "name":"Margakis",
+      "longID":345264629632729088
+    },
+    {
       "name":"DestroyTheSelf",
       "longID":243082239443730432,
-      "greeting":"**BEGONE NERD**"
+      "greeting":"**BEGONE NERD**, ok not very funny; **WELCOME NERD**"
     },
     {
       "name":"Loki",
       "longID":135066057244278787,
-      "greeting":"Well met, honourable scribe"
+      "greeting":"Well met, king of wraith"
     },
     {
       "name":"EL",

@@ -1,9 +1,6 @@
 package jn.rocbot.commands;
 
-import jn.rocbot.commands.modcommands.BanCommand;
-import jn.rocbot.commands.modcommands.KickCommand;
-import jn.rocbot.commands.modcommands.RolesCommand;
-import jn.rocbot.commands.modcommands.WarnCommand;
+import jn.rocbot.commands.modcommands.*;
 import jn.rocbot.commands.normalcommands.*;
 import jn.rocbot.commands.common.Command;
 import jn.rocbot.commands.devcommands.SayCommand;
@@ -30,6 +27,7 @@ public class Commands {
         COMMANDS.put("warn", new WarnCommand());
         COMMANDS.put("ban", new BanCommand());
         COMMANDS.put("kick", new KickCommand());
+        COMMANDS.put("shutdown", new ShutDownCommand());
 
 
         //Master commands

@@ -32,7 +32,7 @@ public class Log {
     }
 
     public enum LogType {
-        INFO, DEBUG, ERROR, VERBOSE, CONNECTION
+        INFO, DEBUG, ERROR, SEVERE, VERBOSE, CONNECTION
     }
 
     private static Logger log = Logger.getLogger(Log.class.getName());
@@ -100,14 +100,20 @@ public class Log {
                 ).getTextChannelById(
                         IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_ERRORS)
                 ); break;
+            case SEVERE: log.log(Level.SEVERE, message);
+                channel = Main.JDA.getGuildById(
+                        IDs.GUILDS.get(IDs.ID_KEY.GUILD_BOT_CC)
+                ).getTextChannelById(
+                        IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_ERRORS)
+                ); break;
             default: log.log(Level.SEVERE, message);
                 throw new UnsupportedOperationException(String.format("No supported handle for %s yet!", type.name()));
         }
 
         channel.sendMessage(String.format(
-                "----------------------"
-                + "---------------------"
-                + "\nDate: %s", new DateTime().toString()) + "\n\t:\n"
+                  "----------------------"
+                + "--------------------- "  + type.name()
+                + ":\nDate: %s", new DateTime().toString()) + "\n\t:\n"
                 + message
         ).complete();
     }
