@@ -2,7 +2,7 @@ package jn.rocbot;
 
 import jn.rocbot.commands.common.PREFIXES;
 import jn.rocbot.permissions.Masters;
-import jn.rocbot.ChannelCommandParser.CommandContainer;
+import jn.rocbot.CommandParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.utils.Log;
@@ -18,6 +18,7 @@ import java.util.Random;
 import java.util.StringJoiner;
 import java.util.logging.Logger;
 
+import static jn.rocbot.IDs.CHANNELS;
 import static jn.rocbot.utils.Log.LogType.*;
 import static jn.rocbot.commands.Commands.COMMANDS;
 
@@ -32,12 +33,12 @@ public class Bot extends ListenerAdapter {
         Bot.IS_EVIL_TEST_TWIN = is_evil_twin;
     }
 
-    public static ChannelCommandParser PARSER;
+    public static CommandParser PARSER;
     
     private Logger log = Logger.getLogger(Log.class.getName());
 
     static {
-        PARSER = new ChannelCommandParser();
+        PARSER = new CommandParser();
     }
 
     public static void onReadyLog(){
@@ -106,23 +107,21 @@ public class Bot extends ListenerAdapter {
                 && !event.getAuthor().isBot()) return true;
 
         if(!IS_EVIL_TEST_TWIN) {
-            return ((event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
+            return (
+                    (event.getTextChannel().getIdLong() == CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_BOT_CHANNEL)
                         ||
-                        event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
-                            ||
-                            event.getGuild().getIdLong() == 378949749883273217L) /* Mug's test-server */
-                                &&
-                                !event.getMessage().getAuthor().isBot()); //To prevent recursion
-        }else{
-            return ((event.getTextChannel().getIdLong() == 378546862627749908L //Bot-channel
-                    ||
-                    event.getTextChannel().getIdLong() == 377889873694031872L //My test-server
+                        event.getTextChannel().getIdLong() == CHANNELS.get(IDs.ID_KEY.CHANNEL_GMH_BOT_INTERACT))
+                            && !event.getMessage().getAuthor().isBot()
+            );
+
+        } else {
+            return ((event.getTextChannel().getIdLong() == CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_BOT_CHANNEL)
                         ||
-                        event.getGuild().getIdLong() == 378949749883273217L) /* Rocs*/
+                        event.getTextChannel().getIdLong() == CHANNELS.get(IDs.ID_KEY.CHANNEL_GMH_BOT_INTERACT))
                             &&
-                            !event.getMessage().getAuthor().isBot() //Same as the other (^) !isbot
-                                &&
-                                Masters.isMaster(event.getAuthor())); //Wouldn't want anyone crashing the server due to an unstable build
+                            !event.getMessage().getAuthor().isBot())
+                                && // Wouldn't want anyone crashing the server due to an unstable build
+                                Masters.isMaster(event.getAuthor());
         }
     }
 
@@ -208,7 +207,7 @@ public class Bot extends ListenerAdapter {
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         if(event.getGuild().getIdLong() != IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II)) return;
 
-        event.getJDA().getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_WELCOME)).
+        event.getJDA().getTextChannelById(CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_WELCOME)).
                 sendMessage("Welcome, pilot <@"+event.getMember().getUser().getIdLong()+"> to the Phoenix 2 community!")
                 .complete();
 

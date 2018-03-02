@@ -31,7 +31,6 @@ public class Main {
     public static net.dv8tion.jda.core.JDA JDA;
 
     private static Logger log = Logger.getLogger(Log.class.getName());
-    private static int status;
 
     //requires the arguments String Token, boolean Debug, boolean Verbose
     public static void main(String[] args) {

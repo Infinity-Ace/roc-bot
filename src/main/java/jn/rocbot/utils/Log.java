@@ -16,8 +16,6 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class Log {
-    private final static Logger LOGGER = Logger.getLogger(Log.class.getName());
-
     private static FileHandler fh = null;
 
     public static void init(){
@@ -56,17 +54,15 @@ public class Log {
 
     public static void logMessage(Message message, Channel from){
         Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_BOT_CC))
-                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_BOTCHANNEL_RCWD))
+                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_BOT_CHANNEL_RCWD))
                 .sendMessage(
-                        String.format("Received message from %s in %s:", message.getAuthor().getName(), from.getName())
+                        String.format("Received message from %s in `%s#%s`:", message.getAuthor().getName(), from.getGuild().getName(),from.getName())
                 ).complete();
 
         Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_BOT_CC))
-                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_BOTCHANNEL_RCWD))
+                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_BOT_CHANNEL_RCWD))
                 .sendMessage(
-                        new MessageBuilder().append(
-                                message.getContent().replace("@", "<at>")
-                        ).build()
+                        new MessageBuilder().appendCodeBlock(message.getRawContent(),null).build()
                 ).complete();
     }
 
@@ -105,11 +101,7 @@ public class Log {
                         IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_ERRORS)
                 ); break;
             default: log.log(Level.SEVERE, message);
-                channel = Main.JDA.getGuildById(
-                        IDs.GUILDS.get(IDs.ID_KEY.GUILD_BOT_CC)
-                ).getTextChannelById(
-                        IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GCC_LOGS_ERRORS)
-                ); throw new UnsupportedOperationException(String.format("No supported handle for %s yet!", type.name()));
+                throw new UnsupportedOperationException(String.format("No supported handle for %s yet!", type.name()));
         }
 
         channel.sendMessage(String.format(
