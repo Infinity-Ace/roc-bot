@@ -6,11 +6,15 @@ import jn.rocbot.CommandParser.CommandContainer;
 import jn.rocbot.commands.common.CommandConfig;
 import jn.rocbot.permissions.Moderators;
 import jn.rocbot.utils.Log;
+import net.dv8tion.jda.core.entities.Emote;
 import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.impl.EmoteImpl;
+import net.dv8tion.jda.core.entities.impl.GuildImpl;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.react.GenericGuildMessageReactionEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.joda.time.DateTime;
 
@@ -84,18 +88,20 @@ public class Bot extends ListenerAdapter {
 
     private void specialCases(MessageReceivedEvent event){
         if (!event.getAuthor().isBot()) {
-            String raw = event.getMessage().getContent();
+            String raw = event.getMessage().getContent().toLowerCase();
 
             //Some special cases -----------------------------------------------------
             if (raw.contains("name the bot")) {
                 event.getTextChannel().sendMessage("No " + Emojis.EL).complete();
-            } else if (raw.toLowerCase().contains("thanks bot") || raw.toLowerCase().contains("thank you bot")) {
+            } else if (raw.contains("thanks bot") || raw.contains("thank you bot")) {
                 String str = "";
 
                 if (r.nextInt(10) == 1) str = " Glad to be of use";
                 event.getTextChannel().sendMessage("No problem! ^^" + str).complete();
             } else if (raw.contains("best") && raw.contains("game")) {
                 event.getTextChannel().sendMessage("The best game is **Phoenix 2**! " + Emojis.EL).complete();
+            } else if (raw.contains(":el:")) {
+                event.getMessage().addReaction(new EmoteImpl(Emojis.EL_LONG, (GuildImpl) event.getGuild())).complete();
             }
         }
     }
@@ -159,7 +165,7 @@ public class Bot extends ListenerAdapter {
         String prefix = getPrefix(event);
 
         if(!prefix.startsWith("?"))
-            group.add("Received message starting with "+prefix+" from " + event.getAuthor().getName());
+            group.add("Received message starting with " + prefix + " from " + event.getAuthor().getName());
 
         if (Main.LOG_MESSAGES)
             Log.logMessage(event.getMessage(), event.getTextChannel());
@@ -188,7 +194,7 @@ public class Bot extends ListenerAdapter {
                         )
                 );
             } else if(prefix.equals(PREFIXES.MODERATOR.PREFIX)
-                    && Moderators.isModerator(event.getAuthor())) {
+                    && Moderators.authorIsModerator(event)) {
 
                 handleCommand(PARSER.parse(
                         event.getMessage().getContent(),
@@ -218,6 +224,21 @@ public class Bot extends ListenerAdapter {
                         event.getGuild().getRolesByName("pilot", true)
             ).complete();
         }
+    }
+
+    @Override
+    public void onGenericGuildMessageReaction(GenericGuildMessageReactionEvent event) {
+        if(event.getGuild() == event.getJDA().getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))) {
+            if(event.getReaction().getReactionEmote().getIdLong() == Emojis.EL_LONG) {
+                event.getChannel().getMessageById(event.getReaction().getMessageIdLong())
+                        .queue(
+                                message -> message.addReaction(
+                                        new EmoteImpl(Emojis.EL_LONG, (GuildImpl) event.getGuild())
+                                ).complete()
+                        );
+            }
+        }
+
     }
 
     @Override
@@ -265,11 +286,18 @@ public class Bot extends ListenerAdapter {
             throw new Exception("Found no command-configuration for: " + commandKey);
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        return null;
+        } return null;
     }
 
     public void sendMessageToBotChannel(String message){
-        Main.JDA.getGuildById(325430508379176961L).getTextChannelById(378546862627749908L).sendMessage(message).complete();
+        Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))
+                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_BOT_CHANNEL))
+                        .sendMessage(message).complete();
+    }
+
+    public void sendMessageToAnnouncementsChannel(String message) {
+        Main.JDA.getGuildById(IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))
+                .getTextChannelById(IDs.CHANNELS.get(IDs.ID_KEY.CHANNEL_GP2_ANNOUNCEMENTS))
+                        .sendMessage(message).complete();
     }
 }

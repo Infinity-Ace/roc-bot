@@ -39,7 +39,7 @@ public class HelpCommand implements Command {
                         allCommands.add(String.format("%s%s", PREFIXES.NORMAL.PREFIX, key));
                         break;
                     case MOD:
-                        if (Moderators.isModerator(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MODERATOR.PREFIX, key));
+                        if (Moderators.authorIsModerator(event)) allCommands.add(String.format("%s%s", PREFIXES.MODERATOR.PREFIX, key));
                         break;
                     case DEV:
                         if (Masters.isMaster(event.getAuthor())) allCommands.add(String.format("%s%s", PREFIXES.MASTER.PREFIX, key));

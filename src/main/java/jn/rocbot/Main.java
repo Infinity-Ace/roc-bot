@@ -39,7 +39,7 @@ public class Main {
         StringJoiner env_args_received = new StringJoiner(", ");
         for(String arg : args) env_args_received.add(arg);
 
-        log.log(Level.INFO, "Ran with args: " + env_args_received);
+        log.log(Level.INFO,"Ran with args: " + env_args_received);
         log.log(Level.INFO,"Provided token: " + args[0]);
 
         //Just sets some variables from the main method arguments
@@ -50,11 +50,13 @@ public class Main {
 
         boolean IS_EVIL_TWIN = Boolean.parseBoolean(args[4].toLowerCase());
 
+        Bot bot = new Bot(IS_EVIL_TWIN);
+
         try { //Establishes a connection to the the servers that have added the bot as a user
             JDA = new JDABuilder(AccountType.BOT)
                     .setGame(BotIsDoing.watchingYou)
                     .addEventListener(
-                    new Bot(IS_EVIL_TWIN)
+                            bot // Bzzt
             ).setToken(TOKEN).buildBlocking();
 
             JDA.setAutoReconnect(true);
@@ -64,6 +66,7 @@ public class Main {
         }
 
         init(); //======================================================= IMPORTANT
+        secondInit();
 
         StringJoiner logVars = new StringJoiner(", ");
         logVars.add("DEBUG: " + DEBUG);
@@ -80,6 +83,7 @@ public class Main {
         Log.log(INFO, String.format("Log variables are: %s", group.get()));
 
         Bot.onReadyLog();
+
         Sessions.start();
 
         Log.log(Log.LogType.CONNECTION, "Established connection with discord\nSession: " + Sessions.SESSIONS);
@@ -156,5 +160,9 @@ public class Main {
         Log.log(Log.LogType.VERBOSE, group.get());
 
         Bot.READY = true;
+    }
+
+    private static void secondInit() {
+        Moderators.secondInit(JDA);
     }
 }
