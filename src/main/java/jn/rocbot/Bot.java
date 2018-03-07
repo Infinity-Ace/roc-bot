@@ -100,8 +100,6 @@ public class Bot extends ListenerAdapter {
                 event.getTextChannel().sendMessage("No problem! ^^" + str).complete();
             } else if (raw.contains("best") && raw.contains("game")) {
                 event.getTextChannel().sendMessage("The best game is **Phoenix 2**! " + Emojis.EL).complete();
-            } else if (raw.contains(":el:")) {
-                event.getMessage().addReaction(new EmoteImpl(Emojis.EL_LONG, (GuildImpl) event.getGuild())).complete();
             }
         }
     }
@@ -158,6 +156,11 @@ public class Bot extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event){
         Log.LogGroup group = new Log.LogGroup();
+
+        if (event.getMessage().getContent().toLowerCase().contains(":el:")) {
+            if(event.getGuild().getIdLong() == IDs.GUILDS.get(IDs.ID_KEY.GUILD_PHOENIX_II))
+                event.getMessage().addReaction(new EmoteImpl(Emojis.EL_LONG, (GuildImpl) event.getGuild())).complete();
+        }
 
         //Checks if the bot is supposed to react
         if(!shouldReact(event)) return;
