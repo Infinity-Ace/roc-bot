@@ -148,6 +148,25 @@
         "name":"Arrival EMP",
         "desc":"destroys bullets in a small radius around your ship upon arrival"
       }
+    },
+
+    {
+      "name":"Nightfury",
+      "desc":"Charges the epic Nightfury laser",
+      "abbreviations":["nf"],
+      "properties": {
+        "damage":300,
+        "charge duration":2.3,
+        "charge duration-format":"s",
+        "charge time increase":0.8,
+        "charge time-format": "s",
+        "charge time recovery":"Very slow",
+	"Bullet destruction":"Enabled"
+      },
+      "ult": {
+        "name":"TBA",
+        "desc":"TBA"
+      }
     }
   ]
 }

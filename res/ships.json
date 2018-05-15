@@ -399,6 +399,7 @@
         "damage type":"hi",
         "damage output":31.25,
         "capacity":450,
+	"capacity-format":"ms",
         "name": "Serrator laser"
       },
       "aura": "Chrono field", "zen": "Mega bomb", "r":3
@@ -602,6 +603,7 @@
         "damage type":"hi",
         "damage output":31.25,
         "capacity":400,
+	"capacity-format":"ms",
         "name": "Electron laser"
       },
       "aura": "Vorpal lance", "zen": "Mega bomb", "r":3
@@ -691,6 +693,19 @@
         "name":"Inferno laser"
       },
       "aura": "Vorpal lance", "zen": "Teleport", "r":2
+    },
+    {
+      "name":"Mirage",
+      "weapon": {
+        "damage output":25,
+	"target tracking":"Instant",
+	"capacity":800,
+	"capacity-format":"ms",
+	"damage type":"sb",
+	"name":"Plasma rays"
+      },
+      "aura":"Bullet EMP", "zen": "Nightfury"
+
     }
   ]
 }
