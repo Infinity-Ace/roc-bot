@@ -704,7 +704,7 @@
 	"damage type":"sb",
 	"name":"Plasma rays"
       },
-      "aura":"Bullet EMP", "zen": "Nightfury"
+      "aura":"Bullet EMP", "zen": "Nightfury", "r":3
 
     }
   ]
