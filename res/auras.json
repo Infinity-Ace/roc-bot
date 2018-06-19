@@ -43,7 +43,7 @@
       },
       "ult": {
         "name":"Advanced targeting",
-        "desc":"Missiles will change targets if their current one is destroyed"      
+        "desc":"Missiles will change targets if their current one is destroyed, only applies to targets that were inside the aura upon activation."      
       }
     },
     
@@ -71,7 +71,7 @@
       },
       "ult":{
         "name":"Reset Stun",
-        "desc":"stuns enemies for a short time to reset thier turrets,useful against spinners"
+        "desc":"stuns enemies for a short time to reset their turrets,useful against spinners"
       }
     },
     
