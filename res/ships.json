@@ -707,9 +707,9 @@
       "aura":"Bullet EMP", "zen": "Nightfury", "r":3
 
     },
-	  {
-		  "name":"Marauder"
-		  "weapon":  {
+	{
+		"name":"Marauder"
+		"weapon":  {
 		 	"damage output":25
 		 	"homing capability":"Very Good"
 		 	"damage type":"ap"
@@ -718,5 +718,16 @@
 	  "aura":"Phalanx", "zen":"Kappa Drive", "r":1
 	  
 	},
+	{
+	  "name":"Lyova"
+	  "weapon": {
+	  	"damage output":31.25
+	  	"capacity":400
+	  	"capacity-format":"ms"
+	  	"damage type":"hi"
+	  	"name":"Photon Shredder"
+	  },
+	  "aura":"Bullet EMP", "zen":"Relfex EMP", "r":3
+	  }
   ]
 }
