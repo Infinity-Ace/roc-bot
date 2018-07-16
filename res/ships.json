@@ -708,23 +708,23 @@
 
     },
 	{
-		"name":"Marauder"
+		"name":"Marauder",
 		"weapon":  {
-		 	"damage output":25
-		 	"homing capability":"Very Good"
-		 	"damage type":"ap"
+		 	"damage output":25,
+		 	"homing capability":"Very Good",
+		 	"damage type":"ap",
 			"name":"G.O. Cannons"
 	  },
 	  "aura":"Phalanx", "zen":"Kappa Drive", "r":1
 	  
 	},
 	{
-	  "name":"Lyova"
+	  "name":"Lyova",
 	  "weapon": {
-	  	"damage output":31.25
-	  	"capacity":400
-	  	"capacity-format":"ms"
-	  	"damage type":"hi"
+	  	"damage output":31.25,
+	  	"capacity":400,
+	  	"capacity-format":"ms",
+	  	"damage type":"hi",
 	  	"name":"Photon Shredder"
 	  },
 	  "aura":"Bullet EMP", "zen":"Relfex EMP", "r":3
