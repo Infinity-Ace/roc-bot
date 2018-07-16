@@ -706,6 +706,17 @@
       },
       "aura":"Bullet EMP", "zen": "Nightfury", "r":3
 
-    }
+    },
+	  {
+		  "name":"Marauder"
+		  "weapon":  {
+		 	"damage output":25
+		 	"homing capability":"Very Good"
+		 	"damage type":"ap"
+			"name":"G.O. Cannons"
+	  },
+	  'aura":"Phalanx", "zen":"Kappa Drive", "r":1
+	  
+	},
   ]
 }
